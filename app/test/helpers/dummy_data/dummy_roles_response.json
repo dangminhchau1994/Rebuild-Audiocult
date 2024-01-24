@@ -1,0 +1,15 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "user_group_id": "6",
+            "title": "Event Organizer"
+        },
+        {
+            "user_group_id": "7",
+            "title": "Venue"
+        }
+    ],
+    "message": "",
+    "error": null
+}
