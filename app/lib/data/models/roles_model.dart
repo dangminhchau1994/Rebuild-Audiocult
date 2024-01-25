@@ -7,15 +7,15 @@ class RolesModel extends RolesEntity {
   @override
   final List<RoleModel>? data;
 
-  const RolesModel({required this.data});
+  const RolesModel({this.data}) : super(data: data);
 
   factory RolesModel.fromJson(Map<String, dynamic> json) =>
       _$RolesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$RolesModelToJson(this);
 
-  toEntity() => RolesEntity(
-        data: data,
+  RolesEntity toEntity() => RolesEntity(
+        data: data?.map((e) => e.toEntity()).toList(),
       );
 }
 
@@ -37,7 +37,7 @@ class RoleModel extends RoleEntity {
 
   Map<String, dynamic> toJson() => _$RoleModelToJson(this);
 
-  toEntity() => RoleEntity(
+  RoleEntity toEntity() => RoleEntity(
         userGroupId: userGroupId,
         title: title,
       );

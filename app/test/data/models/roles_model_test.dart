@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:app/data/models/roles_model.dart';
 import 'package:app/domain/entities/roles_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import '../../helpers/json_reader.dart';
 
 void main() {
@@ -35,10 +33,8 @@ void main() {
       // Arrange
       final Map<String, dynamic> jsonMap =
           jsonDecode(readJson('dummy_roles_response.json'));
-
       //Act
       final result = RolesModel.fromJson(jsonMap);
-
       //Assert
       expect(result, tRolesModel);
     });
