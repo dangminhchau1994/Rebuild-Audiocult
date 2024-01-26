@@ -18,8 +18,23 @@ class $AssetsIconsGen {
   SvgGenImage get iconChecked =>
       const SvgGenImage('assets/icons/icon_checked.svg');
 
+  /// File path: assets/icons/icon_drop_down.svg
+  SvgGenImage get iconDropDown =>
+      const SvgGenImage('assets/icons/icon_drop_down.svg');
+
+  /// File path: assets/icons/icon_global.svg
+  SvgGenImage get iconGlobal =>
+      const SvgGenImage('assets/icons/icon_global.svg');
+
+  /// File path: assets/icons/icon_lock.svg
+  SvgGenImage get iconLock => const SvgGenImage('assets/icons/icon_lock.svg');
+
   /// File path: assets/icons/icon_logo.svg
   SvgGenImage get iconLogo => const SvgGenImage('assets/icons/icon_logo.svg');
+
+  /// File path: assets/icons/icon_setting.svg
+  SvgGenImage get iconSetting =>
+      const SvgGenImage('assets/icons/icon_setting.svg');
 
   /// File path: assets/icons/icon_toggle_password.svg
   SvgGenImage get iconTogglePassword =>
@@ -28,9 +43,27 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_turn.svg
   SvgGenImage get iconTurn => const SvgGenImage('assets/icons/icon_turn.svg');
 
+  /// File path: assets/icons/icon_user_friends.svg
+  SvgGenImage get iconUserFriends =>
+      const SvgGenImage('assets/icons/icon_user_friends.svg');
+
+  /// File path: assets/icons/icon_user_subscription.svg
+  SvgGenImage get iconUserSubscription =>
+      const SvgGenImage('assets/icons/icon_user_subscription.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [iconChecked, iconLogo, iconTogglePassword, iconTurn];
+  List<SvgGenImage> get values => [
+        iconChecked,
+        iconDropDown,
+        iconGlobal,
+        iconLock,
+        iconLogo,
+        iconSetting,
+        iconTogglePassword,
+        iconTurn,
+        iconUserFriends,
+        iconUserSubscription
+      ];
 }
 
 class $AssetsImagesGen {

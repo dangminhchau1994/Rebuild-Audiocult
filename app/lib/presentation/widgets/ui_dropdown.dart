@@ -4,64 +4,130 @@ import 'package:app/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 class UIDropDown extends StatefulWidget {
-  const UIDropDown({super.key});
+  const UIDropDown({
+    super.key,
+    this.items,
+    this.title,
+    this.onChanged,
+    this.haveIcon,
+  });
+
+  final List<SelectModel>? items;
+  final String? title;
+  final Function(SelectModel)? onChanged;
+  final bool? haveIcon;
 
   @override
   State<UIDropDown> createState() => _UIDropDownState();
 }
 
 class _UIDropDownState extends State<UIDropDown> {
-  SelectModel option = const SelectModel();
-  List<SelectModel> options = const [
+  SelectModel? selectedItem;
+  List<SelectModel> items = [
     SelectModel(
       id: "1",
-      title: 'User',
+      title: "Admin",
+      iconPath: Assets.icons.iconGlobal.path,
     ),
     SelectModel(
       id: "2",
-      title: 'Admin',
+      title: "User",
+      iconPath: Assets.icons.iconUserSubscription.path,
     ),
     SelectModel(
       id: "3",
-      title: 'Organizer',
+      title: "Artist",
+      iconPath: Assets.icons.iconUserFriends.path,
     ),
   ];
+
+  Widget _buildItemWithoutIcon(SelectModel selectModel) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          selectModel.title ?? '',
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                color: selectedItem?.id == selectModel.id
+                    ? ColorName.white
+                    : ColorName.inputBorderColor,
+              ),
+        ),
+        Visibility(
+          visible: selectedItem?.id == selectModel.id,
+          child: SvgPicture.asset(
+            Assets.icons.iconChecked.path,
+            fit: BoxFit.scaleDown,
+            height: 20,
+            width: 20,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildItemWithIcon(SelectModel selectModel) {
+    return ListTile(
+      leading: SvgPicture.asset(selectModel.iconPath ?? ''),
+      title: Text(
+        selectModel.title ?? '',
+        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: selectedItem?.id == selectModel.id
+                  ? ColorName.white
+                  : ColorName.inputBorderColor,
+            ),
+      ),
+      trailing: Visibility(
+        visible: selectedItem?.id == selectModel.id,
+        child: SvgPicture.asset(
+          Assets.icons.iconChecked.path,
+          fit: BoxFit.scaleDown,
+          height: 20,
+          width: 20,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderDropdown<SelectModel>(
-      name: 'options',
-      validator: FormBuilderValidators.required(),
-      decoration: const InputDecoration(
-        label: Text('Choose your role'),
-      ),
+      name: 'gender',
+      icon: const SizedBox(),
+      dropdownColor: ColorName.secondaryButtonColor,
       onChanged: (value) {
         setState(() {
-          option = value!;
+          selectedItem = value!;
         });
       },
-      items: options
+      selectedItemBuilder: (context) => items
           .map(
-            (e) => DropdownMenuItem<SelectModel>(
-              child: Row(
-                children: [
-                  Text(
-                    e.title ?? '',
-                    style: const TextStyle(
-                      color: ColorName.inputBorderColor,
-                    ),
+            (item) => Text(
+              item.title ?? '',
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: ColorName.inputBorderColor,
                   ),
-                  Visibility(
-                    visible: option.id == e.id,
-                    child: SvgPicture.asset(
-                      Assets.icons.iconChecked.path,
-                    ),
-                  )
-                ],
-              ),
+            ),
+          )
+          .toList(),
+      initialValue: selectedItem,
+      decoration: InputDecoration(
+        hintText: 'Choose your role',
+        suffixIcon: SvgPicture.asset(
+          Assets.icons.iconDropDown.path,
+          fit: BoxFit.scaleDown,
+          height: 20,
+          width: 20,
+        ),
+      ),
+      items: items
+          .map(
+            (item) => DropdownMenuItem<SelectModel>(
+              alignment: AlignmentDirectional.centerStart,
+              value: item,
+              child: _buildItemWithIcon(item),
             ),
           )
           .toList(),

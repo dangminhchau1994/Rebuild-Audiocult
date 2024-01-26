@@ -1,7 +1,7 @@
 import 'package:app/core/constants/api_endpoints.dart';
 import 'package:app/core/errors/exception.dart';
 import 'package:app/data/datasources/roles_data_source.dart';
-import 'package:app/data/models/roles_model.dart';
+import 'package:app/data/models/roles/roles_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

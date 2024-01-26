@@ -23,6 +23,29 @@ extension ThemeExtension on BuildContext {
           ),
         ),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: const TextStyle(
+          fontSize: 14,
+          fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.w700,
+          height: 20 / 10,
+          color: ColorName.inputBorderColor,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4),
+          borderSide: const BorderSide(
+            color: ColorName.inputBorderColor,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4),
+          borderSide: const BorderSide(
+            color: ColorName.inputBorderColor,
+          ),
+        ),
+        filled: true,
+        fillColor: ColorName.inputFillColor,
+      ),
       tabBarTheme: TabBarTheme(
         unselectedLabelColor: ColorName.inputBorderColor,
         labelColor: ColorName.buttonColor,

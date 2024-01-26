@@ -7,7 +7,7 @@ import 'dart:async' as _i6;
 
 import 'package:app/core/errors/failure.dart' as _i7;
 import 'package:app/data/datasources/roles_data_source.dart' as _i10;
-import 'package:app/data/models/roles_model.dart' as _i4;
+import 'package:app/data/models/roles/roles_model.dart' as _i4;
 import 'package:app/domain/entities/roles_entity.dart' as _i8;
 import 'package:app/domain/repositories/get_roles_repository.dart' as _i3;
 import 'package:app/domain/usecases/get_roles_usecase.dart' as _i9;

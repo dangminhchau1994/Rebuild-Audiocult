@@ -1,6 +1,6 @@
 import 'package:app/core/extension/app_extension.dart';
-import 'package:app/presentation/widgets/ui_button.dart';
-import 'package:app/presentation/widgets/ui_tabbar.dart';
+import 'package:app/presentation/widgets/ui_dropdown.dart';
+import 'package:app/presentation/widgets/ui_text_field.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,27 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              child: UITabbar(
-                tabs: const [
-                  Tab(
-                    text: 'Sign Up',
-                  ),
-                  Tab(
-                    text: 'Sign In',
-                  ),
-                ],
-                tabViews: [
-                  Container(),
-                  Container(),
-                ],
-              ),
+            Padding(
+              padding: EdgeInsets.all(12.0),
+              child: UIDropDown(),
             ),
           ],
         ),

@@ -25,6 +25,9 @@ class ColorName {
   /// Color: #4B5563
   static const Color inputFillColor = Color(0xFF4B5563);
 
+  /// Color: #9CA3AF
+  static const Color itemDropdownBackground = Color(0xFF9CA3AF);
+
   /// Color: #1F2937
   static const Color secondaryButtonColor = Color(0xFF1F2937);
 

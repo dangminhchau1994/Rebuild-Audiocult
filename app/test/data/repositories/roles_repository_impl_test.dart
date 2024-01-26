@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:app/core/errors/exception.dart';
 import 'package:app/core/errors/failure.dart';
-import 'package:app/data/models/roles_model.dart';
+import 'package:app/data/models/roles/roles_model.dart';
 import 'package:app/data/repositories/role_repository_impl.dart';
 import 'package:app/domain/entities/roles_entity.dart';
 import 'package:dartz/dartz.dart';
