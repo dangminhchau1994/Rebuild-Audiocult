@@ -126,7 +126,7 @@ class _UIDropDownState extends State<UIDropDown> {
             (item) => Text(
               item.title ?? '',
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: ColorName.white,
+                    color: ColorName.smallTextColor,
                   ),
             ),
           )

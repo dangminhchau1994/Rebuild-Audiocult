@@ -29,17 +29,28 @@ class AppWidgetTheme {
   );
 
   static InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
-    hintStyle: AppTextStyles.bodySmall.copyWith(color: ColorName.white),
+    hintStyle: AppTextStyles.bodySmall.copyWith(
+      color: ColorName.smallTextColor,
+    ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
       borderSide: const BorderSide(
         color: ColorName.inputBorderColor,
+        width: 2,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
       borderSide: const BorderSide(
         color: ColorName.inputBorderColor,
+        width: 2,
+      ),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4),
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 2,
       ),
     ),
     filled: true,
@@ -47,12 +58,6 @@ class AppWidgetTheme {
   );
 
   static CheckboxThemeData checkboxThemeData = CheckboxThemeData(
-    shape: const RoundedRectangleBorder(
-      side: BorderSide(
-        width: 2,
-        color: ColorName.inputBorderColor,
-      ),
-    ),
     fillColor: MaterialStateProperty.all<Color>(
       ColorName.inputFillColor,
     ),
@@ -65,7 +70,7 @@ class AppWidgetTheme {
   );
 
   static TabBarTheme tabBarTheme = TabBarTheme(
-    unselectedLabelColor: ColorName.inputBorderColor,
+    unselectedLabelColor: ColorName.smallTextColor,
     labelColor: ColorName.buttonColor,
     overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
     indicatorSize: TabBarIndicatorSize.tab,

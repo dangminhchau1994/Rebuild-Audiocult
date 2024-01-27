@@ -22,4 +22,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     height: ScreenUtil().scaleHeight,
   );
+
+  static TextStyle titleMedium = TextStyle(
+    fontSize: 24.sp,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w700,
+    height: ScreenUtil().scaleHeight,
+  );
 }

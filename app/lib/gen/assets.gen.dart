@@ -11,6 +11,73 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsFontsGen {
+  const $AssetsFontsGen();
+
+  /// File path: assets/fonts/NunitoSans-Black.ttf
+  String get nunitoSansBlack => 'assets/fonts/NunitoSans-Black.ttf';
+
+  /// File path: assets/fonts/NunitoSans-BlackItalic.ttf
+  String get nunitoSansBlackItalic => 'assets/fonts/NunitoSans-BlackItalic.ttf';
+
+  /// File path: assets/fonts/NunitoSans-Bold.ttf
+  String get nunitoSansBold => 'assets/fonts/NunitoSans-Bold.ttf';
+
+  /// File path: assets/fonts/NunitoSans-BoldItalic.ttf
+  String get nunitoSansBoldItalic => 'assets/fonts/NunitoSans-BoldItalic.ttf';
+
+  /// File path: assets/fonts/NunitoSans-ExtraBold.ttf
+  String get nunitoSansExtraBold => 'assets/fonts/NunitoSans-ExtraBold.ttf';
+
+  /// File path: assets/fonts/NunitoSans-ExtraBoldItalic.ttf
+  String get nunitoSansExtraBoldItalic =>
+      'assets/fonts/NunitoSans-ExtraBoldItalic.ttf';
+
+  /// File path: assets/fonts/NunitoSans-ExtraLight.ttf
+  String get nunitoSansExtraLight => 'assets/fonts/NunitoSans-ExtraLight.ttf';
+
+  /// File path: assets/fonts/NunitoSans-ExtraLightItalic.ttf
+  String get nunitoSansExtraLightItalic =>
+      'assets/fonts/NunitoSans-ExtraLightItalic.ttf';
+
+  /// File path: assets/fonts/NunitoSans-Italic.ttf
+  String get nunitoSansItalic => 'assets/fonts/NunitoSans-Italic.ttf';
+
+  /// File path: assets/fonts/NunitoSans-Light.ttf
+  String get nunitoSansLight => 'assets/fonts/NunitoSans-Light.ttf';
+
+  /// File path: assets/fonts/NunitoSans-LightItalic.ttf
+  String get nunitoSansLightItalic => 'assets/fonts/NunitoSans-LightItalic.ttf';
+
+  /// File path: assets/fonts/NunitoSans-Regular.ttf
+  String get nunitoSansRegular => 'assets/fonts/NunitoSans-Regular.ttf';
+
+  /// File path: assets/fonts/NunitoSans-SemiBold.ttf
+  String get nunitoSansSemiBold => 'assets/fonts/NunitoSans-SemiBold.ttf';
+
+  /// File path: assets/fonts/NunitoSans-SemiBoldItalic.ttf
+  String get nunitoSansSemiBoldItalic =>
+      'assets/fonts/NunitoSans-SemiBoldItalic.ttf';
+
+  /// List of all assets
+  List<String> get values => [
+        nunitoSansBlack,
+        nunitoSansBlackItalic,
+        nunitoSansBold,
+        nunitoSansBoldItalic,
+        nunitoSansExtraBold,
+        nunitoSansExtraBoldItalic,
+        nunitoSansExtraLight,
+        nunitoSansExtraLightItalic,
+        nunitoSansItalic,
+        nunitoSansLight,
+        nunitoSansLightItalic,
+        nunitoSansRegular,
+        nunitoSansSemiBold,
+        nunitoSansSemiBoldItalic
+      ];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -80,6 +147,7 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
+  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }

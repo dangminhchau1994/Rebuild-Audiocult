@@ -31,6 +31,9 @@ class ColorName {
   /// Color: #1F2937
   static const Color secondaryButtonColor = Color(0xFF1F2937);
 
+  /// Color: #D1D5DB
+  static const Color smallTextColor = Color(0xFFD1D5DB);
+
   /// Color: #FFFFFF
   static const Color white = Color(0xFFFFFFFF);
 }

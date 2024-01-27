@@ -3,6 +3,9 @@
     <color name="backgroundColor">#111827</color>
     <color name="white">#FFFFFF</color>
     <color name="itemDropdownUnselected">#9CA3AF</color>
+    
+    //Text Colors
+    <color name="smallTextColor">#D1D5DB</color>
 
     //Button Colors
     <color name="buttonColor">#00A8A8</color>

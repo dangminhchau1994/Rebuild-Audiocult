@@ -1,6 +1,8 @@
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class UICheckBox extends StatefulWidget {
   const UICheckBox({
@@ -21,27 +23,45 @@ class _UICheckBoxState extends State<UICheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-      ),
-      child: CheckboxListTile(
-        controlAffinity: ListTileControlAffinity.leading,
-        visualDensity: VisualDensity.compact,
-        activeColor: ColorName.buttonColor,
-        title: Text(
-          'Remember me',
-          style: context.bodySmall.copyWith(
-            color: ColorName.white,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isChecked = !isChecked;
+          widget.onChanged?.call(isChecked);
+        });
+      },
+      child: Row(
+        children: [
+          Container(
+            width: context.setWidth(20),
+            height: context.setHeight(20),
+            decoration: BoxDecoration(
+              color:
+                  isChecked ? ColorName.buttonColor : ColorName.inputFillColor,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: ColorName.inputBorderColor,
+                width: 2,
+              ),
+            ),
+            child: Visibility(
+              visible: isChecked,
+              child: SvgPicture.asset(
+                Assets.icons.iconChecked.path,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        value: isChecked,
-        onChanged: (value) {
-          setState(() {
-            isChecked = value!;
-          });
-        },
+          context.horizontalSpaceSmall,
+          Flexible(
+            child: Text(
+              widget.title ?? '',
+              style: context.bodySmall.copyWith(
+                color: ColorName.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

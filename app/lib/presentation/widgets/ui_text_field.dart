@@ -7,22 +7,24 @@ class UITextField extends StatelessWidget {
   const UITextField({
     super.key,
     this.controller,
+    this.onChanged,
+    this.hintText,
   });
 
   final TextEditingController? controller;
+  final Function(String?)? onChanged;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderTextField(
-      name: 'input',
-      style: context.bodySmall.copyWith(
-        color: ColorName.white,
-      ),
+      name: hintText ?? '',
+      style: context.bodySmall.copyWith(color: ColorName.smallTextColor),
       cursorColor: ColorName.white,
       controller: controller,
-      onChanged: (value) {},
-      decoration: const InputDecoration(
-        hintText: 'Name',
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        hintText: hintText,
       ),
     );
   }
