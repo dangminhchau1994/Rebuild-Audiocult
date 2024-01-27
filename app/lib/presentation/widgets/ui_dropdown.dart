@@ -52,7 +52,7 @@ class _UIDropDownState extends State<UIDropDown> {
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: selectedItem?.id == selectModel.id
                     ? ColorName.white
-                    : ColorName.inputBorderColor,
+                    : ColorName.itemDropdownUnselected,
               ),
         ),
         Visibility(
@@ -76,7 +76,7 @@ class _UIDropDownState extends State<UIDropDown> {
         style: Theme.of(context).textTheme.bodySmall!.copyWith(
               color: selectedItem?.id == selectModel.id
                   ? ColorName.white
-                  : ColorName.inputBorderColor,
+                  : ColorName.itemDropdownUnselected,
             ),
       ),
       trailing: Visibility(
@@ -97,21 +97,6 @@ class _UIDropDownState extends State<UIDropDown> {
       name: 'gender',
       icon: const SizedBox(),
       dropdownColor: ColorName.secondaryButtonColor,
-      onChanged: (value) {
-        setState(() {
-          selectedItem = value!;
-        });
-      },
-      selectedItemBuilder: (context) => items
-          .map(
-            (item) => Text(
-              item.title ?? '',
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: ColorName.inputBorderColor,
-                  ),
-            ),
-          )
-          .toList(),
       initialValue: selectedItem,
       decoration: InputDecoration(
         hintText: 'Choose your role',
@@ -127,7 +112,22 @@ class _UIDropDownState extends State<UIDropDown> {
             (item) => DropdownMenuItem<SelectModel>(
               alignment: AlignmentDirectional.centerStart,
               value: item,
-              child: _buildItemWithIcon(item),
+              child: _buildItemWithoutIcon(item),
+            ),
+          )
+          .toList(),
+      onChanged: (value) {
+        setState(() {
+          selectedItem = value!;
+        });
+      },
+      selectedItemBuilder: (context) => items
+          .map(
+            (item) => Text(
+              item.title ?? '',
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: ColorName.white,
+                  ),
             ),
           )
           .toList(),

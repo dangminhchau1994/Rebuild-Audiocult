@@ -19,14 +19,14 @@ class ColorName {
   /// Color: #00A8A8
   static const Color buttonColor = Color(0xFF00A8A8);
 
-  /// Color: #D1D5DB
-  static const Color inputBorderColor = Color(0xFFD1D5DB);
-
   /// Color: #4B5563
-  static const Color inputFillColor = Color(0xFF4B5563);
+  static const Color inputBorderColor = Color(0xFF4B5563);
+
+  /// Color: #374151
+  static const Color inputFillColor = Color(0xFF374151);
 
   /// Color: #9CA3AF
-  static const Color itemDropdownBackground = Color(0xFF9CA3AF);
+  static const Color itemDropdownUnselected = Color(0xFF9CA3AF);
 
   /// Color: #1F2937
   static const Color secondaryButtonColor = Color(0xFF1F2937);

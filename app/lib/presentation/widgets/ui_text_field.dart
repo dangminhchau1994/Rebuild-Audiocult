@@ -1,3 +1,4 @@
+import 'package:app/core/extension/app_extension.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,9 +15,9 @@ class UITextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderTextField(
       name: 'input',
-      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            color: ColorName.inputBorderColor,
-          ),
+      style: context.bodySmall.copyWith(
+        color: ColorName.white,
+      ),
       cursorColor: ColorName.white,
       controller: controller,
       onChanged: (value) {},
