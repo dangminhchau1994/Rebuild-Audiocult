@@ -1,9 +1,11 @@
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/generated/locale_keys.g.dart';
 import 'package:app/presentation/features/auth/register/widgets/resigter_term.dart';
 import 'package:app/presentation/widgets/ui_button.dart';
 import 'package:app/presentation/widgets/ui_checkbox.dart';
 import 'package:app/presentation/widgets/ui_dropdown.dart';
 import 'package:app/presentation/widgets/ui_text_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -24,43 +26,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const UIDropDown(),
-            context.verticalSpaceSmall,
-            UITextField(
-              hintText: 'Full Name',
+            UIDropDown(
+              title: LocaleKeys.auth_choose_your_role.tr(),
               onChanged: (value) {},
             ),
             context.verticalSpaceSmall,
             UITextField(
-              hintText: 'Username (slug)',
+              hintText: LocaleKeys.auth_full_name.tr(),
               onChanged: (value) {},
             ),
             context.verticalSpaceSmall,
             UITextField(
-              hintText: 'Location',
+              hintText: LocaleKeys.auth_user_name.tr(),
               onChanged: (value) {},
             ),
             context.verticalSpaceSmall,
             UITextField(
-              hintText: 'Email',
+              hintText: LocaleKeys.auth_location.tr(),
               onChanged: (value) {},
             ),
             context.verticalSpaceSmall,
             UITextField(
-              hintText: 'Password',
+              hintText: LocaleKeys.auth_email.tr(),
               onChanged: (value) {},
+            ),
+            context.verticalSpaceSmall,
+            UITextField(
+              hintText: LocaleKeys.auth_password.tr(),
+              onChanged: (value) {},
+              isObscureText: true,
             ),
             context.verticalSpaceSmall,
             UICheckBox(
-              title:
-                  'I’d like to recieve emails with content and notifications.',
+              title: LocaleKeys.auth_checked_term.tr(),
               onChanged: (value) {},
             ),
             context.verticalSpaceMedium,
             const RegisterTerm(),
             context.verticalSpaceMedium,
             UIButton(
-              title: 'Sign Up',
+              title: LocaleKeys.auth_sign_up.tr(),
               onPressed: () {},
             ),
             context.verticalSpaceMedium,

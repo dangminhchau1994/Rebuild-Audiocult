@@ -1,5 +1,7 @@
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class RegisterTerm extends StatelessWidget {
@@ -11,18 +13,18 @@ class RegisterTerm extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text:
-                'By signing up, you confirm that you’ve read and accepted our',
+            text: LocaleKeys.auth_confirm_term.tr(),
             style: context.bodySmall.copyWith(
               color: ColorName.smallTextColor,
             ),
           ),
           TextSpan(
-            text: ' Accept Terms & Conditions',
+            text: LocaleKeys.auth_underline_term.tr(),
             style: context.bodySmall.copyWith(
               color: ColorName.smallTextColor,
               decoration: TextDecoration.underline,
               decorationColor: ColorName.smallTextColor,
+              decorationThickness: 2,
             ),
           ),
         ],

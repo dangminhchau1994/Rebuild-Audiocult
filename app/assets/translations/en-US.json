@@ -1,0 +1,20 @@
+{
+    "app_name": "Rebuild Audiocult",
+    "welcome": "'Welcome to our community",
+    "joined_people": "2k+ music lovers joined us, now it’s your turn",
+    "auth": {
+        "choose_your_role": "Choose your role",
+        "full_name": "Full Name",
+        "user_name": "Username (slug)",
+        "location": "Location",
+        "email": "Email",
+        "password": "Password",
+        "checked_term": "I’d like to recieve emails with content and notifications.",
+        "confirm_term": "By signing up, you confirm that you’ve read and accepted our",
+        "underline_term": " Accept Terms & Conditions",
+        "sign_up": "Sign Up",
+        "sign_in": "Sign In",
+        "forgot_password": "Forgot Password?",
+        "remember_me": "Remember Me"
+    }
+}

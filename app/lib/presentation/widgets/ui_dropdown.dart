@@ -94,12 +94,12 @@ class _UIDropDownState extends State<UIDropDown> {
   @override
   Widget build(BuildContext context) {
     return FormBuilderDropdown<SelectModel>(
-      name: 'gender',
+      name: widget.title ?? '',
       icon: const SizedBox(),
       dropdownColor: ColorName.secondaryButtonColor,
       initialValue: selectedItem,
       decoration: InputDecoration(
-        hintText: 'Choose your role',
+        hintText: widget.title ?? '',
         suffixIcon: SvgPicture.asset(
           Assets.icons.iconDropDown.path,
           fit: BoxFit.scaleDown,

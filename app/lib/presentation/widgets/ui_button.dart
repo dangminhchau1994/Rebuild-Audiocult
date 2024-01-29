@@ -20,7 +20,7 @@ class UIButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         child: Text(
-          'Sign Up',
+          title ?? '',
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: ColorName.white,
               ),

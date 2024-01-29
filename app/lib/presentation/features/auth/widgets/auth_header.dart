@@ -1,6 +1,8 @@
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -29,7 +31,7 @@ class AuthHeader extends StatelessWidget {
             ),
           ),
           Text(
-            'Welcome to our community',
+            LocaleKeys.welcome.tr(),
             textAlign: TextAlign.center,
             style: context.titleMedium.copyWith(
               color: ColorName.white,
@@ -45,7 +47,7 @@ class AuthHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '2k+ music lovers joined us, now it’s your turn',
+                LocaleKeys.joined_people.tr(),
                 style: context.bodySmall.copyWith(
                   color: ColorName.smallTextColor,
                 ),
@@ -60,12 +62,12 @@ class AuthHeader extends StatelessWidget {
           context.verticalSpaceMedium,
           TabBar(
             controller: tabController,
-            tabs: const [
+            tabs: [
               Tab(
-                text: 'Sign Up',
+                text: LocaleKeys.auth_sign_up.tr(),
               ),
               Tab(
-                text: 'Sign In',
+                text: LocaleKeys.auth_sign_in.tr(),
               ),
             ],
           ),

@@ -28,6 +28,9 @@ class ColorName {
   /// Color: #9CA3AF
   static const Color itemDropdownUnselected = Color(0xFF9CA3AF);
 
+  /// Color: #38BDF8
+  static const Color lightBlue = Color(0xFF38BDF8);
+
   /// Color: #1F2937
   static const Color secondaryButtonColor = Color(0xFF1F2937);
 
