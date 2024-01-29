@@ -1,4 +1,5 @@
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/di/inject_container.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  configureDependencies();
   runApp(
     EasyLocalization(
       supportedLocales: const [

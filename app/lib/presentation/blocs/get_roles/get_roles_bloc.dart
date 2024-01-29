@@ -2,7 +2,9 @@ import 'package:app/domain/usecases/get_roles_usecase.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class GetRolesBloc extends Bloc<GetRolesEvent, GetRolesState> {
   GetRolesBloc({required this.useCase}) : super(GetRolesEmpty()) {
     on<GetRolesEvent>(_getRoles);

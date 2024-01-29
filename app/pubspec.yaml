@@ -47,6 +47,8 @@ dependencies:
   flutter_svg: ^2.0.9
   flutter_screenutil: ^5.9.0
   easy_localization: ^3.0.3
+  injectable:
+  get_it:   
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ dev_dependencies:
   mockito: ^5.4.4
   mocktail: ^1.0.3
   json_serializable: ^6.7.1
+  injectable_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

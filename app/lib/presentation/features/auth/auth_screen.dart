@@ -1,3 +1,4 @@
+import 'package:app/di/inject_container.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/features/auth/widgets/auth_body.dart';
@@ -24,7 +25,14 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [],
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<GetRolesBloc>()
+            ..add(
+              OnGetRoles(),
+            ),
+        )
+      ],
       child: Scaffold(
         body: Column(
           children: [

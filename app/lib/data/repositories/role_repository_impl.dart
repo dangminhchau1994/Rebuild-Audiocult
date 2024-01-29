@@ -5,7 +5,9 @@ import 'package:app/data/datasources/roles_data_source.dart';
 import 'package:app/domain/entities/roles_entity.dart';
 import 'package:app/domain/repositories/get_roles_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: GetRolesRepository)
 class RoleRepositoryImpl implements GetRolesRepository {
   final RolesDataSource rolesDataSource;
 

@@ -1,9 +1,7 @@
 import 'package:app/core/extension/app_extension.dart';
-import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: must_be_immutable
 class UITextField extends StatefulWidget {
