@@ -10,7 +10,7 @@ class GetRolesUseCase {
 
   GetRolesUseCase({required this.rolesRepository});
 
-  Future<Either<Failure, RolesEntity>> execute() {
-    return rolesRepository.getRoles();
+  Future<Either<Failure, RolesEntity>> execute(String token) {
+    return rolesRepository.getRoles(token);
   }
 }

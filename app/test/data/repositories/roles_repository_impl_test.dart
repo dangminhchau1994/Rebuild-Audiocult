@@ -19,6 +19,8 @@ void main() {
   });
 
   group('get roles', () {
+    const tToken = '12c16cea0e5f1a59fdec7e0595c40960efce99fe';
+
     const tRoleModels = RolesModel(data: [
       RoleModel(
         userGroupId: "1",
@@ -45,10 +47,10 @@ void main() {
       'should return role entity when the response is successfully',
       () async {
         //Arrange
-        when(mockRolesDataSource.getRoles())
+        when(mockRolesDataSource.getRoles(tToken))
             .thenAnswer((_) async => tRoleModels);
         //Act
-        final result = await repositoryImpl.getRoles();
+        final result = await repositoryImpl.getRoles(tToken);
         //Assert
         expect(result, equals(const Right(tRoleEntity)));
       },
@@ -58,9 +60,9 @@ void main() {
       'should return server failure when the response is unsuccessully',
       () async {
         //Arrange
-        when(mockRolesDataSource.getRoles()).thenThrow(ServerException());
+        when(mockRolesDataSource.getRoles(tToken)).thenThrow(ServerException());
         //Act
-        final result = await repositoryImpl.getRoles();
+        final result = await repositoryImpl.getRoles(tToken);
         //Assert
         expect(result, equals(const Left(ServerFailure())));
       },
@@ -68,10 +70,10 @@ void main() {
 
     test('should return network failure when the device is offline', () async {
       //Arrange
-      when(mockRolesDataSource.getRoles())
+      when(mockRolesDataSource.getRoles(tToken))
           .thenThrow(const SocketException('Devece is offline'));
       //Act
-      final result = await repositoryImpl.getRoles();
+      final result = await repositoryImpl.getRoles(tToken);
       //Assert
       expect(result, equals(const Left(NetworkFailure())));
     });

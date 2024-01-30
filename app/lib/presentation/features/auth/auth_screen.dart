@@ -27,10 +27,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => getIt<GetRolesBloc>()
-            ..add(
-              OnGetRoles(),
-            ),
+          create: (_) => getIt<GetRolesBloc>()..add(OnGetRoleCredential()),
         )
       ],
       child: Scaffold(

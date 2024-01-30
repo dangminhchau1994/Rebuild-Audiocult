@@ -7,4 +7,10 @@ abstract class GetRolesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnGetRoles extends GetRolesEvent {}
+class OnGetRoles extends GetRolesEvent {
+  final String token;
+
+  const OnGetRoles({required this.token});
+}
+
+class OnGetRoleCredential extends GetRolesEvent {}

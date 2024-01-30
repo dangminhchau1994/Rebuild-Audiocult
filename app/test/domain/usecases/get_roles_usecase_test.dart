@@ -14,6 +14,8 @@ void main() {
     usecase = GetRolesUseCase(rolesRepository: repository);
   });
 
+  const tToken = '12c16cea0e5f1a59fdec7e0595c40960efce99fe';
+
   test('should get roles from the repository', () async {
     const tRolesEntity = RolesEntity(data: [
       RoleEntity(
@@ -26,10 +28,10 @@ void main() {
       ),
     ]);
 
-    when(repository.getRoles())
+    when(repository.getRoles(tToken))
         .thenAnswer((_) async => const Right(tRolesEntity));
 
-    final result = await usecase.execute();
+    final result = await usecase.execute(tToken);
 
     expect(result, const Right(tRolesEntity));
   });

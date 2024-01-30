@@ -2,7 +2,9 @@ import 'package:app/core/errors/failure.dart';
 import 'package:app/domain/entities/login_entity.dart';
 import 'package:app/domain/repositories/login_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class LoginUseCase {
   final LoginRepository repository;
 

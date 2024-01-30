@@ -14,9 +14,9 @@ class RoleRepositoryImpl implements GetRolesRepository {
   RoleRepositoryImpl({required this.rolesDataSource});
 
   @override
-  Future<Either<Failure, RolesEntity>> getRoles() async {
+  Future<Either<Failure, RolesEntity>> getRoles(String token) async {
     try {
-      final result = await rolesDataSource.getRoles();
+      final result = await rolesDataSource.getRoles(token);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure());

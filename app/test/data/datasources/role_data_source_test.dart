@@ -17,6 +17,8 @@ void main() {
     dataSource = RolesDataSourceImpl(client: mockClient);
   });
 
+  const tToken = '12c16cea0e5f1a59fdec7e0595c40960efce99fe';
+
   group('get roles', () {
     test(
       'should return role model when the response is successfully',
@@ -30,7 +32,7 @@ void main() {
           ),
         );
         //Act
-        final result = await dataSource.getRoles();
+        final result = await dataSource.getRoles(tToken);
         //Assert
         expect(result, isA<RolesModel>());
       },
@@ -48,7 +50,7 @@ void main() {
           ),
         );
         //Act
-        final result = dataSource.getRoles();
+        final result = dataSource.getRoles(tToken);
         //Assert
         expect(result, throwsA(isA<ServerException>()));
       },

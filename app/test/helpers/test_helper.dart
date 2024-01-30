@@ -1,3 +1,4 @@
+import 'package:app/data/datasources/login_data_source.dart';
 import 'package:app/data/datasources/roles_data_source.dart';
 import 'package:app/domain/repositories/get_roles_repository.dart';
 import 'package:app/domain/repositories/login_repository.dart';
@@ -13,6 +14,7 @@ import 'package:mockito/annotations.dart';
     RolesDataSource,
     LoginRepository,
     LoginUseCase,
+    LoginDataSource,
   ],
   customMocks: [
     MockSpec<Dio>(as: #MockDioClient),
