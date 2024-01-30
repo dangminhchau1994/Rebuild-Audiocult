@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  awesome_dio_interceptor:
+    dependency: "direct main"
+    description:
+      name: awesome_dio_interceptor
+      sha256: eee73125c290544e21e0b02fd264b809c7c47bde8585cdce7aee2fe026d2b68e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   bloc:
     dependency: transitive
     description:
@@ -166,6 +174,14 @@ packages:
     description:
       name: color
       sha256: ddcdf1b3badd7008233f5acffaf20ca9f5dc2cd0172b75f68f24526a5f5725cb
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
+  colorize:
+    dependency: transitive
+    description:
+      name: colorize
+      sha256: "584746cd6ba1cba0633b6720f494fe6f9601c4170f0666c1579d2aa2a61071ba"
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"

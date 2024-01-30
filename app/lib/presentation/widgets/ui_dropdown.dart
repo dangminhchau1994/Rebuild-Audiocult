@@ -25,23 +25,6 @@ class UIDropDown extends StatefulWidget {
 
 class _UIDropDownState extends State<UIDropDown> {
   SelectModel? selectedItem;
-  List<SelectModel> items = [
-    SelectModel(
-      id: "1",
-      title: "Admin",
-      iconPath: Assets.icons.iconGlobal.path,
-    ),
-    SelectModel(
-      id: "2",
-      title: "User",
-      iconPath: Assets.icons.iconUserSubscription.path,
-    ),
-    SelectModel(
-      id: "3",
-      title: "Artist",
-      iconPath: Assets.icons.iconUserFriends.path,
-    ),
-  ];
 
   Widget _buildItemWithoutIcon(SelectModel selectModel) {
     return Row(
@@ -107,7 +90,7 @@ class _UIDropDownState extends State<UIDropDown> {
           width: 20,
         ),
       ),
-      items: items
+      items: widget.items!
           .map(
             (item) => DropdownMenuItem<SelectModel>(
               alignment: AlignmentDirectional.centerStart,
@@ -121,7 +104,7 @@ class _UIDropDownState extends State<UIDropDown> {
           selectedItem = value!;
         });
       },
-      selectedItemBuilder: (context) => items
+      selectedItemBuilder: (context) => widget.items!
           .map(
             (item) => Text(
               item.title ?? '',

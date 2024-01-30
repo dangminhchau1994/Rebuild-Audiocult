@@ -15,6 +15,7 @@ abstract class RolesDataSource {
 }
 
 class RolesDataSourceImpl implements RolesDataSource {
+  @injectable
   final Dio client;
 
   RolesDataSourceImpl({required this.client});

@@ -12,12 +12,12 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../core/services/register_module.dart' as _i9;
 import '../data/datasources/roles_data_source.dart' as _i4;
 import '../data/repositories/role_repository_impl.dart' as _i6;
 import '../domain/repositories/get_roles_repository.dart' as _i5;
 import '../domain/usecases/get_roles_usecase.dart' as _i7;
 import '../presentation/blocs/get_roles/get_roles_bloc.dart' as _i8;
+import 'register_module.dart' as _i9;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
