@@ -27,16 +27,18 @@ void main() {
   });
 
   const tToken = '12c16cea0e5f1a59fdec7e0595c40960efce99fe';
-  const tRolesEntity = RolesEntity(data: [
-    RoleEntity(
-      userGroupId: "1",
-      title: "Admin",
-    ),
-    RoleEntity(
-      userGroupId: "2",
-      title: "User",
-    ),
-  ]);
+  const tRolesEntity = RolesEntity(
+    data: [
+      RoleEntity(
+        userGroupId: "1",
+        title: "Admin",
+      ),
+      RoleEntity(
+        userGroupId: "2",
+        title: "User",
+      ),
+    ],
+  );
   const tLoginEntity = LoginEntity(
     accessToken: '357b3979817e4289f19a79b140914ff11dccc2c5',
     expiresIn: 3600,
@@ -57,14 +59,49 @@ void main() {
   });
 
   blocTest(
-    'should add OnGetRoles event when data is gotten succesfully',
+    'should add OnGetRoleCredential event when data is gotten succesfully',
     build: () {
-      when(mockLoginUseCase.execute(tLoginParams))
-          .thenAnswer((_) async => const Right(tLoginEntity));
-
+      when(mockLoginUseCase.execute(tLoginParams)).thenAnswer(
+        (_) async => const Right(tLoginEntity),
+      );
+      when(mockGetRolesUseCase.execute(tLoginEntity.accessToken)).thenAnswer(
+        (_) async => const Right(tRolesEntity),
+      );
       return bloc;
     },
-    act: (bloc) => bloc.add(OnGetRoleCredential()),
+    act: (bloc) {
+      bloc.add(OnGetRoleCredential(params: tLoginParams));
+    },
+  );
+
+  blocTest(
+    'should emit GetRolesError when event OnGetRoleCredential return failure',
+    build: () {
+      when(mockLoginUseCase.execute(tLoginParams)).thenAnswer(
+        (_) async => const Left(ServerFailure(message: "Server Failure")),
+      );
+      return bloc;
+    },
+    act: (bloc) {
+      bloc.add(OnGetRoleCredential(params: tLoginParams));
+    },
+    expect: () => [
+      const GetRolesError(message: "Server Failure"),
+    ],
+  );
+
+  blocTest(
+    'should emit [GetRolesLoading, GetRolesLoaded] when data is gotten successfully',
+    build: () {
+      when(mockGetRolesUseCase.execute(tToken))
+          .thenAnswer((_) async => const Right(tRolesEntity));
+      return bloc;
+    },
+    act: (bloc) => bloc.add(const OnGetRoles(token: tToken)),
+    expect: () => [
+      GetRolesLoading(),
+      const GetRolesLoaded(data: tRolesEntity),
+    ],
   );
 
   blocTest(

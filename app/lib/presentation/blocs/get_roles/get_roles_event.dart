@@ -1,3 +1,4 @@
+import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class GetRolesEvent extends Equatable {
@@ -13,4 +14,8 @@ class OnGetRoles extends GetRolesEvent {
   const OnGetRoles({required this.token});
 }
 
-class OnGetRoleCredential extends GetRolesEvent {}
+class OnGetRoleCredential extends GetRolesEvent {
+  final LoginParams params;
+
+  const OnGetRoleCredential({required this.params});
+}

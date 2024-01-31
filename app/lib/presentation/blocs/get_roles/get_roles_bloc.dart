@@ -1,4 +1,3 @@
-import 'package:app/core/constants/app_constants.dart';
 import 'package:app/domain/usecases/get_roles_usecase.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
@@ -23,11 +22,7 @@ class GetRolesBloc extends Bloc<GetRolesEvent, GetRolesState> {
     OnGetRoleCredential event,
     Emitter<GetRolesState> emit,
   ) async {
-    final loginResult = await loginUseCase.execute(LoginParams(
-      clientId: AppConstants.clientId,
-      clientSecret: AppConstants.clientSecret,
-      grantType: AppConstants.roleGranType,
-    ));
+    final loginResult = await loginUseCase.execute(event.params);
     loginResult.fold(
       (failure) => emit(GetRolesError(message: failure.message ?? '')),
       (data) => add(OnGetRoles(token: data.accessToken ?? '')),
@@ -38,6 +33,7 @@ class GetRolesBloc extends Bloc<GetRolesEvent, GetRolesState> {
     OnGetRoles event,
     Emitter<GetRolesState> emit,
   ) async {
+    emit(GetRolesLoading());
     final result = await getRolesUseCase.execute(event.token);
     result.fold(
       (failure) => emit(GetRolesError(message: failure.message ?? '')),

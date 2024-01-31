@@ -1,9 +1,14 @@
+import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/di/inject_container.dart';
+import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
+import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -46,7 +51,20 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         theme: context.myTheme,
-        home: const AuthScreen(),
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) => getIt<GetRolesBloc>()
+                ..add(OnGetRoleCredential(
+                    params: LoginParams(
+                  clientId: AppConstants.clientId,
+                  clientSecret: AppConstants.clientSecret,
+                  grantType: AppConstants.roleGranType,
+                ))),
+            )
+          ],
+          child: const AuthScreen(),
+        ),
       ),
     );
   }
