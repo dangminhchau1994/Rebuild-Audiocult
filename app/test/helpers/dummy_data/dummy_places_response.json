@@ -1,0 +1,74 @@
+{
+    "predictions": [
+        {
+            "description": "49C Đường Lê Quang Kim, Phường 8, Quận 8, Ho Chi Minh City, Vietnam",
+            "matched_substrings": [
+                {
+                    "length": 3,
+                    "offset": 0
+                },
+                {
+                    "length": 12,
+                    "offset": 10
+                },
+                {
+                    "length": 6,
+                    "offset": 34
+                }
+            ],
+            "place_id": "ChIJa3E1AQAvdTERYALZ9aYvLLE",
+            "reference": "ChIJa3E1AQAvdTERYALZ9aYvLLE",
+            "structured_formatting": {
+                "main_text": "49C Đường Lê Quang Kim",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 3,
+                        "offset": 0
+                    },
+                    {
+                        "length": 12,
+                        "offset": 10
+                    }
+                ],
+                "secondary_text": "Phường 8, Quận 8, Ho Chi Minh City, Vietnam",
+                "secondary_text_matched_substrings": [
+                    {
+                        "length": 6,
+                        "offset": 10
+                    }
+                ]
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "49C"
+                },
+                {
+                    "offset": 4,
+                    "value": "Đường Lê Quang Kim"
+                },
+                {
+                    "offset": 24,
+                    "value": "Phường 8"
+                },
+                {
+                    "offset": 34,
+                    "value": "Quận 8"
+                },
+                {
+                    "offset": 42,
+                    "value": "Ho Chi Minh City"
+                },
+                {
+                    "offset": 60,
+                    "value": "Vietnam"
+                }
+            ],
+            "types": [
+                "premise",
+                "geocode"
+            ]
+        }
+    ],
+    "status": "OK"
+}
