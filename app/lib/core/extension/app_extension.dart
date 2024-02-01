@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 extension ThemeExtension on BuildContext {
   ThemeData get myTheme {
     return ThemeData(
-      elevatedButtonTheme: AppWidgetTheme.elevatedButtonThemeData,
+      buttonTheme: AppWidgetTheme.buttonThemeData,
       inputDecorationTheme: AppWidgetTheme.inputDecorationTheme,
       checkboxTheme: AppWidgetTheme.checkboxThemeData,
       tabBarTheme: AppWidgetTheme.tabBarTheme,

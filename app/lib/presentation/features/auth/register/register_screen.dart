@@ -28,6 +28,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
+  final _addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,114 +38,120 @@ class _RegisterScreenState extends State<RegisterScreen> {
         vertical: context.setHeight(20),
       ),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            BlocBuilder<GetRolesBloc, GetRolesState>(
-              builder: (context, state) {
-                if (state is GetRolesLoaded) {
-                  return UIDropDown(
-                    errorMessage: LocaleKeys.auth_role_required.tr(),
-                    items: state.data.data
-                        ?.map((e) => SelectModel(
-                              title: e.title,
-                              id: e.userGroupId,
-                            ))
-                        .toList(),
-                    title: LocaleKeys.auth_choose_your_role.tr(),
-                    onChanged: (value) {},
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            ),
-            context.verticalSpaceSmall,
-            UITextField(
-              hintText: LocaleKeys.auth_full_name.tr(),
-              onChanged: (value) {},
-              onValidator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-              ]),
-            ),
-            context.verticalSpaceSmall,
-            UITextField(
-              hintText: LocaleKeys.auth_user_name.tr(),
-              onChanged: (value) {},
-              onValidator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-              ]),
-            ),
-            context.verticalSpaceSmall,
-            BlocBuilder<RegisterCubit, RegisterCubitState>(
-              builder: (context, state) {
-                return UITextField(
-                  controller: TextEditingController(text: state.fullAddress)
-                    ..selection = const TextSelection.collapsed(offset: 0),
-                  hintText: LocaleKeys.auth_location.tr(),
-                  onValidator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                  ]),
-                  onChanged: (value) {},
-                  onTap: () async {
-                    final result = await showSearch(
-                      context: context,
-                      delegate: RegisterSearch(
-                        bloc: context.read<GetPlacesBloc>(),
-                      ),
+        child: FormBuilder(
+          key: _formKey,
+          child: Column(
+            children: [
+              BlocBuilder<GetRolesBloc, GetRolesState>(
+                builder: (context, state) {
+                  if (state is GetRolesLoaded) {
+                    return UIDropDown(
+                      errorMessage: LocaleKeys.auth_role_required.tr(),
+                      items: state.data.data
+                          ?.map((e) => SelectModel(
+                                title: e.title,
+                                id: e.userGroupId,
+                              ))
+                          .toList(),
+                      title: LocaleKeys.auth_choose_your_role.tr(),
+                      onChanged: (value) {},
                     );
-                    if (!mounted) return;
-                    if (result != null) {
-                      context
-                          .read<RegisterCubit>()
-                          .updateFullAddress(result.description);
-                    }
-                  },
-                );
-              },
-            ),
-            context.verticalSpaceSmall,
-            UITextField(
-              hintText: LocaleKeys.auth_email.tr(),
-              onChanged: (value) {},
-              onValidator: (value) {
-                if (value?.isEmpty ?? false) {
-                  return LocaleKeys.auth_empty_input.tr();
-                } else if (!ValidationUtil.isValidEmail(value ?? '')) {
-                  return LocaleKeys.auth_email_invalid.tr();
-                }
-                return null;
-              },
-            ),
-            context.verticalSpaceSmall,
-            UITextField(
-              hintText: LocaleKeys.auth_password.tr(),
-              isObscureText: true,
-              onChanged: (value) {},
-              onValidator: (value) {
-                if (value?.isEmpty ?? false) {
-                  return LocaleKeys.auth_empty_input.tr();
-                } else if (!ValidationUtil.isValidPassword(value ?? '')) {
-                  return LocaleKeys.auth_password_invalid.tr();
-                }
-                return null;
-              },
-            ),
-            context.verticalSpaceSmall,
-            UICheckBox(
-              title: LocaleKeys.auth_checked_term.tr(),
-              onChanged: (value) {},
-            ),
-            context.verticalSpaceMedium,
-            const RegisterTerm(),
-            context.verticalSpaceMedium,
-            UIButton(
-              title: LocaleKeys.auth_sign_up.tr(),
-              onPressed: () {
-                if (_formKey.currentState?.saveAndValidate() ?? false) {}
-              },
-            ),
-            context.verticalSpaceMedium,
-          ],
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+              context.verticalSpaceSmall,
+              UITextField(
+                hintText: LocaleKeys.auth_full_name.tr(),
+                onChanged: (value) {},
+                onValidator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(),
+                ]),
+              ),
+              context.verticalSpaceSmall,
+              UITextField(
+                hintText: LocaleKeys.auth_user_name.tr(),
+                onChanged: (value) {},
+                onValidator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(),
+                ]),
+              ),
+              context.verticalSpaceSmall,
+              BlocBuilder<RegisterCubit, RegisterCubitState>(
+                builder: (context, state) {
+                  return UITextField(
+                    controller: _addressController
+                      ..selection = const TextSelection.collapsed(offset: 0),
+                    hintText: LocaleKeys.auth_location.tr(),
+                    onValidator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                    onChanged: (value) {},
+                    onTap: () async {
+                      final result = await showSearch(
+                        context: context,
+                        delegate: RegisterSearch(
+                          bloc: context.read<GetPlacesBloc>(),
+                        ),
+                      );
+                      if (!mounted) return;
+                      if (result != null) {
+                        context
+                            .read<RegisterCubit>()
+                            .updateFullAddress(result.description);
+                        _addressController.text =
+                            context.read<RegisterCubit>().state.fullAddress ??
+                                '';
+                      }
+                    },
+                  );
+                },
+              ),
+              context.verticalSpaceSmall,
+              UITextField(
+                hintText: LocaleKeys.auth_email.tr(),
+                onChanged: (value) {},
+                onValidator: (value) {
+                  if (value?.isEmpty ?? false) {
+                    return LocaleKeys.auth_empty_input.tr();
+                  } else if (!ValidationUtil.isValidEmail(value ?? '')) {
+                    return LocaleKeys.auth_email_invalid.tr();
+                  }
+                  return null;
+                },
+              ),
+              context.verticalSpaceSmall,
+              UITextField(
+                hintText: LocaleKeys.auth_password.tr(),
+                isObscureText: true,
+                onChanged: (value) {},
+                onValidator: (value) {
+                  if (value?.isEmpty ?? false) {
+                    return LocaleKeys.auth_empty_input.tr();
+                  } else if (!ValidationUtil.isValidPassword(value ?? '')) {
+                    return LocaleKeys.auth_password_invalid.tr();
+                  }
+                  return null;
+                },
+              ),
+              context.verticalSpaceSmall,
+              UICheckBox(
+                title: LocaleKeys.auth_checked_term.tr(),
+                onChanged: (value) {},
+              ),
+              context.verticalSpaceMedium,
+              const RegisterTerm(),
+              context.verticalSpaceMedium,
+              UIButton(
+                title: LocaleKeys.auth_sign_up.tr(),
+                onPressed: () {
+                  if (_formKey.currentState?.saveAndValidate() ?? false) {}
+                },
+              ),
+              context.verticalSpaceMedium,
+            ],
+          ),
         ),
       ),
     );

@@ -84,7 +84,7 @@ class _UIDropDownState extends State<UIDropDown> {
       validator: (value) => value == null ? widget.errorMessage : null,
       dropdownColor: ColorName.secondaryButtonColor,
       initialValue: selectedItem,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         hintText: widget.title ?? '',
         suffixIcon: SvgPicture.asset(

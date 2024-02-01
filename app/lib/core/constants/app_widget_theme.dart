@@ -8,23 +8,12 @@ class AppWidgetTheme {
     elevation: 0,
   );
 
-  static ElevatedButtonThemeData elevatedButtonThemeData =
-      ElevatedButtonThemeData(
-    style: ButtonStyle(
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-        const EdgeInsets.fromLTRB(16, 8, 16, 8),
-      ),
-      overlayColor: MaterialStateProperty.all<Color>(
-        ColorName.white.withOpacity(0.1),
-      ),
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
-      ),
-      backgroundColor: MaterialStateProperty.all<Color>(
-        ColorName.buttonColor,
-      ),
+  static ButtonThemeData buttonThemeData = ButtonThemeData(
+    buttonColor: ColorName.buttonColor,
+    splashColor: ColorName.white.withOpacity(0.1),
+    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4),
     ),
   );
 

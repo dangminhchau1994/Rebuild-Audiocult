@@ -36,7 +36,7 @@ class _UITextFieldState extends State<UITextField> {
       obscureText: showPassword,
       onTap: widget.onTap,
       validator: widget.onValidator,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       style: context.bodySmall.copyWith(color: ColorName.smallTextColor),
       cursorColor: ColorName.white,
       controller: widget.controller,

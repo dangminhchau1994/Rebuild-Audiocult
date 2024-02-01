@@ -17,8 +17,9 @@ class UIButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? double.infinity,
-      child: ElevatedButton(
-        onPressed: () {},
+      child: MaterialButton(
+        color: ColorName.buttonColor,
+        onPressed: onPressed,
         child: Text(
           title ?? '',
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
