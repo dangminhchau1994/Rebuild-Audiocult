@@ -21,6 +21,15 @@ class GetPlacesLoaded extends GetPlacesState {
   List<Object> get props => [places];
 }
 
+class GetPlaceDetailLoaded extends GetPlacesState {
+  final PlaceSuggestionEntity place;
+
+  const GetPlaceDetailLoaded({required this.place});
+
+  @override
+  List<Object> get props => [place];
+}
+
 class GetPlacesError extends GetPlacesState {
   final String message;
 

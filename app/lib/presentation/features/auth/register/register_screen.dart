@@ -1,8 +1,11 @@
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/data/models/select_model.dart';
+import 'package:app/di/inject_container.dart';
 import 'package:app/generated/locale_keys.g.dart';
+import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_state.dart';
+import 'package:app/presentation/features/auth/register/widgets/register_search.dart';
 import 'package:app/presentation/features/auth/register/widgets/resigter_term.dart';
 import 'package:app/presentation/widgets/ui_button.dart';
 import 'package:app/presentation/widgets/ui_checkbox.dart';
@@ -62,6 +65,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
             UITextField(
               hintText: LocaleKeys.auth_location.tr(),
               onChanged: (value) {},
+              onTap: () async {
+                final result = await showSearch(
+                  context: context,
+                  delegate: RegisterSearch(
+                    bloc: getIt<GetPlacesBloc>(),
+                  ),
+                );
+                debugPrint(result.toString());
+              },
             ),
             context.verticalSpaceSmall,
             UITextField(

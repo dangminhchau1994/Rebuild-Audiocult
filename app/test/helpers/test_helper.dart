@@ -4,6 +4,7 @@ import 'package:app/data/datasources/roles_data_source.dart';
 import 'package:app/domain/repositories/get_places_repository.dart';
 import 'package:app/domain/repositories/get_roles_repository.dart';
 import 'package:app/domain/repositories/login_repository.dart';
+import 'package:app/domain/usecases/get_place_detail_usecase.dart';
 import 'package:app/domain/usecases/get_places_usecase.dart';
 import 'package:app/domain/usecases/get_roles_usecase.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
@@ -17,6 +18,7 @@ import 'package:mockito/annotations.dart';
     GetPlacesRepository,
     GetPlacesUseCase,
     GetRolesUseCase,
+    GetPlaceDetailUseCase,
     LoginUseCase,
     RolesDataSource,
     LoginDataSource,

@@ -33,7 +33,7 @@ void main() {
       sessionToken: 'sdfsdfsdf',
     );
 
-    const tPlacesModel = [
+    final tPlacesModel = [
       PlacesModel(
         placeId: 'ChIJa3E1AQAvdTERYALZ9aYvLLE',
         description:

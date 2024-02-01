@@ -50,6 +50,8 @@ dependencies:
   easy_localization: ^3.0.3
   injectable:
   get_it:   
+  rxdart: ^0.27.7
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:

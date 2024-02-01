@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:app/domain/entities/place_suggestion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'places_model.g.dart';
@@ -7,13 +9,28 @@ class PlacesModel extends PlaceSuggestionEntity {
   @JsonKey(name: 'place_id')
   final String? placeId;
   final String? description;
+  String? city;
+  String? zipCode;
+  String? fullAdress;
+  double? latitude;
+  double? longitude;
 
-  const PlacesModel({
+  PlacesModel({
     this.placeId,
     this.description,
+    this.city,
+    this.zipCode,
+    this.fullAdress,
+    this.latitude,
+    this.longitude,
   }) : super(
           placeId: placeId,
           description: description,
+          city: city,
+          zipCode: zipCode,
+          fullAdress: fullAdress,
+          latitude: latitude,
+          longitude: longitude,
         );
 
   factory PlacesModel.fromJson(Map<String, dynamic> json) =>
@@ -24,5 +41,10 @@ class PlacesModel extends PlaceSuggestionEntity {
   PlaceSuggestionEntity toEntity() => PlaceSuggestionEntity(
         placeId: placeId,
         description: description,
+        city: city,
+        zipCode: zipCode,
+        fullAdress: fullAdress,
+        latitude: latitude,
+        longitude: longitude,
       );
 }

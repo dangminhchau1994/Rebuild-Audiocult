@@ -2,6 +2,7 @@
     "app_name": "Rebuild Audiocult",
     "welcome": "'Welcome to our community",
     "joined_people": "2k+ music lovers joined us, now it’s your turn",
+    "clear": "Clear",
     "auth": {
         "choose_your_role": "Choose your role",
         "full_name": "Full Name",

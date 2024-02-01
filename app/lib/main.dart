@@ -3,6 +3,7 @@ import 'package:app/core/extension/app_extension.dart';
 import 'package:app/di/inject_container.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
@@ -61,6 +62,9 @@ class MyApp extends StatelessWidget {
                   clientSecret: AppConstants.clientSecret,
                   grantType: AppConstants.roleGranType,
                 ))),
+            ),
+            BlocProvider(
+              create: (_) => getIt<GetPlacesBloc>(),
             )
           ],
           child: const AuthScreen(),

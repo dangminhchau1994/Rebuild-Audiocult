@@ -21,12 +21,14 @@ import '../data/repositories/role_repository_impl.dart' as _i14;
 import '../domain/repositories/get_places_repository.dart' as _i10;
 import '../domain/repositories/get_roles_repository.dart' as _i13;
 import '../domain/repositories/login_repository.dart' as _i5;
+import '../domain/usecases/get_place_detail_usecase.dart' as _i17;
 import '../domain/usecases/get_places_usecase.dart' as _i12;
 import '../domain/usecases/get_roles_usecase.dart' as _i15;
 import '../domain/usecases/login_usecase.dart' as _i7;
-import '../presentation/blocs/get_roles/get_roles_bloc.dart' as _i17;
+import '../presentation/blocs/get_places/get_places_bloc.dart' as _i18;
+import '../presentation/blocs/get_roles/get_roles_bloc.dart' as _i19;
 import '../presentation/blocs/login/login_bloc.dart' as _i16;
-import 'register_module.dart' as _i18;
+import 'register_module.dart' as _i20;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -61,7 +63,13 @@ extension GetItInjectableX on _i1.GetIt {
         _i15.GetRolesUseCase(rolesRepository: gh<_i13.GetRolesRepository>()));
     gh.factory<_i16.LoginBloc>(
         () => _i16.LoginBloc(useCase: gh<_i7.LoginUseCase>()));
-    gh.factory<_i17.GetRolesBloc>(() => _i17.GetRolesBloc(
+    gh.singleton<_i17.GetPlaceDetailUseCase>(
+        _i17.GetPlaceDetailUseCase(repository: gh<_i10.GetPlacesRepository>()));
+    gh.factory<_i18.GetPlacesBloc>(() => _i18.GetPlacesBloc(
+          useCase: gh<_i12.GetPlacesUseCase>(),
+          getPlaceDetailUseCase: gh<_i17.GetPlaceDetailUseCase>(),
+        ));
+    gh.factory<_i19.GetRolesBloc>(() => _i19.GetRolesBloc(
           getRolesUseCase: gh<_i15.GetRolesUseCase>(),
           loginUseCase: gh<_i7.LoginUseCase>(),
         ));
@@ -69,4 +77,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$RegisterModule extends _i18.RegisterModule {}
+class _$RegisterModule extends _i20.RegisterModule {}

@@ -13,11 +13,16 @@ import '../../../helpers/test_helper.mocks.dart';
 
 void main() {
   late MockGetPlacesUseCase mockGetPlacesUseCase;
+  late MockGetPlaceDetailUseCase mockGetPlaceDetailUseCase;
   late GetPlacesBloc bloc;
 
   setUp(() {
     mockGetPlacesUseCase = MockGetPlacesUseCase();
-    bloc = GetPlacesBloc(useCase: mockGetPlacesUseCase);
+    mockGetPlaceDetailUseCase = MockGetPlaceDetailUseCase();
+    bloc = GetPlacesBloc(
+      useCase: mockGetPlacesUseCase,
+      getPlaceDetailUseCase: mockGetPlaceDetailUseCase,
+    );
   });
 
   test('initialState should be GetPlacesInitial', () {

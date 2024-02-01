@@ -6,7 +6,7 @@ import '../../helpers/json_reader.dart';
 
 void main() {
   test('should be a subclass of places entity', () {
-    const tPlacesModel = PlacesModel(
+    final tPlacesModel = PlacesModel(
       placeId:
           'ElhIbyBDaGkgTWluaCBTYXJhbmkgUm9hZCwgS2Fua2FyaWEgRXN0YXRlcywgUGFyayBTdHJlZXQgYXJlYSwgS29sa2F0YSwgV2VzdCBCZW5nYWwsIEluZGlhIi4qLAoUChIJ-Xr1ahF3AjoRPYSQx_SUpVkSFAoSCUn2XN0QdwI6EWpVu6SzUbbo',
       description:

@@ -1,35 +1,23 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: prefer_single_quotes
+abstract class  LocaleKeys {
+  static const app_name = 'app_name';
+  static const welcome = 'welcome';
+  static const joined_people = 'joined_people';
+  static const clear = 'clear';
+  static const auth_choose_your_role = 'auth.choose_your_role';
+  static const auth_full_name = 'auth.full_name';
+  static const auth_user_name = 'auth.user_name';
+  static const auth_location = 'auth.location';
+  static const auth_email = 'auth.email';
+  static const auth_password = 'auth.password';
+  static const auth_checked_term = 'auth.checked_term';
+  static const auth_confirm_term = 'auth.confirm_term';
+  static const auth_underline_term = 'auth.underline_term';
+  static const auth_sign_up = 'auth.sign_up';
+  static const auth_sign_in = 'auth.sign_in';
+  static const auth_forgot_password = 'auth.forgot_password';
+  static const auth_remember_me = 'auth.remember_me';
+  static const auth = 'auth';
 
-import 'dart:ui';
-
-import 'package:easy_localization/easy_localization.dart' show AssetLoader;
-
-class CodegenLoader extends AssetLoader{
-  const CodegenLoader();
-
-  @override
-  Future<Map<String, dynamic>?> load(String path, Locale locale) {
-    return Future.value(mapLocales[locale.toString()]);
-  }
-
-  static const Map<String,dynamic> en_US = {
-  "app_name": "Rebuild Audiocult",
-  "auth": {
-    "full_name": "Full Name",
-    "user_name": "Username (slug)",
-    "location": "Location",
-    "email": "Email",
-    "password": "Password",
-    "checked_term": "I’d like to recieve emails with content and notifications.",
-    "confirm_term": "By signing up, you confirm that you’ve read and accepted our",
-    "underline_confirm_term": "",
-    "sign_up": "Sign Up",
-    "sign_in": "Sign In",
-    "forgot_password": "Forgot Password?",
-    "remember_me": "Remember Me"
-  }
-};
-static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": en_US};
 }
