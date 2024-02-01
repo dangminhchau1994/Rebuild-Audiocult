@@ -12,11 +12,13 @@ class UIDropDown extends StatefulWidget {
     this.title,
     this.onChanged,
     this.haveIcon,
+    this.errorMessage,
   });
 
+  final Function(SelectModel)? onChanged;
   final List<SelectModel>? items;
   final String? title;
-  final Function(SelectModel)? onChanged;
+  final String? errorMessage;
   final bool? haveIcon;
 
   @override
@@ -79,8 +81,10 @@ class _UIDropDownState extends State<UIDropDown> {
     return FormBuilderDropdown<SelectModel>(
       name: widget.title ?? '',
       icon: const SizedBox(),
+      validator: (value) => value == null ? widget.errorMessage : null,
       dropdownColor: ColorName.secondaryButtonColor,
       initialValue: selectedItem,
+      autovalidateMode: AutovalidateMode.always,
       decoration: InputDecoration(
         hintText: widget.title ?? '',
         suffixIcon: SvgPicture.asset(

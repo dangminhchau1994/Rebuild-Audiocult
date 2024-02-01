@@ -6,6 +6,10 @@ abstract class  LocaleKeys {
   static const joined_people = 'joined_people';
   static const clear = 'clear';
   static const auth_choose_your_role = 'auth.choose_your_role';
+  static const auth_role_required = 'auth.role_required';
+  static const auth_empty_input = 'auth.empty_input';
+  static const auth_email_invalid = 'auth.email_invalid';
+  static const auth_password_invalid = 'auth.password_invalid';
   static const auth_full_name = 'auth.full_name';
   static const auth_user_name = 'auth.user_name';
   static const auth_location = 'auth.location';

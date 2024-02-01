@@ -6,6 +6,7 @@ import 'package:app/gen/colors.gen.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
+import 'package:app/presentation/blocs/register/register_cubit.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,6 +63,9 @@ class MyApp extends StatelessWidget {
                   clientSecret: AppConstants.clientSecret,
                   grantType: AppConstants.roleGranType,
                 ))),
+            ),
+            BlocProvider(
+              create: (_) => getIt<RegisterCubit>(),
             ),
             BlocProvider(
               create: (_) => getIt<GetPlacesBloc>(),

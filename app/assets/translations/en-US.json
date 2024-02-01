@@ -5,6 +5,10 @@
     "clear": "Clear",
     "auth": {
         "choose_your_role": "Choose your role",
+        "role_required": "Please choose your role",
+        "empty_input": "Please fill in this field",
+        "email_invalid": "Email is invalid",
+        "password_invalid": "Password length must be at least 8 characters and contain numbers and at lease one special character",
         "full_name": "Full Name",
         "user_name": "Username (slug)",
         "location": "Location",

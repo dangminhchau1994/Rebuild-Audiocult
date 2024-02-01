@@ -12,11 +12,13 @@ class UITextField extends StatefulWidget {
     this.hintText,
     this.onTap,
     this.isObscureText,
+    this.onValidator,
   });
 
   final TextEditingController? controller;
-  final Function(String?)? onChanged;
   final Function()? onTap;
+  final Function(String?)? onChanged;
+  final String? Function(String?)? onValidator;
   final String? hintText;
   bool? isObscureText;
 
@@ -33,6 +35,8 @@ class _UITextFieldState extends State<UITextField> {
       name: widget.hintText ?? '',
       obscureText: showPassword,
       onTap: widget.onTap,
+      validator: widget.onValidator,
+      autovalidateMode: AutovalidateMode.always,
       style: context.bodySmall.copyWith(color: ColorName.smallTextColor),
       cursorColor: ColorName.white,
       controller: widget.controller,

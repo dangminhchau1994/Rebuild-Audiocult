@@ -32,9 +32,7 @@ class GetPlacesBloc extends Bloc<GetPlacesEvent, GetPlacesState> {
     final result = await useCase.execute(event.params);
     result.fold(
       (failure) => emit(GetPlacesError(message: failure.message ?? '')),
-      (places) {
-        emit(GetPlacesLoaded(places: places));
-      },
+      (places) => emit(GetPlacesLoaded(places: places)),
     );
   }
 

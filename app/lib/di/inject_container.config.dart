@@ -14,21 +14,22 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../data/datasources/login_data_source.dart' as _i4;
 import '../data/datasources/places_data_source.dart' as _i8;
-import '../data/datasources/roles_data_source.dart' as _i9;
+import '../data/datasources/roles_data_source.dart' as _i10;
 import '../data/repositories/login_repository_impl.dart' as _i6;
-import '../data/repositories/places_repository_impl.dart' as _i11;
-import '../data/repositories/role_repository_impl.dart' as _i14;
-import '../domain/repositories/get_places_repository.dart' as _i10;
-import '../domain/repositories/get_roles_repository.dart' as _i13;
+import '../data/repositories/places_repository_impl.dart' as _i12;
+import '../data/repositories/role_repository_impl.dart' as _i15;
+import '../domain/repositories/get_places_repository.dart' as _i11;
+import '../domain/repositories/get_roles_repository.dart' as _i14;
 import '../domain/repositories/login_repository.dart' as _i5;
-import '../domain/usecases/get_place_detail_usecase.dart' as _i17;
-import '../domain/usecases/get_places_usecase.dart' as _i12;
-import '../domain/usecases/get_roles_usecase.dart' as _i15;
+import '../domain/usecases/get_place_detail_usecase.dart' as _i18;
+import '../domain/usecases/get_places_usecase.dart' as _i13;
+import '../domain/usecases/get_roles_usecase.dart' as _i16;
 import '../domain/usecases/login_usecase.dart' as _i7;
-import '../presentation/blocs/get_places/get_places_bloc.dart' as _i18;
-import '../presentation/blocs/get_roles/get_roles_bloc.dart' as _i19;
-import '../presentation/blocs/login/login_bloc.dart' as _i16;
-import 'register_module.dart' as _i20;
+import '../presentation/blocs/get_places/get_places_bloc.dart' as _i19;
+import '../presentation/blocs/get_roles/get_roles_bloc.dart' as _i20;
+import '../presentation/blocs/login/login_bloc.dart' as _i17;
+import '../presentation/blocs/register/register_cubit.dart' as _i9;
+import 'register_module.dart' as _i21;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -51,30 +52,31 @@ extension GetItInjectableX on _i1.GetIt {
         _i7.LoginUseCase(repository: gh<_i5.LoginRepository>()));
     gh.factory<_i8.PlacesDataSource>(
         () => _i8.PlacesDataSource.create(gh<_i3.Dio>()));
-    gh.factory<_i9.RolesDataSource>(
-        () => _i9.RolesDataSource.create(gh<_i3.Dio>()));
-    gh.factory<_i10.GetPlacesRepository>(() =>
-        _i11.GetPlacesRepositoryImpl(dataSource: gh<_i8.PlacesDataSource>()));
-    gh.singleton<_i12.GetPlacesUseCase>(
-        _i12.GetPlacesUseCase(repository: gh<_i10.GetPlacesRepository>()));
-    gh.factory<_i13.GetRolesRepository>(() =>
-        _i14.RoleRepositoryImpl(rolesDataSource: gh<_i9.RolesDataSource>()));
-    gh.singleton<_i15.GetRolesUseCase>(
-        _i15.GetRolesUseCase(rolesRepository: gh<_i13.GetRolesRepository>()));
-    gh.factory<_i16.LoginBloc>(
-        () => _i16.LoginBloc(useCase: gh<_i7.LoginUseCase>()));
-    gh.singleton<_i17.GetPlaceDetailUseCase>(
-        _i17.GetPlaceDetailUseCase(repository: gh<_i10.GetPlacesRepository>()));
-    gh.factory<_i18.GetPlacesBloc>(() => _i18.GetPlacesBloc(
-          useCase: gh<_i12.GetPlacesUseCase>(),
-          getPlaceDetailUseCase: gh<_i17.GetPlaceDetailUseCase>(),
+    gh.factory<_i9.RegisterCubit>(() => _i9.RegisterCubit());
+    gh.factory<_i10.RolesDataSource>(
+        () => _i10.RolesDataSource.create(gh<_i3.Dio>()));
+    gh.factory<_i11.GetPlacesRepository>(() =>
+        _i12.GetPlacesRepositoryImpl(dataSource: gh<_i8.PlacesDataSource>()));
+    gh.singleton<_i13.GetPlacesUseCase>(
+        _i13.GetPlacesUseCase(repository: gh<_i11.GetPlacesRepository>()));
+    gh.factory<_i14.GetRolesRepository>(() =>
+        _i15.RoleRepositoryImpl(rolesDataSource: gh<_i10.RolesDataSource>()));
+    gh.singleton<_i16.GetRolesUseCase>(
+        _i16.GetRolesUseCase(rolesRepository: gh<_i14.GetRolesRepository>()));
+    gh.factory<_i17.LoginBloc>(
+        () => _i17.LoginBloc(useCase: gh<_i7.LoginUseCase>()));
+    gh.singleton<_i18.GetPlaceDetailUseCase>(
+        _i18.GetPlaceDetailUseCase(repository: gh<_i11.GetPlacesRepository>()));
+    gh.factory<_i19.GetPlacesBloc>(() => _i19.GetPlacesBloc(
+          useCase: gh<_i13.GetPlacesUseCase>(),
+          getPlaceDetailUseCase: gh<_i18.GetPlaceDetailUseCase>(),
         ));
-    gh.factory<_i19.GetRolesBloc>(() => _i19.GetRolesBloc(
-          getRolesUseCase: gh<_i15.GetRolesUseCase>(),
+    gh.factory<_i20.GetRolesBloc>(() => _i20.GetRolesBloc(
+          getRolesUseCase: gh<_i16.GetRolesUseCase>(),
           loginUseCase: gh<_i7.LoginUseCase>(),
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i20.RegisterModule {}
+class _$RegisterModule extends _i21.RegisterModule {}
