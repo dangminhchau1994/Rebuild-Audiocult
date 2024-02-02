@@ -59,11 +59,10 @@ class PlaceDataSourceImpl implements PlacesDataSource {
         if (type.contains('country')) {
           place.zipCode = element['short_name'] as String;
         }
-        return place;
       }
+      return place;
     } else {
       throw ServerException();
     }
-    return PlacesModel();
   }
 }

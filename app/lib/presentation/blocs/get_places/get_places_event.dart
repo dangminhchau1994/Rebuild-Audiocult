@@ -18,6 +18,15 @@ class OnSearchPlaces extends GetPlacesEvent {
   List<Object> get props => [params];
 }
 
+class OnGetLatLng extends GetPlacesEvent {
+  final String description;
+
+  const OnGetLatLng({required this.description});
+
+  @override
+  List<Object> get props => [description];
+}
+
 class OnGetPlaceDetail extends GetPlacesEvent {
   final GetPlaceDetailParams params;
 

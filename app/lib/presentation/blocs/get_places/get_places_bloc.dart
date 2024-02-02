@@ -3,6 +3,7 @@ import 'package:app/domain/usecases/get_places_usecase.dart';
 import 'package:app/presentation/blocs/get_places/get_places_event.dart';
 import 'package:app/presentation/blocs/get_places/get_places_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -13,6 +14,7 @@ class GetPlacesBloc extends Bloc<GetPlacesEvent, GetPlacesState> {
     required this.getPlaceDetailUseCase,
   }) : super(GetPlacesInitial()) {
     on<OnGetPlaceDetail>(_getPlaceDetail);
+    on<OnGetLatLng>(_getLatLng);
     on<OnSearchPlaces>(
       _searchPlaces,
       transformer: debounceSequential(
@@ -46,6 +48,18 @@ class GetPlacesBloc extends Bloc<GetPlacesEvent, GetPlacesState> {
       (failure) => emit(GetPlacesError(message: failure.message ?? '')),
       (place) => emit(GetPlaceDetailLoaded(place: place)),
     );
+  }
+
+  void _getLatLng(
+    OnGetLatLng event,
+    Emitter<GetPlacesState> emit,
+  ) async {
+    try {
+      final location = await locationFromAddress(event.description);
+      emit(GetLatLngLoaded(location: location.first));
+    } on Exception catch (e) {
+      emit(GetPlacesError(message: e.toString()));
+    }
   }
 
   EventTransformer<Event> debounceSequential<Event>(Duration duration) {

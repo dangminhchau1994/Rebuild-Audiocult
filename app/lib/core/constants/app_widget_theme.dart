@@ -21,6 +21,9 @@ class AppWidgetTheme {
     hintStyle: AppTextStyles.bodySmall.copyWith(
       color: ColorName.smallTextColor,
     ),
+    errorStyle: AppTextStyles.bodySmall.copyWith(
+      color: Colors.red,
+    ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
       borderSide: const BorderSide(
