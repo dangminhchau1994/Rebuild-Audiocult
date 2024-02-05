@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/core/utils/validation_util.dart';
@@ -27,44 +26,39 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:uuid/uuid.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  final _formKey = GlobalKey<FormBuilderState>();
-  final _addressController = TextEditingController();
-
-  void _getLocationSearchResult(PlaceSuggestionEntity result) {
-    context.read<RegisterCubit>().updateFullAddress(
-          result.description,
-        );
-    _addressController.text =
-        context.read<RegisterCubit>().state.fullAddress ?? '';
-    context.read<GetPlacesBloc>().add(
-          OnGetLatLng(
-            description: result.description ?? '',
-          ),
-        );
-    context.read<GetPlacesBloc>().add(
-          OnGetPlaceDetail(
-            params: GetPlaceDetailParams(
-              placeId: result.placeId,
-              sessionToken: const Uuid().v4(),
-              fields: 'address_component',
-              apiKey: Platform.isAndroid
-                  ? AppConstants.androidKey
-                  : AppConstants.iosKey,
-            ),
-          ),
-        );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormBuilderState>();
+    final addressController = TextEditingController();
+
+    void getLocationSearchResult(PlaceSuggestionEntity result) {
+      context.read<RegisterCubit>().updateFullAddress(
+            result.description,
+          );
+      addressController.text =
+          context.read<RegisterCubit>().state.fullAddress ?? '';
+      context.read<GetPlacesBloc>().add(
+            OnGetLatLng(
+              description: result.description ?? '',
+            ),
+          );
+      context.read<GetPlacesBloc>().add(
+            OnGetPlaceDetail(
+              params: GetPlaceDetailParams(
+                placeId: result.placeId,
+                sessionToken: const Uuid().v4(),
+                fields: 'address_component',
+                apiKey: Platform.isAndroid
+                    ? AppConstants.androidKey
+                    : AppConstants.iosKey,
+              ),
+            ),
+          );
+    }
+
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: context.setWidth(10),
@@ -84,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         },
         child: SingleChildScrollView(
           child: FormBuilder(
-            key: _formKey,
+            key: formKey,
             child: Column(
               children: [
                 BlocBuilder<GetRolesBloc, GetRolesState>(
@@ -130,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 BlocBuilder<RegisterCubit, RegisterCubitState>(
                   builder: (context, state) {
                     return UITextField(
-                      controller: _addressController
+                      controller: addressController
                         ..selection = const TextSelection.collapsed(offset: 0),
                       hintText: LocaleKeys.auth_location.tr(),
                       onValidator: FormBuilderValidators.compose([
@@ -144,9 +138,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             bloc: context.read<GetPlacesBloc>(),
                           ),
                         );
-                        if (!mounted) return;
                         if (result != null) {
-                          _getLocationSearchResult(result);
+                          getLocationSearchResult(result);
                         }
                       },
                     );
@@ -192,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 UIButton(
                   title: LocaleKeys.auth_sign_up.tr(),
                   onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() ?? false) {}
+                    if (formKey.currentState?.saveAndValidate() ?? false) {}
                   },
                 ),
                 context.verticalSpaceMedium,

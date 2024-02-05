@@ -68,7 +68,7 @@ dev_dependencies:
   flutter_gen_runner:
   freezed: ^2.4.6
   mockito: ^5.4.4
-  mocktail: ^1.0.3
+  mocktail: ^1.0.2
   json_serializable: ^6.7.1
   injectable_generator:
 
