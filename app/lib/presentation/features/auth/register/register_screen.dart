@@ -5,6 +5,7 @@ import 'package:app/core/utils/validation_util.dart';
 import 'package:app/data/models/select_model.dart';
 import 'package:app/domain/entities/place_suggestion_entity.dart';
 import 'package:app/domain/usecases/get_place_detail_usecase.dart';
+import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_places/get_places_event.dart';
@@ -18,6 +19,7 @@ import 'package:app/presentation/features/auth/register/widgets/resigter_term.da
 import 'package:app/presentation/widgets/ui_button.dart';
 import 'package:app/presentation/widgets/ui_checkbox.dart';
 import 'package:app/presentation/widgets/ui_dropdown.dart';
+import 'package:app/presentation/widgets/ui_loading.dart';
 import 'package:app/presentation/widgets/ui_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -97,6 +99,8 @@ class RegisterScreen extends StatelessWidget {
                             .read<RegisterCubit>()
                             .updateRoleId(int.parse(value.id ?? '')),
                       );
+                    } else if (state is GetRolesLoading) {
+                      return const UILoading();
                     } else {
                       return Container();
                     }

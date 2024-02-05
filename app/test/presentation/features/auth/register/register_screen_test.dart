@@ -1,3 +1,5 @@
+import 'package:app/data/models/select_model.dart';
+import 'package:app/domain/entities/roles_entity.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_places/get_places_event.dart';
 import 'package:app/presentation/blocs/get_places/get_places_state.dart';
@@ -35,6 +37,14 @@ void main() {
     late MockGetPlacesBloc mockGetPlacesBloc;
     late MockGetRolesBloc mockGetRolesBloc;
 
+    const tRoleEntity = RolesEntity(
+      data: [
+        RoleEntity(userGroupId: "1", title: 'title'),
+        RoleEntity(userGroupId: "1", title: 'title'),
+        RoleEntity(userGroupId: "1", title: 'title'),
+      ],
+    );
+
     setUp(() {
       mockRegisterCubit = MockRegisterCubit();
       mockGetPlacesBloc = MockGetPlacesBloc();
@@ -59,6 +69,7 @@ void main() {
     testWidgets('renders correctly and contains key widgets', (
       WidgetTester tester,
     ) async {
+      //arrange
       when(() => mockGetRolesBloc.state)
           .thenReturn(GetRolesEmpty()); // Assuming an empty list for simplicity
       when(() => mockGetPlacesBloc.state).thenReturn(
@@ -66,22 +77,59 @@ void main() {
       when(() => mockRegisterCubit.state).thenReturn(
           const RegisterCubitState()); // Assuming an empty list for simplicity
 
+      //act
       await tester.pumpWidget(makeTestableWidget());
-      await tester.pumpAndSettle();
+      await tester.pump();
 
-      // Verify the presence of key widgets
+      //assert
+      expect(find.byType(FormBuilder), findsOneWidget);
       expect(find.byType(UITextField), findsWidgets);
       expect(find.byType(UICheckBox), findsOneWidget);
       expect(find.byType(UIButton), findsOneWidget);
       expect(find.byType(RegisterTerm), findsOneWidget);
-      expect(find.byType(FormBuilder), findsOneWidget);
-
-      //Example of interacting with a widget
-      //Assuming there's an initial state set for the roles dropdown
-
-      // Further interactions or state verification can go here
     });
 
-    // Additional tests for specific interactions and state changes can be added here
+    testWidgets(
+      'should show progress indicator when state is loading',
+      (widgetTester) async {
+        //arrange
+        when(() => mockGetRolesBloc.state).thenReturn(
+          GetRolesLoading(),
+        );
+        when(() => mockGetPlacesBloc.state).thenReturn(
+          GetPlacesInitial(),
+        );
+        when(() => mockRegisterCubit.state).thenReturn(
+          const RegisterCubitState(),
+        );
+
+        //act
+        await widgetTester.pumpWidget(makeTestableWidget());
+        await widgetTester.pump();
+
+        expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      },
+    );
+
+    testWidgets('return UIDropdown when state get roles loaded was emitted',
+        (widgetTester) async {
+      //arrange
+      when(() => mockGetRolesBloc.state).thenReturn(
+        const GetRolesLoaded(data: tRoleEntity),
+      );
+      when(() => mockGetPlacesBloc.state).thenReturn(
+        GetPlacesInitial(),
+      );
+      when(() => mockRegisterCubit.state).thenReturn(
+        const RegisterCubitState(),
+      );
+
+      //act
+      await widgetTester.pumpWidget(makeTestableWidget());
+      await widgetTester.pump();
+
+      //assert
+      expect(find.byType(UIDropDown), findsOneWidget);
+    });
   });
 }
