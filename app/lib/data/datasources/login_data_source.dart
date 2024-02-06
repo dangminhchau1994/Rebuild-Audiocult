@@ -22,6 +22,7 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future<LoginModel> login(LoginParams params) async {
+    client.options.baseUrl = ApiEndpoints.baseUrl;
     final response = await client.post(
       ApiEndpoints.authenticate,
       data: params.toJson(),

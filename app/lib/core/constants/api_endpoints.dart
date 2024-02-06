@@ -4,6 +4,8 @@ class ApiEndpoints {
 
   static const String getRoles = "user/groups";
 
+  static const String register = 'user';
+
   static const String authenticate = "token";
 
   static const String getPlaces = "place/autocomplete/json";

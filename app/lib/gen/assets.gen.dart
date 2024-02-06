@@ -89,6 +89,10 @@ class $AssetsIconsGen {
   SvgGenImage get iconDropDown =>
       const SvgGenImage('assets/icons/icon_drop_down.svg');
 
+  /// File path: assets/icons/icon_exclamation_mark.svg
+  SvgGenImage get iconExclamationMark =>
+      const SvgGenImage('assets/icons/icon_exclamation_mark.svg');
+
   /// File path: assets/icons/icon_global.svg
   SvgGenImage get iconGlobal =>
       const SvgGenImage('assets/icons/icon_global.svg');
@@ -98,6 +102,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/icon_logo.svg
   SvgGenImage get iconLogo => const SvgGenImage('assets/icons/icon_logo.svg');
+
+  /// File path: assets/icons/icon_pending.svg
+  SvgGenImage get iconPending =>
+      const SvgGenImage('assets/icons/icon_pending.svg');
 
   /// File path: assets/icons/icon_setting.svg
   SvgGenImage get iconSetting =>
@@ -122,9 +130,11 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
         iconChecked,
         iconDropDown,
+        iconExclamationMark,
         iconGlobal,
         iconLock,
         iconLogo,
+        iconPending,
         iconSetting,
         iconTogglePassword,
         iconTurn,

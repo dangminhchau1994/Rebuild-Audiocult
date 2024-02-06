@@ -5,15 +5,19 @@ import 'package:app/core/utils/validation_util.dart';
 import 'package:app/data/models/select_model.dart';
 import 'package:app/domain/entities/place_suggestion_entity.dart';
 import 'package:app/domain/usecases/get_place_detail_usecase.dart';
-import 'package:app/gen/colors.gen.dart';
+import 'package:app/domain/usecases/login_usecase.dart';
+import 'package:app/domain/usecases/register_usecase.dart';
 import 'package:app/generated/locale_keys.g.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_places/get_places_event.dart';
 import 'package:app/presentation/blocs/get_places/get_places_state.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_state.dart';
+import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
 import 'package:app/presentation/blocs/register/register_cubit_state.dart';
+import 'package:app/presentation/blocs/register/register_event.dart';
+import 'package:app/presentation/blocs/register/register_state.dart';
 import 'package:app/presentation/features/auth/register/widgets/register_search.dart';
 import 'package:app/presentation/features/auth/register/widgets/resigter_term.dart';
 import 'package:app/presentation/widgets/ui_button.dart';
@@ -24,6 +28,7 @@ import 'package:app/presentation/widgets/ui_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:uuid/uuid.dart';
@@ -35,6 +40,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormBuilderState>();
     final addressController = TextEditingController();
+    final registerCubit = context.read<RegisterCubit>();
 
     void getLocationSearchResult(PlaceSuggestionEntity result) {
       context.read<RegisterCubit>().updateFullAddress(
@@ -69,13 +75,13 @@ class RegisterScreen extends StatelessWidget {
       child: BlocListener<GetPlacesBloc, GetPlacesState>(
         listener: (context, state) {
           if (state is GetLatLngLoaded) {
-            context.read<RegisterCubit>().updateLatLng(
-                  state.location.latitude,
-                  state.location.longitude,
-                );
+            registerCubit.updateLatLng(
+              state.location.latitude,
+              state.location.longitude,
+            );
           } else if (state is GetPlaceDetailLoaded) {
-            context.read<RegisterCubit>().updateZipCode(state.place.zipCode);
-            context.read<RegisterCubit>().updateCity(state.place.city);
+            registerCubit.updateZipCode(state.place.zipCode);
+            registerCubit.updateCity(state.place.city);
           }
         },
         child: SingleChildScrollView(
@@ -95,8 +101,7 @@ class RegisterScreen extends StatelessWidget {
                                 ))
                             .toList(),
                         title: LocaleKeys.auth_choose_your_role.tr(),
-                        onChanged: (value) => context
-                            .read<RegisterCubit>()
+                        onChanged: (value) => registerCubit
                             .updateRoleId(int.parse(value.id ?? '')),
                       );
                     } else if (state is GetRolesLoading) {
@@ -109,8 +114,7 @@ class RegisterScreen extends StatelessWidget {
                 context.verticalSpaceSmall,
                 UITextField(
                   hintText: LocaleKeys.auth_full_name.tr(),
-                  onChanged: (value) =>
-                      context.read<RegisterCubit>().updateFullName(value),
+                  onChanged: (value) => registerCubit.updateFullName(value),
                   onValidator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                   ]),
@@ -118,8 +122,7 @@ class RegisterScreen extends StatelessWidget {
                 context.verticalSpaceSmall,
                 UITextField(
                   hintText: LocaleKeys.auth_user_name.tr(),
-                  onChanged: (value) =>
-                      context.read<RegisterCubit>().updateUserName(value),
+                  onChanged: (value) => registerCubit.updateUserName(value),
                   onValidator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                   ]),
@@ -152,8 +155,7 @@ class RegisterScreen extends StatelessWidget {
                 context.verticalSpaceSmall,
                 UITextField(
                   hintText: LocaleKeys.auth_email.tr(),
-                  onChanged: (value) =>
-                      context.read<RegisterCubit>().updateEmail(value),
+                  onChanged: (value) => registerCubit.updateEmail(value),
                   onValidator: (value) {
                     if (value?.isEmpty ?? false) {
                       return LocaleKeys.auth_empty_input.tr();
@@ -167,8 +169,7 @@ class RegisterScreen extends StatelessWidget {
                 UITextField(
                   hintText: LocaleKeys.auth_password.tr(),
                   isObscureText: true,
-                  onChanged: (value) =>
-                      context.read<RegisterCubit>().updatePassword(value),
+                  onChanged: (value) => registerCubit.updatePassword(value),
                   onValidator: (value) {
                     if (value?.isEmpty ?? false) {
                       return LocaleKeys.auth_empty_input.tr();
@@ -186,11 +187,51 @@ class RegisterScreen extends StatelessWidget {
                 context.verticalSpaceMedium,
                 const RegisterTerm(),
                 context.verticalSpaceMedium,
-                UIButton(
-                  title: LocaleKeys.auth_sign_up.tr(),
-                  onPressed: () {
-                    if (formKey.currentState?.saveAndValidate() ?? false) {}
+                BlocConsumer<RegisterBloc, RegisterState>(
+                  listener: (context, state) {
+                    if (state is RegisterLoading) {
+                      EasyLoading.show();
+                    } else if (state is RegisterSuccess) {
+                      EasyLoading.dismiss();
+                      context.showSuccess(
+                        LocaleKeys.auth_register_success.tr(),
+                      );
+                    } else if (state is RegisterError) {
+                      EasyLoading.dismiss();
+                      context.showError(
+                        LocaleKeys.auth_register_failed.tr(),
+                      );
+                    }
                   },
+                  builder: (context, state) => UIButton(
+                    title: LocaleKeys.auth_sign_up.tr(),
+                    onPressed: () {
+                      if (formKey.currentState?.saveAndValidate() ?? false) {
+                        context.read<RegisterBloc>().add(
+                              GetCredentialsAndRegister(
+                                loginParams: LoginParams(
+                                  clientId: AppConstants.clientId,
+                                  clientSecret: AppConstants.clientSecret,
+                                  grantType: AppConstants.roleGranType,
+                                ),
+                                registerParams: RegisterParams(
+                                  valRole: registerCubit.state.roleId,
+                                  valFullName: registerCubit.state.fullName,
+                                  valUserName: registerCubit.state.userName,
+                                  valCountryIso: registerCubit.state.zipCode,
+                                  valCityLocation: registerCubit.state.city,
+                                  valRegisterLocationLat:
+                                      registerCubit.state.latitude,
+                                  valRegisterLocationLng:
+                                      registerCubit.state.longitude,
+                                  valEmail: registerCubit.state.email,
+                                  valPassword: registerCubit.state.password,
+                                ),
+                              ),
+                            );
+                      }
+                    },
+                  ),
                 ),
                 context.verticalSpaceMedium,
               ],

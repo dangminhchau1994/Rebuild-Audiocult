@@ -1,16 +1,19 @@
 import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/core/utils/loading_util.dart';
 import 'package:app/di/inject_container.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
+import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -29,6 +32,7 @@ void main() async {
       child: const MyApp(),
     ),
   );
+  LoadingUtil.configLoading();
 }
 
 class MyApp extends StatelessWidget {
@@ -53,6 +57,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         theme: context.myTheme,
+        builder: EasyLoading.init(),
         home: MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -69,7 +74,10 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider(
               create: (_) => getIt<GetPlacesBloc>(),
-            )
+            ),
+            BlocProvider(
+              create: (_) => getIt<RegisterBloc>(),
+            ),
           ],
           child: const AuthScreen(),
         ),

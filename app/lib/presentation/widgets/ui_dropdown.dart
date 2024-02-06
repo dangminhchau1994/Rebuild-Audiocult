@@ -104,9 +104,9 @@ class _UIDropDownState extends State<UIDropDown> {
           )
           .toList(),
       onChanged: (value) {
-        setState(() {
-          selectedItem = value!;
-        });
+        selectedItem = value!;
+        widget.onChanged!(value);
+        setState(() {});
       },
       selectedItemBuilder: (context) => widget.items!
           .map(

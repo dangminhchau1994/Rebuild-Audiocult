@@ -3,6 +3,9 @@
     "welcome": "'Welcome to our community",
     "joined_people": "2k+ music lovers joined us, now it’s your turn",
     "clear": "Clear",
+    "success": "Success",
+    "error": "Error",
+    "pending": "Pending",
     "auth": {
         "choose_your_role": "Choose your role",
         "role_required": "Please choose your role",
@@ -19,6 +22,9 @@
         "underline_term": " Accept Terms & Conditions",
         "sign_up": "Sign Up",
         "sign_in": "Sign In",
+        "register_success": "Register successfully",
+        "register_failed": "Register failed",
+        "register_pending": "Register pending",
         "forgot_password": "Forgot Password?",
         "remember_me": "Remember Me"
     }

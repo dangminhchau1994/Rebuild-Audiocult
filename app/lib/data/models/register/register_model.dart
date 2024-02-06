@@ -12,6 +12,8 @@ class RegisterModel extends RegisterEntity {
       _$RegisterModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$RegisterModelToJson(this);
+
+  RegisterEntity toEntity() => RegisterEntity(data: data);
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -99,10 +101,81 @@ class ProfileDataModel extends ProfileDataEntity {
           userName: userName,
           fullName: fullName,
           email: email,
+          gender: gender,
+          birthday: birthday,
+          birthdaySearch: birthdaySearch,
+          countryIso: countryIso,
+          languageId: languageId,
+          timeZone: timeZone,
+          userImage: userImage,
+          isOnline: isOnline,
+          title: title,
+          isFriend: isFriend,
+          isFriendOfFriend: isFriendOfFriend,
+          isFriendRequest: isFriendRequest,
+          blockable: blockable,
+          isBlocked: isBlocked,
+          relationId: relationId,
+          relationWithId: relationWithId,
+          relationPhrase: relationPhrase,
+          coverPhoto: coverPhoto,
+          locationString: locationString,
+          totalSubscriptions: totalSubscriptions,
+          totalSubscribers: totalSubscribers,
+          biography: biography,
+          favoriteGenresOfMusic: favoriteGenresOfMusic,
+          audioArtistCategory: audioArtistCategory,
+          isSubscribed: isSubscribed,
+          lat: lat,
+          lng: lng,
+          currency: currency,
+          accessToken: accessToken,
+          lastLogin: lastLogin,
+          joined: joined,
         );
 
   factory ProfileDataModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileDataModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileDataModelToJson(this);
+
+  ProfileDataEntity toEntity() => ProfileDataEntity(
+        coverPhotoExists: coverPhotoExists,
+        userId: userId,
+        userGroupId: userGroupId,
+        userName: userName,
+        fullName: fullName,
+        email: email,
+        gender: gender,
+        birthday: birthday,
+        birthdaySearch: birthdaySearch,
+        countryIso: countryIso,
+        languageId: languageId,
+        timeZone: timeZone,
+        userImage: userImage,
+        isOnline: isOnline,
+        title: title,
+        isFriend: isFriend,
+        isFriendOfFriend: isFriendOfFriend,
+        isFriendRequest: isFriendRequest,
+        blockable: blockable,
+        isBlocked: isBlocked,
+        relationId: relationId,
+        relationWithId: relationWithId,
+        relationPhrase: relationPhrase,
+        coverPhoto: coverPhoto,
+        locationString: locationString,
+        totalSubscriptions: totalSubscriptions,
+        totalSubscribers: totalSubscribers,
+        biography: biography,
+        favoriteGenresOfMusic: favoriteGenresOfMusic,
+        audioArtistCategory: audioArtistCategory,
+        isSubscribed: isSubscribed,
+        lat: lat,
+        lng: lng,
+        currency: currency,
+        accessToken: accessToken,
+        lastLogin: lastLogin,
+        joined: joined,
+      );
 }

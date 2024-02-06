@@ -5,6 +5,9 @@ abstract class  LocaleKeys {
   static const welcome = 'welcome';
   static const joined_people = 'joined_people';
   static const clear = 'clear';
+  static const success = 'success';
+  static const error = 'error';
+  static const pending = 'pending';
   static const auth_choose_your_role = 'auth.choose_your_role';
   static const auth_role_required = 'auth.role_required';
   static const auth_empty_input = 'auth.empty_input';
@@ -20,6 +23,9 @@ abstract class  LocaleKeys {
   static const auth_underline_term = 'auth.underline_term';
   static const auth_sign_up = 'auth.sign_up';
   static const auth_sign_in = 'auth.sign_in';
+  static const auth_register_success = 'auth.register_success';
+  static const auth_register_failed = 'auth.register_failed';
+  static const auth_register_pending = 'auth.register_pending';
   static const auth_forgot_password = 'auth.forgot_password';
   static const auth_remember_me = 'auth.remember_me';
   static const auth = 'auth';

@@ -19,6 +19,9 @@ class ColorName {
   /// Color: #00A8A8
   static const Color buttonColor = Color(0xFF00A8A8);
 
+  /// Color: #DC2626
+  static const Color error = Color(0xFFDC2626);
+
   /// Color: #4B5563
   static const Color inputBorderColor = Color(0xFF4B5563);
 
