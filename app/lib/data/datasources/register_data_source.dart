@@ -1,4 +1,5 @@
 import 'package:app/core/constants/api_endpoints.dart';
+import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/errors/exception.dart';
 import 'package:app/data/models/register/register_model.dart';
 import 'package:app/domain/usecases/register_usecase.dart';
@@ -23,6 +24,7 @@ class RegisterDataSourceImpl implements RegisterDataSource {
   @override
   Future<RegisterModel> register(RegisterParams params) async {
     client.options.baseUrl = ApiEndpoints.baseUrl;
+
     final response = await client.post(
       ApiEndpoints.register,
       data: FormData.fromMap(params.toJson()),
@@ -30,11 +32,10 @@ class RegisterDataSourceImpl implements RegisterDataSource {
         headers: {'Authorization': 'Bearer ${params.accessToken}'},
       ),
     );
-
-    if (response.statusCode == 200) {
+    if (response.data['status'] == AppConstants.successStatus) {
       return RegisterModel.fromJson(response.data);
     } else {
-      throw ServerException();
+      throw ServerException(message: response.data['error']['message']);
     }
   }
 }

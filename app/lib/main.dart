@@ -7,6 +7,8 @@ import 'package:app/gen/colors.gen.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
+import 'package:app/presentation/blocs/login/login_bloc.dart';
+import 'package:app/presentation/blocs/login/login_cubit.dart';
 import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
@@ -77,6 +79,12 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider(
               create: (_) => getIt<RegisterBloc>(),
+            ),
+            BlocProvider(
+              create: (_) => getIt<LoginBloc>(),
+            ),
+            BlocProvider(
+              create: (_) => getIt<LoginCubit>(),
             ),
           ],
           child: const AuthScreen(),

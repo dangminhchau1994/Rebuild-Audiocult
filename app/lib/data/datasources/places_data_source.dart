@@ -26,16 +26,15 @@ class PlaceDataSourceImpl implements PlacesDataSource {
   @override
   Future<List<PlacesModel>> getPlaces(GetPlacesParams params) async {
     client.options.baseUrl = ApiEndpoints.placeUrl;
-    final response = await client.get(
-      ApiEndpoints.getPlaces,
-      queryParameters: params.toJson(),
-    );
-
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.get(
+        ApiEndpoints.getPlaces,
+        queryParameters: params.toJson(),
+      );
       return (response.data['predictions'] as List<dynamic>)
           .map((e) => PlacesModel.fromJson(e))
           .toList();
-    } else {
+    } catch (e) {
       throw ServerException();
     }
   }
@@ -43,12 +42,11 @@ class PlaceDataSourceImpl implements PlacesDataSource {
   @override
   Future<PlacesModel> getPlaceDetail(GetPlaceDetailParams params) async {
     client.options.baseUrl = ApiEndpoints.placeUrl;
-    final response = await client.get(
-      ApiEndpoints.getPlaceDetail,
-      queryParameters: params.toJson(),
-    );
-
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.get(
+        ApiEndpoints.getPlaceDetail,
+        queryParameters: params.toJson(),
+      );
       final place = PlacesModel();
       for (var element
           in (response.data['result']['address_components'] as List)) {
@@ -61,7 +59,7 @@ class PlaceDataSourceImpl implements PlacesDataSource {
         }
       }
       return place;
-    } else {
+    } catch (e) {
       throw ServerException();
     }
   }

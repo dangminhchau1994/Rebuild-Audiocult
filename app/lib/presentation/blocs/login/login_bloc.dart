@@ -6,11 +6,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc({required this.useCase}) : super(LoginInitial());
+  LoginBloc({required this.useCase}) : super(LoginInitial()) {
+    on<LoginEvent>(_login);
+  }
 
   final LoginUseCase useCase;
 
-  Future<void> login(LoginEvent event, Emitter<LoginState> emit) async {
+  Future<void> _login(LoginEvent event, Emitter<LoginState> emit) async {
     emit(LoginLoading());
     final result = await useCase.execute(event.params);
     result.fold(

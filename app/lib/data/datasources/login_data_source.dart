@@ -23,14 +23,13 @@ class LoginDataSourceImpl implements LoginDataSource {
   @override
   Future<LoginModel> login(LoginParams params) async {
     client.options.baseUrl = ApiEndpoints.baseUrl;
-    final response = await client.post(
-      ApiEndpoints.authenticate,
-      data: params.toJson(),
-    );
-
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.post(
+        ApiEndpoints.authenticate,
+        data: params.toJson(),
+      );
       return LoginModel.fromJson(response.data);
-    } else {
+    } catch (e) {
       throw ServerException();
     }
   }

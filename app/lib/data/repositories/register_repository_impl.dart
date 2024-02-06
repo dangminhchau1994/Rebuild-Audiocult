@@ -20,8 +20,8 @@ class RegisterRepositoryImpl implements RegisterRepository {
     try {
       final result = await dataSource.register(params);
       return Right(result.toEntity());
-    } on ServerException {
-      return const Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
     } on SocketException {
       return const Left(NetworkFailure());
     }

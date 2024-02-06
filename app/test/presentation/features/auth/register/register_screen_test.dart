@@ -1,4 +1,3 @@
-import 'package:app/data/models/select_model.dart';
 import 'package:app/domain/entities/roles_entity.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_places/get_places_event.dart';

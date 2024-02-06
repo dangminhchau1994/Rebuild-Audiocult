@@ -66,35 +66,27 @@ extension SizePadding on BuildContext {
 extension ShowToast on BuildContext {
   void showSuccess(String message) => FToast().init(this).showToast(
         child: Container(
-          padding: EdgeInsets.all(ScreenUtil().setWidth(16)),
+          padding: EdgeInsets.all(ScreenUtil().setWidth(4)),
           decoration: BoxDecoration(
             color: ColorName.inputFillColor,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(width: 1),
           ),
           child: ListTile(
-            trailing: SizedBox(
-              width: 50,
-              height: 50,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(right: 8),
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        FToast().init(this).removeQueuedCustomToasts();
-                        FToast().init(this).removeCustomToast();
-                      },
-                      child: const Icon(
-                        Icons.close_rounded,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Container()
-                ],
+            trailing: Container(
+              width: ScreenUtil().setWidth(50),
+              height: ScreenUtil().setHeight(50),
+              padding: const EdgeInsets.only(top: 8),
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () {
+                  FToast().init(this).removeQueuedCustomToasts();
+                  FToast().init(this).removeCustomToast();
+                },
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: Colors.white,
+                ),
               ),
             ),
             leading: Container(
@@ -121,48 +113,43 @@ extension ShowToast on BuildContext {
           ),
         ),
         gravity: ToastGravity.TOP,
-        toastDuration: const Duration(milliseconds: 1000),
+        toastDuration: const Duration(seconds: 5),
       );
 
   void showError(String message) => FToast().init(this).showToast(
         child: Container(
-          padding: EdgeInsets.all(ScreenUtil().setWidth(16)),
+          padding: EdgeInsets.all(ScreenUtil().setWidth(4)),
           decoration: BoxDecoration(
             color: ColorName.inputFillColor,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(width: 1),
           ),
           child: ListTile(
-            trailing: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(right: 8),
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      FToast().init(this).removeQueuedCustomToasts();
-                      FToast().init(this).removeCustomToast();
-                    },
-                    child: const Icon(
-                      Icons.close_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
+            trailing: Container(
+              width: ScreenUtil().setWidth(50),
+              height: ScreenUtil().setHeight(50),
+              padding: const EdgeInsets.only(top: 8),
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () {
+                  FToast().init(this).removeQueuedCustomToasts();
+                  FToast().init(this).removeCustomToast();
+                },
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: Colors.white,
                 ),
-                Container()
-              ],
+              ),
             ),
             leading: Container(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(12),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: ColorName.error,
               ),
               child: SvgPicture.asset(
                 Assets.icons.iconExclamationMark.path,
-                fit: BoxFit.scaleDown,
-                height: ScreenUtil().setHeight(14),
-                width: ScreenUtil().setWidth(14),
+                fit: BoxFit.cover,
               ),
             ),
             title: Text(
@@ -176,7 +163,7 @@ extension ShowToast on BuildContext {
           ),
         ),
         gravity: ToastGravity.TOP,
-        toastDuration: const Duration(milliseconds: 1000),
+        toastDuration: const Duration(seconds: 5),
       );
 }
 

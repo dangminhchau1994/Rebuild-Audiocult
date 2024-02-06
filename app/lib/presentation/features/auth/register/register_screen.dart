@@ -193,14 +193,10 @@ class RegisterScreen extends StatelessWidget {
                       EasyLoading.show();
                     } else if (state is RegisterSuccess) {
                       EasyLoading.dismiss();
-                      context.showSuccess(
-                        LocaleKeys.auth_register_success.tr(),
-                      );
+                      context.showSuccess(state.data.message ?? '');
                     } else if (state is RegisterError) {
                       EasyLoading.dismiss();
-                      context.showError(
-                        LocaleKeys.auth_register_failed.tr(),
-                      );
+                      context.showError(state.message);
                     }
                   },
                   builder: (context, state) => UIButton(

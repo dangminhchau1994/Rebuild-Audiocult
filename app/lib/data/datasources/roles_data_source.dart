@@ -21,16 +21,15 @@ class RolesDataSourceImpl implements RolesDataSource {
 
   @override
   Future<RolesModel> getRoles(String token) async {
-    final response = await client.get(
-      ApiEndpoints.getRoles,
-      options: Options(
-        headers: {'Authorization': 'Bearer $token'},
-      ),
-    );
-
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.get(
+        ApiEndpoints.getRoles,
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+      );
       return RolesModel.fromJson(response.data);
-    } else {
+    } catch (e) {
       throw ServerException();
     }
   }
