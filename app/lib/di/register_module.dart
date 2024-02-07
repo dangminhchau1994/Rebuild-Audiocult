@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:app/core/constants/api_endpoints.dart';
+import 'package:app/core/utils/share_preferences_util.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -26,5 +27,12 @@ abstract class RegisterModule {
           ),
         );
 
+  @preResolve
+  @Named('sharedPreferences')
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+
+  @singleton
+  SharePreferencesUtil sharePreferencesUtil(
+          @Named('sharedPreferences') SharedPreferences prefs) =>
+      SharePreferencesUtil(prefs);
 }

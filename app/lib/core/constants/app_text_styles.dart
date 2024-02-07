@@ -5,7 +5,7 @@ class AppTextStyles {
   static TextStyle bodySmall = TextStyle(
     fontSize: 14.sp,
     fontStyle: FontStyle.normal,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w400,
     height: ScreenUtil().scaleHeight,
   );
 

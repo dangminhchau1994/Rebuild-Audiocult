@@ -5,8 +5,11 @@ import 'package:app/presentation/blocs/get_places/get_places_state.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_state.dart';
+import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
 import 'package:app/presentation/blocs/register/register_cubit_state.dart';
+import 'package:app/presentation/blocs/register/register_event.dart';
+import 'package:app/presentation/blocs/register/register_state.dart';
 import 'package:app/presentation/features/auth/register/register_screen.dart';
 import 'package:app/presentation/features/auth/register/widgets/resigter_term.dart';
 import 'package:app/presentation/widgets/ui_button.dart';
@@ -24,6 +27,9 @@ import 'package:mocktail/mocktail.dart';
 class MockRegisterCubit extends MockCubit<RegisterCubitState>
     implements RegisterCubit {}
 
+class MockRegisterBloc extends MockBloc<RegisterEvent, RegisterState>
+    implements RegisterBloc {}
+
 class MockGetPlacesBloc extends MockBloc<GetPlacesEvent, GetPlacesState>
     implements GetPlacesBloc {}
 
@@ -35,6 +41,7 @@ void main() {
     late MockRegisterCubit mockRegisterCubit;
     late MockGetPlacesBloc mockGetPlacesBloc;
     late MockGetRolesBloc mockGetRolesBloc;
+    late MockRegisterBloc mockRegisterBloc;
 
     const tRoleEntity = RolesEntity(
       data: [
@@ -48,19 +55,21 @@ void main() {
       mockRegisterCubit = MockRegisterCubit();
       mockGetPlacesBloc = MockGetPlacesBloc();
       mockGetRolesBloc = MockGetRolesBloc();
+      mockRegisterBloc = MockRegisterBloc();
     });
 
     Widget makeTestableWidget() => ScreenUtilInit(
           designSize: const Size(360, 690),
           minTextAdapt: true,
-          builder: (_, child) => MaterialApp(
-            home: MultiBlocProvider(
-              providers: [
-                BlocProvider<RegisterCubit>(create: (_) => mockRegisterCubit),
-                BlocProvider<GetPlacesBloc>(create: (_) => mockGetPlacesBloc),
-                BlocProvider<GetRolesBloc>(create: (_) => mockGetRolesBloc),
-              ],
-              child: const Scaffold(body: RegisterScreen()),
+          builder: (_, child) => MultiBlocProvider(
+            providers: [
+              BlocProvider<RegisterCubit>(create: (_) => mockRegisterCubit),
+              BlocProvider<GetPlacesBloc>(create: (_) => mockGetPlacesBloc),
+              BlocProvider<GetRolesBloc>(create: (_) => mockGetRolesBloc),
+              BlocProvider<RegisterBloc>(create: (_) => mockRegisterBloc),
+            ],
+            child: const MaterialApp(
+              home: Scaffold(body: RegisterScreen()),
             ),
           ),
         );
@@ -73,8 +82,10 @@ void main() {
           .thenReturn(GetRolesEmpty()); // Assuming an empty list for simplicity
       when(() => mockGetPlacesBloc.state).thenReturn(
           GetPlacesInitial()); // Assuming an empty list for simplicity
-      when(() => mockRegisterCubit.state).thenReturn(
-          const RegisterCubitState()); // Assuming an empty list for simplicity
+      when(() => mockRegisterCubit.state)
+          .thenReturn(const RegisterCubitState());
+      when(() => mockRegisterBloc.state)
+          .thenReturn(RegisterEmpty()); // Assuming an empty list for simplicity
 
       //act
       await tester.pumpWidget(makeTestableWidget());

@@ -1,7 +1,8 @@
 import 'package:app/core/constants/app_constants.dart';
+import 'package:app/core/constants/app_route_names.dart';
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/core/utils/share_preferences_util.dart';
-import 'package:app/core/utils/validation_util.dart';
+import 'package:app/di/inject_container.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
@@ -12,6 +13,7 @@ import 'package:app/presentation/blocs/login/login_state.dart';
 import 'package:app/presentation/widgets/ui_button.dart';
 import 'package:app/presentation/widgets/ui_checkbox.dart';
 import 'package:app/presentation/widgets/ui_text_field.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,8 +41,9 @@ class SignInScreen extends StatelessWidget {
             children: [
               UITextField(
                 controller: TextEditingController(
-                    text: SharePreferencesUtil()
-                        .getString(AppConstants.username)),
+                  text: getIt<SharePreferencesUtil>()
+                      .getString(AppConstants.username),
+                ),
                 hintText: LocaleKeys.auth_full_name.tr(),
                 onChanged: (value) =>
                     signInCubit.onFullNameChanged(value ?? ''),
@@ -51,8 +54,9 @@ class SignInScreen extends StatelessWidget {
               context.verticalSpaceSmall,
               UITextField(
                 controller: TextEditingController(
-                    text: SharePreferencesUtil()
-                        .getString(AppConstants.password)),
+                  text: getIt<SharePreferencesUtil>()
+                      .getString(AppConstants.password),
+                ),
                 hintText: LocaleKeys.auth_password.tr(),
                 isObscureText: true,
                 onChanged: (value) =>
@@ -68,21 +72,21 @@ class SignInScreen extends StatelessWidget {
                   Flexible(
                     child: UICheckBox(
                       title: LocaleKeys.auth_remember_me.tr(),
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         if (value) {
-                          SharePreferencesUtil().saveString(
+                          getIt<SharePreferencesUtil>().saveString(
                             AppConstants.username,
                             signInCubit.state.fullName ?? '',
                           );
-                          SharePreferencesUtil().saveString(
+                          getIt<SharePreferencesUtil>().saveString(
                             AppConstants.password,
                             signInCubit.state.password ?? '',
                           );
                         } else {
-                          SharePreferencesUtil().removeString(
+                          getIt<SharePreferencesUtil>().removeString(
                             AppConstants.username,
                           );
-                          SharePreferencesUtil().removeString(
+                          getIt<SharePreferencesUtil>().removeString(
                             AppConstants.password,
                           );
                         }
@@ -90,10 +94,15 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                   Flexible(
-                    child: Text(
-                      LocaleKeys.auth_forgot_password.tr(),
-                      style: context.bodySmall.copyWith(
-                        color: ColorName.lightBlue,
+                    child: InkWell(
+                      onTap: () {
+                        context.router.pushNamed(AppRouteNames.resendPassword);
+                      },
+                      child: Text(
+                        LocaleKeys.auth_forgot_password.tr(),
+                        style: context.bodySmall.copyWith(
+                          color: ColorName.lightBlue,
+                        ),
                       ),
                     ),
                   ),
@@ -106,10 +115,11 @@ class SignInScreen extends StatelessWidget {
                     EasyLoading.show();
                   } else if (state is LoginSuccess) {
                     EasyLoading.dismiss();
-                    context.showSuccess('Login Success');
                   } else if (state is LoginError) {
                     EasyLoading.dismiss();
-                    context.showError('Login Failed');
+                    context.showError(
+                      LocaleKeys.auth_invalid_username_password.tr(),
+                    );
                   }
                 },
                 builder: (context, state) {
@@ -123,8 +133,18 @@ class SignInScreen extends StatelessWidget {
                                   clientId: AppConstants.clientId,
                                   clientSecret: AppConstants.clientSecret,
                                   grantType: AppConstants.loginGrantType,
-                                  username: signInCubit.state.fullName,
-                                  password: signInCubit.state.password,
+                                  username: getIt<SharePreferencesUtil>()
+                                          .getString(AppConstants.username)
+                                          .isEmpty
+                                      ? signInCubit.state.fullName
+                                      : getIt<SharePreferencesUtil>()
+                                          .getString(AppConstants.username),
+                                  password: getIt<SharePreferencesUtil>()
+                                          .getString(AppConstants.password)
+                                          .isEmpty
+                                      ? signInCubit.state.password
+                                      : getIt<SharePreferencesUtil>()
+                                          .getString(AppConstants.password),
                                 ),
                               ),
                             );

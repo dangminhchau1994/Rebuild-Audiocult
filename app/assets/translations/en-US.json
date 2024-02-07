@@ -1,12 +1,16 @@
 {
     "app_name": "Rebuild Audiocult",
-    "welcome": "'Welcome to our community",
+    "welcome": "Welcome to our community",
     "joined_people": "2k+ music lovers joined us, now it’s your turn",
     "clear": "Clear",
     "success": "Success",
     "error": "Error",
     "pending": "Pending",
+    "submit":"Submit",
     "auth": {
+        "resend_password": "Resent password",
+        "resend_password_email_associated": "Enter the email associated with your \naccount and we'll send an email with \ninstructions to reset your password.",
+        "invalid_username_password": "Invalid username or password",
         "choose_your_role": "Choose your role",
         "role_required": "Please choose your role",
         "empty_input": "Please fill in this field",

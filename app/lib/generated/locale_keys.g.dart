@@ -8,6 +8,10 @@ abstract class  LocaleKeys {
   static const success = 'success';
   static const error = 'error';
   static const pending = 'pending';
+  static const submit = 'submit';
+  static const auth_resend_password = 'auth.resend_password';
+  static const auth_resend_password_email_associated = 'auth.resend_password_email_associated';
+  static const auth_invalid_username_password = 'auth.invalid_username_password';
   static const auth_choose_your_role = 'auth.choose_your_role';
   static const auth_role_required = 'auth.role_required';
   static const auth_empty_input = 'auth.empty_input';
