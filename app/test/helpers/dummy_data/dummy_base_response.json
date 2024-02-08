@@ -1,0 +1,8 @@
+{
+    "message": "failed",
+    "stausCode": 200,
+    "isSuccess": false,
+    "error": {
+        "message": "failed"
+    }
+}

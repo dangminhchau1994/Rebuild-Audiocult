@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:app/core/constants/api_endpoints.dart';
 import 'package:app/core/errors/exception.dart';
 import 'package:app/data/datasources/roles_data_source.dart';
@@ -24,10 +25,17 @@ void main() {
       'should return role model when the response is successfully',
       () async {
         //Arrange
-        when(mockClient.get(ApiEndpoints.getRoles)).thenAnswer(
+        when(mockClient.get(
+          ApiEndpoints.getRoles,
+          data: anyNamed('data'),
+          queryParameters: anyNamed('queryParameters'),
+          options: anyNamed('options'),
+          cancelToken: anyNamed('cancelToken'),
+          onReceiveProgress: anyNamed('onReceiveProgress'),
+        )).thenAnswer(
           (_) async => Response(
             requestOptions: RequestOptions(),
-            data: readJson('dummy_roles_response.json'),
+            data: jsonDecode(readJson('dummy_roles_response.json')),
             statusCode: 200,
           ),
         );
