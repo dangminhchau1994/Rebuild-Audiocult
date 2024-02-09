@@ -12,6 +12,7 @@ import 'package:app/domain/usecases/get_places_usecase.dart';
 import 'package:app/domain/usecases/get_roles_usecase.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/domain/usecases/register_usecase.dart';
+import 'package:app/domain/usecases/resend_password_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:mockito/annotations.dart';
 
@@ -23,6 +24,7 @@ import 'package:mockito/annotations.dart';
     ResendPasswordRepository,
     RegisterRepository,
     RegisterUseCase,
+    ResendPasswordUseCase,
     GetPlacesUseCase,
     GetRolesUseCase,
     GetPlaceDetailUseCase,

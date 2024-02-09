@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AuthScreen(),
       );
     },
+    ResendCodeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ResendCodeScreen(),
+      );
+    },
     ResendPasswordRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -40,6 +46,20 @@ class AuthRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AuthRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ResendCodeScreen]
+class ResendCodeRoute extends PageRouteInfo<void> {
+  const ResendCodeRoute({List<PageRouteInfo>? children})
+      : super(
+          ResendCodeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ResendCodeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

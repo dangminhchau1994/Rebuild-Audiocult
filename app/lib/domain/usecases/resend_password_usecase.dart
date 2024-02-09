@@ -18,8 +18,8 @@ class ResendPasswordUseCase {
 }
 
 class ResendPasswordParams {
-  final String? email;
-  final String? token;
+  String? email;
+  String? token;
 
   ResendPasswordParams({
     this.email,
@@ -27,7 +27,7 @@ class ResendPasswordParams {
   });
 
   Map<String, dynamic> toJson() => {
-        "email": email,
+        "val[email]": email,
         "token": token,
       };
 }

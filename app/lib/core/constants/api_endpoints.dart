@@ -8,6 +8,8 @@ class ApiEndpoints {
 
   static const String resendPassword = "user/forgot-password";
 
+  static const String resendCode = 'user/verify-reset-password';
+
   static const String authenticate = "token";
 
   static const String getPlaces = "place/autocomplete/json";

@@ -12,6 +12,8 @@ import 'package:app/presentation/blocs/login/login_bloc.dart';
 import 'package:app/presentation/blocs/login/login_cubit.dart';
 import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
+import 'package:app/presentation/blocs/resend_password/resend_password_bloc.dart';
+import 'package:app/presentation/blocs/resend_password/resend_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,6 +69,12 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => getIt<RegisterCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => getIt<ResendPasswordCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => getIt<ResendPasswordBloc>(),
           ),
           BlocProvider(
             create: (_) => getIt<GetPlacesBloc>(),

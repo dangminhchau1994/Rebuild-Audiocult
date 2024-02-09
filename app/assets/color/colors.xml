@@ -7,6 +7,7 @@
     
     //Text Colors
     <color name="smallTextColor">#D1D5DB</color>
+    <color name="mediumTextColor">#E5E7EB</color>
 
     //Button Colors
     <color name="buttonColor">#00A8A8</color>

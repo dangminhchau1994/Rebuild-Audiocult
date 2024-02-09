@@ -34,6 +34,9 @@ class ColorName {
   /// Color: #38BDF8
   static const Color lightBlue = Color(0xFF38BDF8);
 
+  /// Color: #E5E7EB
+  static const Color mediumTextColor = Color(0xFFE5E7EB);
+
   /// Color: #1F2937
   static const Color secondaryButtonColor = Color(0xFF1F2937);
 

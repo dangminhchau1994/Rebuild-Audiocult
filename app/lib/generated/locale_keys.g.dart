@@ -9,6 +9,12 @@ abstract class  LocaleKeys {
   static const error = 'error';
   static const pending = 'pending';
   static const submit = 'submit';
+  static const save = 'save';
+  static const auth_input_code = 'auth.input_code';
+  static const auth_check_mail_not_received = 'auth.check_mail_not_received';
+  static const auth_check_try_another = 'auth.check_try_another';
+  static const auth_check_mail = 'auth.check_mail';
+  static const auth_check_mail_content = 'auth.check_mail_content';
   static const auth_resend_password = 'auth.resend_password';
   static const auth_resend_password_email_associated = 'auth.resend_password_email_associated';
   static const auth_invalid_username_password = 'auth.invalid_username_password';
