@@ -4,9 +4,8 @@ import 'package:app/domain/entities/place_suggestion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'places_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PlacesModel extends PlaceSuggestionEntity {
-  @JsonKey(name: 'place_id')
   final String? placeId;
   final String? description;
   String? city;

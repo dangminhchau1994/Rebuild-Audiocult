@@ -4,7 +4,6 @@ part 'roles_model.g.dart';
 
 @JsonSerializable()
 class RolesModel extends RolesEntity {
-  @override
   final List<RoleModel>? data;
 
   const RolesModel({this.data}) : super(data: data);
@@ -19,12 +18,9 @@ class RolesModel extends RolesEntity {
       );
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class RoleModel extends RoleEntity {
-  @override
-  @JsonKey(name: 'user_group_id')
   final String? userGroupId;
-  @override
   final String? title;
 
   const RoleModel({

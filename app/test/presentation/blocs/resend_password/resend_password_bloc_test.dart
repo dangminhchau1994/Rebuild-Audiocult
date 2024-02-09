@@ -61,9 +61,7 @@ void main() {
       build: () {
         when(mockLoginUseCase.execute(tLoginParams))
             .thenAnswer((_) async => const Right(tLoginEntity));
-        when(mockResendPasswordUseCase.resendPassword(tParams
-              ..email = tLoginParams.username
-              ..token = tLoginEntity.accessToken))
+        when(mockResendPasswordUseCase.resendPassword(any))
             .thenAnswer((_) async => const Right(tBaseEntity));
         return bloc;
       },

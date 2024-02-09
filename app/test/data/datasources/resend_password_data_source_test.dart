@@ -55,8 +55,9 @@ void main() {
 
     test('should throw error when call api unsuccessfully', () {
       //arrange
-      when(client.options)
-          .thenReturn(BaseOptions(baseUrl: ApiEndpoints.baseUrl));
+      when(client.options).thenReturn(
+        BaseOptions(baseUrl: ApiEndpoints.baseUrl),
+      );
       when(client.post(
         ApiEndpoints.resendPassword,
         data: anyNamed('data'),

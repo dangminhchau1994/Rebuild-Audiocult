@@ -21,6 +21,7 @@ class LoginParams {
   final String? grantType;
   final String? username;
   final String? password;
+  final String? code;
 
   LoginParams({
     this.clientId,
@@ -28,6 +29,7 @@ class LoginParams {
     this.grantType,
     this.username,
     this.password,
+    this.code,
   });
 
   Map<String, dynamic> toJson() {
