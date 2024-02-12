@@ -1,8 +1,10 @@
+import 'package:app/data/datasources/create_new_password_datasource.dart';
 import 'package:app/data/datasources/login_data_source.dart';
 import 'package:app/data/datasources/places_data_source.dart';
 import 'package:app/data/datasources/resend_code_data_source.dart';
 import 'package:app/data/datasources/resend_password_data_source.dart';
 import 'package:app/data/datasources/roles_data_source.dart';
+import 'package:app/domain/repositories/create_new_password_repository.dart';
 import 'package:app/domain/repositories/get_places_repository.dart';
 import 'package:app/domain/repositories/get_roles_repository.dart';
 import 'package:app/domain/repositories/login_repository.dart';
@@ -27,6 +29,7 @@ import 'package:mockito/annotations.dart';
     ResendPasswordRepository,
     ResendCodeRepository,
     RegisterRepository,
+    CreateNewPasswordRepository,
     RegisterUseCase,
     ResendPasswordUseCase,
     GetPlacesUseCase,
@@ -36,6 +39,7 @@ import 'package:mockito/annotations.dart';
     ResendCodeUseCase,
     ResendPasswordDataSource,
     ResendCodeDataSource,
+    CreateNewPasswordDataSource,
     RolesDataSource,
     LoginDataSource,
     PlacesDataSource,

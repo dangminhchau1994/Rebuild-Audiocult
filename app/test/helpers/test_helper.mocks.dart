@@ -6,11 +6,13 @@
 import 'dart:async' as _i14;
 
 import 'package:app/core/errors/failure.dart' as _i15;
-import 'package:app/data/datasources/login_data_source.dart' as _i31;
-import 'package:app/data/datasources/places_data_source.dart' as _i32;
-import 'package:app/data/datasources/resend_code_data_source.dart' as _i29;
-import 'package:app/data/datasources/resend_password_data_source.dart' as _i28;
-import 'package:app/data/datasources/roles_data_source.dart' as _i30;
+import 'package:app/data/datasources/create_new_password_datasource.dart'
+    as _i32;
+import 'package:app/data/datasources/login_data_source.dart' as _i34;
+import 'package:app/data/datasources/places_data_source.dart' as _i35;
+import 'package:app/data/datasources/resend_code_data_source.dart' as _i31;
+import 'package:app/data/datasources/resend_password_data_source.dart' as _i30;
+import 'package:app/data/datasources/roles_data_source.dart' as _i33;
 import 'package:app/data/models/base/base_model.dart' as _i9;
 import 'package:app/data/models/login/login_model.dart' as _i11;
 import 'package:app/data/models/places/places_model.dart' as _i12;
@@ -20,15 +22,18 @@ import 'package:app/domain/entities/login_entity.dart' as _i17;
 import 'package:app/domain/entities/place_suggestion_entity.dart' as _i19;
 import 'package:app/domain/entities/register_entity.dart' as _i25;
 import 'package:app/domain/entities/roles_entity.dart' as _i16;
+import 'package:app/domain/repositories/create_new_password_repository.dart'
+    as _i27;
 import 'package:app/domain/repositories/get_places_repository.dart' as _i5;
 import 'package:app/domain/repositories/get_roles_repository.dart' as _i6;
 import 'package:app/domain/repositories/login_repository.dart' as _i7;
 import 'package:app/domain/repositories/register_repository.dart' as _i3;
 import 'package:app/domain/repositories/resend_code_repository.dart' as _i8;
 import 'package:app/domain/repositories/resend_password_repository.dart' as _i4;
+import 'package:app/domain/usecases/create_new_password_usecase.dart' as _i28;
 import 'package:app/domain/usecases/get_place_detail_usecase.dart' as _i21;
 import 'package:app/domain/usecases/get_places_usecase.dart' as _i20;
-import 'package:app/domain/usecases/get_roles_usecase.dart' as _i27;
+import 'package:app/domain/usecases/get_roles_usecase.dart' as _i29;
 import 'package:app/domain/usecases/login_usecase.dart' as _i18;
 import 'package:app/domain/usecases/register_usecase.dart' as _i26;
 import 'package:app/domain/usecases/resend_code_usecase.dart' as _i24;
@@ -413,6 +418,35 @@ class MockRegisterRepository extends _i1.Mock
       ) as _i14.Future<_i2.Either<_i15.Failure, _i25.RegisterEntity>>);
 }
 
+/// A class which mocks [CreateNewPasswordRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCreateNewPasswordRepository extends _i1.Mock
+    implements _i27.CreateNewPasswordRepository {
+  MockCreateNewPasswordRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, _i22.BaseEntity>> createNewPassword(
+          _i28.CreateNewPasswordParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createNewPassword,
+          [params],
+        ),
+        returnValue:
+            _i14.Future<_i2.Either<_i15.Failure, _i22.BaseEntity>>.value(
+                _FakeEither_0<_i15.Failure, _i22.BaseEntity>(
+          this,
+          Invocation.method(
+            #createNewPassword,
+            [params],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, _i22.BaseEntity>>);
+}
+
 /// A class which mocks [RegisterUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -531,7 +565,7 @@ class MockGetPlacesUseCase extends _i1.Mock implements _i20.GetPlacesUseCase {
 /// A class which mocks [GetRolesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetRolesUseCase extends _i1.Mock implements _i27.GetRolesUseCase {
+class MockGetRolesUseCase extends _i1.Mock implements _i29.GetRolesUseCase {
   MockGetRolesUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -681,7 +715,7 @@ class MockResendCodeUseCase extends _i1.Mock implements _i24.ResendCodeUseCase {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResendPasswordDataSource extends _i1.Mock
-    implements _i28.ResendPasswordDataSource {
+    implements _i30.ResendPasswordDataSource {
   MockResendPasswordDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -708,7 +742,7 @@ class MockResendPasswordDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResendCodeDataSource extends _i1.Mock
-    implements _i29.ResendCodeDataSource {
+    implements _i31.ResendCodeDataSource {
   MockResendCodeDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -730,10 +764,37 @@ class MockResendCodeDataSource extends _i1.Mock
       ) as _i14.Future<_i9.BaseModel>);
 }
 
+/// A class which mocks [CreateNewPasswordDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCreateNewPasswordDataSource extends _i1.Mock
+    implements _i32.CreateNewPasswordDataSource {
+  MockCreateNewPasswordDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.Future<_i9.BaseModel> createNewPassword(
+          _i28.CreateNewPasswordParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createNewPassword,
+          [params],
+        ),
+        returnValue: _i14.Future<_i9.BaseModel>.value(_FakeBaseModel_7(
+          this,
+          Invocation.method(
+            #createNewPassword,
+            [params],
+          ),
+        )),
+      ) as _i14.Future<_i9.BaseModel>);
+}
+
 /// A class which mocks [RolesDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRolesDataSource extends _i1.Mock implements _i30.RolesDataSource {
+class MockRolesDataSource extends _i1.Mock implements _i33.RolesDataSource {
   MockRolesDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -757,7 +818,7 @@ class MockRolesDataSource extends _i1.Mock implements _i30.RolesDataSource {
 /// A class which mocks [LoginDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginDataSource extends _i1.Mock implements _i31.LoginDataSource {
+class MockLoginDataSource extends _i1.Mock implements _i34.LoginDataSource {
   MockLoginDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -782,7 +843,7 @@ class MockLoginDataSource extends _i1.Mock implements _i31.LoginDataSource {
 /// A class which mocks [PlacesDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlacesDataSource extends _i1.Mock implements _i32.PlacesDataSource {
+class MockPlacesDataSource extends _i1.Mock implements _i35.PlacesDataSource {
   MockPlacesDataSource() {
     _i1.throwOnMissingStub(this);
   }

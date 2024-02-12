@@ -6,6 +6,8 @@ class ApiEndpoints {
 
   static const String register = 'user';
 
+  static const String createNewPassword = 'user/reset-password';
+
   static const String resendPassword = "user/forgot-password";
 
   static const String resendCode = 'user/verify-reset-password';

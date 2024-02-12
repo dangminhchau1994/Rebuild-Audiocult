@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 class ResendPasswordCubit extends Cubit<ResendPasswordCubitState> {
   ResendPasswordCubit() : super(ResendPasswordCubitState());
 
-  void setEmail(String email) {
+  void onSetEmailChanged(String email) {
     emit(state.copyWith(email: email));
   }
 }

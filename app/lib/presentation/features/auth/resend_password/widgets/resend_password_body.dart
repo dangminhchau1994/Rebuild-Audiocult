@@ -49,7 +49,8 @@ class ResendPasswordBody extends StatelessWidget {
             context.verticalSpaceMedium,
             UITextField(
               hintText: LocaleKeys.auth_email.tr(),
-              onChanged: (value) => resendPasswordCubit.setEmail(value ?? ''),
+              onChanged: (value) =>
+                  resendPasswordCubit.onSetEmailChanged(value ?? ''),
               onValidator: (value) {
                 if (value?.isEmpty ?? false) {
                   return LocaleKeys.auth_empty_input.tr();

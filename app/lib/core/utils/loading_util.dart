@@ -17,4 +17,12 @@ class LoadingUtil {
       ..userInteractions = true
       ..dismissOnTap = false;
   }
+
+  void show() {
+    EasyLoading.show();
+  }
+
+  void dismiss() {
+    EasyLoading.dismiss();
+  }
 }
