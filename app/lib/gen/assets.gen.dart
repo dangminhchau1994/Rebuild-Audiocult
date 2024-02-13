@@ -111,6 +111,10 @@ class $AssetsIconsGen {
   SvgGenImage get iconSetting =>
       const SvgGenImage('assets/icons/icon_setting.svg');
 
+  /// File path: assets/icons/icon_splash.svg
+  SvgGenImage get iconSplash =>
+      const SvgGenImage('assets/icons/icon_splash.svg');
+
   /// File path: assets/icons/icon_toggle_password.svg
   SvgGenImage get iconTogglePassword =>
       const SvgGenImage('assets/icons/icon_toggle_password.svg');
@@ -136,6 +140,7 @@ class $AssetsIconsGen {
         iconLogo,
         iconPending,
         iconSetting,
+        iconSplash,
         iconTogglePassword,
         iconTurn,
         iconUserFriends,

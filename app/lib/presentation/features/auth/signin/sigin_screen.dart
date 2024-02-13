@@ -1,4 +1,5 @@
 import 'package:app/core/constants/app_constants.dart';
+import 'package:app/core/constants/app_pref_key.dart';
 import 'package:app/core/constants/app_route_names.dart';
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/core/utils/share_preferences_util.dart';
@@ -42,7 +43,7 @@ class SignInScreen extends StatelessWidget {
               UITextField(
                 controller: TextEditingController(
                   text: getIt<SharePreferencesUtil>()
-                      .getString(AppConstants.username),
+                      .getString(AppPrefKey.username),
                 ),
                 hintText: LocaleKeys.auth_full_name.tr(),
                 onChanged: (value) =>
@@ -55,7 +56,7 @@ class SignInScreen extends StatelessWidget {
               UITextField(
                 controller: TextEditingController(
                   text: getIt<SharePreferencesUtil>()
-                      .getString(AppConstants.password),
+                      .getString(AppPrefKey.password),
                 ),
                 hintText: LocaleKeys.auth_password.tr(),
                 isObscureText: true,
@@ -75,19 +76,19 @@ class SignInScreen extends StatelessWidget {
                       onChanged: (value) async {
                         if (value) {
                           getIt<SharePreferencesUtil>().saveString(
-                            AppConstants.username,
+                            AppPrefKey.username,
                             signInCubit.state.fullName ?? '',
                           );
                           getIt<SharePreferencesUtil>().saveString(
-                            AppConstants.password,
+                            AppPrefKey.password,
                             signInCubit.state.password ?? '',
                           );
                         } else {
                           getIt<SharePreferencesUtil>().removeString(
-                            AppConstants.username,
+                            AppPrefKey.username,
                           );
                           getIt<SharePreferencesUtil>().removeString(
-                            AppConstants.password,
+                            AppPrefKey.password,
                           );
                         }
                       },
@@ -115,6 +116,7 @@ class SignInScreen extends StatelessWidget {
                     EasyLoading.show();
                   } else if (state is LoginSuccess) {
                     EasyLoading.dismiss();
+                    context.router.pushNamed(AppRouteNames.home);
                   } else if (state is LoginError) {
                     EasyLoading.dismiss();
                     context.showError(
@@ -134,17 +136,17 @@ class SignInScreen extends StatelessWidget {
                                   clientSecret: AppConstants.clientSecret,
                                   grantType: AppConstants.loginGrantType,
                                   username: getIt<SharePreferencesUtil>()
-                                          .getString(AppConstants.username)
+                                          .getString(AppPrefKey.username)
                                           .isEmpty
                                       ? signInCubit.state.fullName
                                       : getIt<SharePreferencesUtil>()
-                                          .getString(AppConstants.username),
+                                          .getString(AppPrefKey.username),
                                   password: getIt<SharePreferencesUtil>()
-                                          .getString(AppConstants.password)
+                                          .getString(AppPrefKey.password)
                                           .isEmpty
                                       ? signInCubit.state.password
                                       : getIt<SharePreferencesUtil>()
-                                          .getString(AppConstants.password),
+                                          .getString(AppPrefKey.password),
                                 ),
                               ),
                             );

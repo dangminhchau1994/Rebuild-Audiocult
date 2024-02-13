@@ -9,6 +9,7 @@
     "submit": "Submit",
     "save": "Save",
     "auth": {
+        "register_successfully": "User successfully added.",
         "not_matching_password": "Confirm password not matching",
         "new_password": "New password",
         "confirm_password": "Confirm password",

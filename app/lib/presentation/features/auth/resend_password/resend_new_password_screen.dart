@@ -11,7 +11,6 @@ class ResendNewPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('chauCode: $code');
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

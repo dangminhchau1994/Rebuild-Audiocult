@@ -10,6 +10,7 @@ abstract class  LocaleKeys {
   static const pending = 'pending';
   static const submit = 'submit';
   static const save = 'save';
+  static const auth_register_successfully = 'auth.register_successfully';
   static const auth_not_matching_password = 'auth.not_matching_password';
   static const auth_new_password = 'auth.new_password';
   static const auth_confirm_password = 'auth.confirm_password';

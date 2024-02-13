@@ -23,6 +23,7 @@ class CreateNewPasswordBloc
     OnCreateNewPasswordCredentials event,
     Emitter<CreateNewPasswordState> emit,
   ) async {
+    emit(CreateNewPasswordLoading());
     final result = await loginUseCase.execute(event.params);
     result.fold(
       (failure) => emit(CreateNewPasswordFailure(message: failure.message)),

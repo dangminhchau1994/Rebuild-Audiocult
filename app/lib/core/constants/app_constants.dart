@@ -7,6 +7,4 @@ class AppConstants {
   static const String iosKey = 'AIzaSyCq_ewBkTd_Ptlva35RYyHJU7oBYCGhMpY';
   static const String successStatus = 'success';
   static const String errorStatus = 'failed';
-  static const String username = 'username';
-  static const String password = 'password';
 }

@@ -193,7 +193,9 @@ class RegisterScreen extends StatelessWidget {
                       EasyLoading.show();
                     } else if (state is RegisterSuccess) {
                       EasyLoading.dismiss();
-                      context.showSuccess(state.data.message ?? '');
+                      context.showSuccess(
+                        LocaleKeys.auth_register_success.tr(),
+                      );
                     } else if (state is RegisterError) {
                       EasyLoading.dismiss();
                       context.showError(state.message);
