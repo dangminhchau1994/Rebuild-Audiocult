@@ -22,6 +22,7 @@ class ResendCodeBloc extends Bloc<ResendCodeEvent, ResendCodeState> {
     OnResendCodeCredentials event,
     Emitter<ResendCodeState> emit,
   ) async {
+    emit(ResendCodeLoading());
     final result = await loginUseCase.execute(event.params);
     result.fold(
       (failure) => emit(ResendCodeFailure(failure.message ?? '')),

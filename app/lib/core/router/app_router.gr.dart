@@ -27,6 +27,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ResendCodeScreen(),
       );
     },
+    ResendNewPasswordRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ResendNewPasswordRouteArgs>(
+          orElse: () =>
+              ResendNewPasswordRouteArgs(code: pathParams.optString('code')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ResendNewPasswordScreen(
+          key: args.key,
+          code: args.code,
+        ),
+      );
+    },
     ResendPasswordRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -62,6 +75,45 @@ class ResendCodeRoute extends PageRouteInfo<void> {
   static const String name = 'ResendCodeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ResendNewPasswordScreen]
+class ResendNewPasswordRoute extends PageRouteInfo<ResendNewPasswordRouteArgs> {
+  ResendNewPasswordRoute({
+    Key? key,
+    String? code,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ResendNewPasswordRoute.name,
+          args: ResendNewPasswordRouteArgs(
+            key: key,
+            code: code,
+          ),
+          rawPathParams: {'code': code},
+          initialChildren: children,
+        );
+
+  static const String name = 'ResendNewPasswordRoute';
+
+  static const PageInfo<ResendNewPasswordRouteArgs> page =
+      PageInfo<ResendNewPasswordRouteArgs>(name);
+}
+
+class ResendNewPasswordRouteArgs {
+  const ResendNewPasswordRouteArgs({
+    this.key,
+    this.code,
+  });
+
+  final Key? key;
+
+  final String? code;
+
+  @override
+  String toString() {
+    return 'ResendNewPasswordRouteArgs{key: $key, code: $code}';
+  }
 }
 
 /// generated route for

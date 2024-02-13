@@ -5,6 +5,8 @@ import 'package:app/core/utils/loading_util.dart';
 import 'package:app/di/inject_container.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/presentation/blocs/create_new_password/create_new_password_bloc.dart';
+import 'package:app/presentation/blocs/create_new_password/create_new_password_cubit.dart';
 import 'package:app/presentation/blocs/get_places/get_places_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
@@ -83,6 +85,12 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => getIt<ResendCodeCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => getIt<CreateNewPasswordCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => getIt<CreateNewPasswordBloc>(),
           ),
           BlocProvider(
             create: (_) => getIt<GetPlacesBloc>(),

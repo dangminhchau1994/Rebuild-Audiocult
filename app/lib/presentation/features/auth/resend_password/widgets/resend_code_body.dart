@@ -1,5 +1,6 @@
 import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/core/router/app_router.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
@@ -65,7 +66,9 @@ class ResendCodeBody extends StatelessWidget {
                   context.showError(state.message);
                 } else if (state is ResendCodeSuccess) {
                   EasyLoading.dismiss();
-                  debugPrint('Resend code successfully');
+                  context.pushRoute(
+                    ResendNewPasswordRoute(code: cubit.state.code),
+                  );
                 }
               },
               builder: (context, state) {

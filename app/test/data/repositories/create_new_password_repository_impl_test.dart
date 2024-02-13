@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/errors/exception.dart';
 import 'package:app/core/errors/failure.dart';
 import 'package:app/data/models/base/base_model.dart';
