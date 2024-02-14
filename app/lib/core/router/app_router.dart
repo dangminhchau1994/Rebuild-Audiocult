@@ -4,6 +4,7 @@ import 'package:app/presentation/features/auth/resend_password/resend_code_scree
 import 'package:app/presentation/features/auth/resend_password/resend_new_password_screen.dart';
 import 'package:app/presentation/features/auth/resend_password/resend_password_screen.dart';
 import 'package:app/presentation/features/home/home_screen.dart';
+import 'package:app/presentation/features/main/main_screen.dart';
 import 'package:app/presentation/features/splash/splash_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: HomeRoute.page,
           path: AppRouteNames.home,
+        ),
+        AutoRoute(
+          page: MainRoute.page,
+          path: AppRouteNames.main,
         ),
         AutoRoute(
           page: ResendCodeRoute.page,

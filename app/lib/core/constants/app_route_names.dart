@@ -3,6 +3,8 @@ class AppRouteNames {
 
   static const String home = '/home';
 
+  static const String main = '/main';
+
   static const String resendPassword = '/resend-password';
 
   static const String resendCode = '/resend-code';

@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(milliseconds: 1000));
     if (!mounted) return;
     if (getIt<SharePreferencesUtil>().getString(AppPrefKey.token).isNotEmpty) {
-      context.router.replaceNamed(AppRouteNames.home);
+      context.router.replaceNamed(AppRouteNames.main);
     } else {
       context.router.replaceNamed(AppRouteNames.auth);
     }

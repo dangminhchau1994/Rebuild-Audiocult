@@ -74,13 +74,13 @@ class AppWidgetTheme {
     overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
     indicatorSize: TabBarIndicatorSize.tab,
     dividerColor: Colors.transparent,
+    labelStyle: AppTextStyles.bodySmall,
+    unselectedLabelStyle: AppTextStyles.bodySmall,
     indicator: const UnderlineTabIndicator(
       borderSide: BorderSide(
         color: ColorName.buttonColor,
         width: 2,
       ),
     ),
-    labelStyle: AppTextStyles.bodySmall,
-    unselectedLabelStyle: AppTextStyles.bodySmall,
   );
 }

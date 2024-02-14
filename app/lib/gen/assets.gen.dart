@@ -81,6 +81,14 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/icon_atlas_active.svg
+  SvgGenImage get iconAtlasActive =>
+      const SvgGenImage('assets/icons/icon_atlas_active.svg');
+
+  /// File path: assets/icons/icon_atlas_inactive.svg
+  SvgGenImage get iconAtlasInactive =>
+      const SvgGenImage('assets/icons/icon_atlas_inactive.svg');
+
   /// File path: assets/icons/icon_checked.svg
   SvgGenImage get iconChecked =>
       const SvgGenImage('assets/icons/icon_checked.svg');
@@ -88,6 +96,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_drop_down.svg
   SvgGenImage get iconDropDown =>
       const SvgGenImage('assets/icons/icon_drop_down.svg');
+
+  /// File path: assets/icons/icon_event_active.svg
+  SvgGenImage get iconEventActive =>
+      const SvgGenImage('assets/icons/icon_event_active.svg');
+
+  /// File path: assets/icons/icon_event_inactive.svg
+  SvgGenImage get iconEventInactive =>
+      const SvgGenImage('assets/icons/icon_event_inactive.svg');
 
   /// File path: assets/icons/icon_exclamation_mark.svg
   SvgGenImage get iconExclamationMark =>
@@ -97,11 +113,27 @@ class $AssetsIconsGen {
   SvgGenImage get iconGlobal =>
       const SvgGenImage('assets/icons/icon_global.svg');
 
+  /// File path: assets/icons/icon_home_active.svg
+  SvgGenImage get iconHomeActive =>
+      const SvgGenImage('assets/icons/icon_home_active.svg');
+
+  /// File path: assets/icons/icon_home_inactive.svg
+  SvgGenImage get iconHomeInactive =>
+      const SvgGenImage('assets/icons/icon_home_inactive.svg');
+
   /// File path: assets/icons/icon_lock.svg
   SvgGenImage get iconLock => const SvgGenImage('assets/icons/icon_lock.svg');
 
   /// File path: assets/icons/icon_logo.svg
   SvgGenImage get iconLogo => const SvgGenImage('assets/icons/icon_logo.svg');
+
+  /// File path: assets/icons/icon_music_active.svg
+  SvgGenImage get iconMusicActive =>
+      const SvgGenImage('assets/icons/icon_music_active.svg');
+
+  /// File path: assets/icons/icon_music_inactive.svg
+  SvgGenImage get iconMusicInactive =>
+      const SvgGenImage('assets/icons/icon_music_inactive.svg');
 
   /// File path: assets/icons/icon_pending.svg
   SvgGenImage get iconPending =>
@@ -110,6 +142,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_setting.svg
   SvgGenImage get iconSetting =>
       const SvgGenImage('assets/icons/icon_setting.svg');
+
+  /// File path: assets/icons/icon_smile.svg
+  SvgGenImage get iconSmile => const SvgGenImage('assets/icons/icon_smile.svg');
 
   /// File path: assets/icons/icon_splash.svg
   SvgGenImage get iconSplash =>
@@ -132,14 +167,23 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        iconAtlasActive,
+        iconAtlasInactive,
         iconChecked,
         iconDropDown,
+        iconEventActive,
+        iconEventInactive,
         iconExclamationMark,
         iconGlobal,
+        iconHomeActive,
+        iconHomeInactive,
         iconLock,
         iconLogo,
+        iconMusicActive,
+        iconMusicInactive,
         iconPending,
         iconSetting,
+        iconSmile,
         iconSplash,
         iconTogglePassword,
         iconTurn,

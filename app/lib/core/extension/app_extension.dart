@@ -13,17 +13,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 extension ThemeExtension on BuildContext {
   ThemeData get myTheme {
     return ThemeData(
+      fontFamily: FontFamily.nunitoSans,
       buttonTheme: AppWidgetTheme.buttonThemeData,
       inputDecorationTheme: AppWidgetTheme.inputDecorationTheme,
       checkboxTheme: AppWidgetTheme.checkboxThemeData,
       tabBarTheme: AppWidgetTheme.tabBarTheme,
-      fontFamily: FontFamily.nunitoSans,
       appBarTheme: AppWidgetTheme.appBarTheme,
       textTheme: TextTheme(
         titleSmall: AppTextStyles.titleSmall,
         titleMedium: AppTextStyles.titleMedium,
         bodySmall: AppTextStyles.bodySmall,
-        bodyMedium: AppTextStyles.bodyMedium,
       ),
       useMaterial3: true,
       colorScheme: ColorScheme.fromSwatch(
