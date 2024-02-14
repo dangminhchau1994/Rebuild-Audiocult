@@ -81,6 +81,10 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/icon_action_menu.svg
+  SvgGenImage get iconActionMenu =>
+      const SvgGenImage('assets/icons/icon_action_menu.svg');
+
   /// File path: assets/icons/icon_atlas_active.svg
   SvgGenImage get iconAtlasActive =>
       const SvgGenImage('assets/icons/icon_atlas_active.svg');
@@ -89,9 +93,16 @@ class $AssetsIconsGen {
   SvgGenImage get iconAtlasInactive =>
       const SvgGenImage('assets/icons/icon_atlas_inactive.svg');
 
+  /// File path: assets/icons/icon_cart.svg
+  SvgGenImage get iconCart => const SvgGenImage('assets/icons/icon_cart.svg');
+
   /// File path: assets/icons/icon_checked.svg
   SvgGenImage get iconChecked =>
       const SvgGenImage('assets/icons/icon_checked.svg');
+
+  /// File path: assets/icons/icon_create_post.svg
+  SvgGenImage get iconCreatePost =>
+      const SvgGenImage('assets/icons/icon_create_post.svg');
 
   /// File path: assets/icons/icon_drop_down.svg
   SvgGenImage get iconDropDown =>
@@ -127,6 +138,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_logo.svg
   SvgGenImage get iconLogo => const SvgGenImage('assets/icons/icon_logo.svg');
 
+  /// File path: assets/icons/icon_message.svg
+  SvgGenImage get iconMessage =>
+      const SvgGenImage('assets/icons/icon_message.svg');
+
   /// File path: assets/icons/icon_music_active.svg
   SvgGenImage get iconMusicActive =>
       const SvgGenImage('assets/icons/icon_music_active.svg');
@@ -135,9 +150,17 @@ class $AssetsIconsGen {
   SvgGenImage get iconMusicInactive =>
       const SvgGenImage('assets/icons/icon_music_inactive.svg');
 
+  /// File path: assets/icons/icon_notification.svg
+  SvgGenImage get iconNotification =>
+      const SvgGenImage('assets/icons/icon_notification.svg');
+
   /// File path: assets/icons/icon_pending.svg
   SvgGenImage get iconPending =>
       const SvgGenImage('assets/icons/icon_pending.svg');
+
+  /// File path: assets/icons/icon_search.svg
+  SvgGenImage get iconSearch =>
+      const SvgGenImage('assets/icons/icon_search.svg');
 
   /// File path: assets/icons/icon_setting.svg
   SvgGenImage get iconSetting =>
@@ -167,9 +190,12 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        iconActionMenu,
         iconAtlasActive,
         iconAtlasInactive,
+        iconCart,
         iconChecked,
+        iconCreatePost,
         iconDropDown,
         iconEventActive,
         iconEventInactive,
@@ -179,9 +205,12 @@ class $AssetsIconsGen {
         iconHomeInactive,
         iconLock,
         iconLogo,
+        iconMessage,
         iconMusicActive,
         iconMusicInactive,
+        iconNotification,
         iconPending,
+        iconSearch,
         iconSetting,
         iconSmile,
         iconSplash,

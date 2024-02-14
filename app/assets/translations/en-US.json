@@ -8,6 +8,13 @@
     "pending": "Pending",
     "submit": "Submit",
     "save": "Save",
+    "main": {
+        "post": "Posts",
+        "home": "Home",
+        "atlas": "Atlas",
+        "music": "Music",
+        "events": "Events"
+    },
     "auth": {
         "register_successfully": "User successfully added.",
         "not_matching_password": "Confirm password not matching",

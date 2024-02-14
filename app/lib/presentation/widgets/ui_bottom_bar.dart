@@ -1,6 +1,8 @@
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/generated/locale_keys.g.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +25,7 @@ class UIBottombar extends StatelessWidget {
       style: TabStyle.react,
       items: [
         TabItem(
-          title: 'Home',
+          title: LocaleKeys.main_home.tr(),
           activeIcon: SvgPicture.asset(
             Assets.icons.iconHomeActive.path,
           ),
@@ -32,7 +34,7 @@ class UIBottombar extends StatelessWidget {
           ),
         ),
         TabItem(
-          title: 'Atlas',
+          title: LocaleKeys.main_atlas.tr(),
           activeIcon: SvgPicture.asset(
             Assets.icons.iconAtlasActive.path,
           ),
@@ -45,7 +47,7 @@ class UIBottombar extends StatelessWidget {
           icon: SizedBox(),
         ),
         TabItem(
-          title: 'Music',
+          title: LocaleKeys.main_music.tr(),
           activeIcon: SvgPicture.asset(
             Assets.icons.iconMusicActive.path,
           ),
@@ -54,7 +56,7 @@ class UIBottombar extends StatelessWidget {
           ),
         ),
         TabItem(
-          title: 'Events',
+          title: LocaleKeys.main_events.tr(),
           activeIcon: SvgPicture.asset(
             Assets.icons.iconEventActive.path,
           ),

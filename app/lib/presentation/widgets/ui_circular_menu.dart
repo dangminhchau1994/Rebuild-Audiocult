@@ -3,7 +3,9 @@ import 'package:app/custom_libs/circular/circular_menu.dart';
 import 'package:app/custom_libs/circular/circular_menu_item.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
+import 'package:app/generated/locale_keys.g.dart';
 import 'package:blur/blur.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -39,7 +41,7 @@ class _UICircularMenuState extends State<UICircularMenu> {
       toggleButtonIconColor: ColorName.white,
       items: [
         CircularMenuItem(
-          label: 'Post',
+          label: LocaleKeys.main_post.tr(),
           isToogleButton: false,
           onTap: () {
             setState(() {
@@ -53,7 +55,7 @@ class _UICircularMenuState extends State<UICircularMenu> {
           ),
         ),
         CircularMenuItem(
-          label: 'Music',
+          label: LocaleKeys.main_music.tr(),
           isToogleButton: false,
           onTap: () {
             setState(() {
@@ -67,7 +69,7 @@ class _UICircularMenuState extends State<UICircularMenu> {
           ),
         ),
         CircularMenuItem(
-          label: 'Event',
+          label: LocaleKeys.main_events.tr(),
           isToogleButton: false,
           onTap: () {
             setState(() {
