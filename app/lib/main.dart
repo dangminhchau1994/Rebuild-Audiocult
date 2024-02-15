@@ -1,6 +1,7 @@
 import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/core/router/app_router.dart';
+import 'package:app/core/services/hive_service.dart';
 import 'package:app/core/utils/loading_util.dart';
 import 'package:app/di/inject_container.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
@@ -28,6 +29,7 @@ import 'package:easy_localization/easy_localization.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
+  await HiveService().init();
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(

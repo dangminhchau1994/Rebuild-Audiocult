@@ -39,7 +39,7 @@ extension TextThemeExtension on BuildContext {
 
   TextStyle get bodySmall => Theme.of(this).textTheme.bodySmall!;
 
-  TextStyle get bodyMedium => Theme.of(this).textTheme.bodyMedium!;
+  TextStyle get bodyMedium => AppTextStyles.bodyMedium;
 }
 
 extension SizePadding on BuildContext {

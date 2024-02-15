@@ -138,6 +138,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_logo.svg
   SvgGenImage get iconLogo => const SvgGenImage('assets/icons/icon_logo.svg');
 
+  /// File path: assets/icons/icon_logout.svg
+  SvgGenImage get iconLogout =>
+      const SvgGenImage('assets/icons/icon_logout.svg');
+
   /// File path: assets/icons/icon_message.svg
   SvgGenImage get iconMessage =>
       const SvgGenImage('assets/icons/icon_message.svg');
@@ -173,6 +177,10 @@ class $AssetsIconsGen {
   SvgGenImage get iconSplash =>
       const SvgGenImage('assets/icons/icon_splash.svg');
 
+  /// File path: assets/icons/icon_subscriptions.svg
+  SvgGenImage get iconSubscriptions =>
+      const SvgGenImage('assets/icons/icon_subscriptions.svg');
+
   /// File path: assets/icons/icon_toggle_password.svg
   SvgGenImage get iconTogglePassword =>
       const SvgGenImage('assets/icons/icon_toggle_password.svg');
@@ -205,6 +213,7 @@ class $AssetsIconsGen {
         iconHomeInactive,
         iconLock,
         iconLogo,
+        iconLogout,
         iconMessage,
         iconMusicActive,
         iconMusicInactive,
@@ -214,6 +223,7 @@ class $AssetsIconsGen {
         iconSetting,
         iconSmile,
         iconSplash,
+        iconSubscriptions,
         iconTogglePassword,
         iconTurn,
         iconUserFriends,
@@ -224,12 +234,16 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/img_header_drawer.png
+  AssetGenImage get imgHeaderDrawer =>
+      const AssetGenImage('assets/images/img_header_drawer.png');
+
   /// File path: assets/images/user_avatars.png
   AssetGenImage get userAvatars =>
       const AssetGenImage('assets/images/user_avatars.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [userAvatars];
+  List<AssetGenImage> get values => [imgHeaderDrawer, userAvatars];
 }
 
 class $AssetsTranslationsGen {

@@ -13,7 +13,10 @@
         "home": "Home",
         "atlas": "Atlas",
         "music": "Music",
-        "events": "Events"
+        "events": "Events",
+        "subscriptions": "Subscriptions",
+        "settings": "Settings",
+        "logout": "Log Out"
     },
     "auth": {
         "register_successfully": "User successfully added.",

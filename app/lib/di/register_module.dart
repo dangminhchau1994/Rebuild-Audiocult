@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:app/core/constants/api_endpoints.dart';
 import 'package:app/core/utils/share_preferences_util.dart';
+import 'package:app/data/network/auth_interceptor.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -19,7 +20,9 @@ abstract class RegisterModule {
             HttpHeaders.acceptHeader: "application/json",
           },
         ),
-      )..interceptors.add(
+      )
+        ..interceptors.add(AuthInterceptor())
+        ..interceptors.add(
           AwesomeDioInterceptor(
             logRequestTimeout: false,
             logRequestHeaders: false,

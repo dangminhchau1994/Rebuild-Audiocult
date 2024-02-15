@@ -1,6 +1,8 @@
+import 'package:app/core/extension/app_extension.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
+import 'package:app/presentation/features/main/widgets/main_drawer.dart';
 import 'package:app/presentation/widgets/ui_app_bar.dart';
 import 'package:app/presentation/widgets/ui_bottom_bar.dart';
 import 'package:app/presentation/widgets/ui_circular_menu.dart';
@@ -78,6 +80,11 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: _drawerKey,
+      drawer: Container(
+        color: Colors.transparent,
+        width: context.setWidth(MediaQuery.of(context).size.width / 1.5),
+        child: const MainDrawer(),
+      ),
       drawerScrimColor: Colors.transparent,
       appBar: UIAppbar(
         title: getAppBarTitle(_selectedIndex),
