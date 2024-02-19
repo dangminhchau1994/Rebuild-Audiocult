@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:app/core/constants/api_endpoints.dart';
+import 'package:app/core/services/hive_service.dart';
 import 'package:app/core/utils/share_preferences_util.dart';
 import 'package:app/data/network/auth_interceptor.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
@@ -33,6 +34,9 @@ abstract class RegisterModule {
   @preResolve
   @Named('sharedPreferences')
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+
+  @singleton
+  HiveService get hiveService => HiveService();
 
   @singleton
   SharePreferencesUtil sharePreferencesUtil(

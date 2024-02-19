@@ -1,5 +1,6 @@
 import 'package:app/core/constants/app_pref_key.dart';
 import 'package:app/core/constants/app_route_names.dart';
+import 'package:app/core/router/app_router.dart';
 import 'package:app/core/utils/share_preferences_util.dart';
 import 'package:app/di/inject_container.dart';
 import 'package:app/gen/assets.gen.dart';
@@ -25,8 +26,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkStatus() async {
     await Future.delayed(const Duration(milliseconds: 1000));
     if (!mounted) return;
-    if (getIt<SharePreferencesUtil>().getString(AppPrefKey.token).isNotEmpty) {
-      context.router.replaceNamed(AppRouteNames.main);
+    final token = getIt<SharePreferencesUtil>().getString(AppPrefKey.token);
+    final userId = getIt<SharePreferencesUtil>().getString(AppPrefKey.userId);
+    if (token.isNotEmpty) {
+      context.pushRoute(MainRoute(userId: int.parse(userId)));
     } else {
       context.router.replaceNamed(AppRouteNames.auth);
     }

@@ -2,6 +2,7 @@ import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/constants/app_pref_key.dart';
 import 'package:app/core/constants/app_route_names.dart';
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/core/router/app_router.dart';
 import 'package:app/core/utils/share_preferences_util.dart';
 import 'package:app/di/inject_container.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
@@ -116,7 +117,11 @@ class SignInScreen extends StatelessWidget {
                     EasyLoading.show();
                   } else if (state is LoginSuccess) {
                     EasyLoading.dismiss();
-                    context.router.pushNamed(AppRouteNames.home);
+                    context.pushRoute(
+                      MainRoute(
+                        userId: int.parse(state.data.userId ?? ''),
+                      ),
+                    );
                   } else if (state is LoginError) {
                     EasyLoading.dismiss();
                     context.showError(

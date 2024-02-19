@@ -1,4 +1,5 @@
 class AppHiveKey {
-  static const String hiveBoxName = 'profile';
+  //Profile
+  static const String hiveProfileBox = 'profile';
   static const String userProfile = 'userProfile';
 }

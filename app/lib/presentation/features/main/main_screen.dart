@@ -1,7 +1,10 @@
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/domain/usecases/get_profile_usecase.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
+import 'package:app/presentation/blocs/profile/get_profile_bloc.dart';
+import 'package:app/presentation/blocs/profile/get_profile_event.dart';
 import 'package:app/presentation/features/main/widgets/main_drawer.dart';
 import 'package:app/presentation/widgets/ui_app_bar.dart';
 import 'package:app/presentation/widgets/ui_bottom_bar.dart';
@@ -11,12 +14,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({
+    super.key,
+    @pathParam this.userId,
+  });
+
+  final int? userId;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -26,6 +35,19 @@ class _MainScreenState extends State<MainScreen> {
   final _pageController = PageController(initialPage: 0);
   final _drawerKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<GetProfileBloc>().add(
+          OnGetProfile(
+            params: GetProfileParams(
+              userId: widget.userId ?? -1,
+              data: 'info',
+            ),
+          ),
+        );
+  }
 
   @override
   void dispose() {

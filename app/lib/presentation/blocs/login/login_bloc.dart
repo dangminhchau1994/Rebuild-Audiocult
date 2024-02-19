@@ -26,6 +26,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           AppPrefKey.token,
           data.accessToken ?? '',
         );
+        getIt<SharePreferencesUtil>().saveString(
+          AppPrefKey.userId,
+          data.userId ?? '',
+        );
       },
     );
   }

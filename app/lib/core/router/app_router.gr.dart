@@ -28,9 +28,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     MainRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<MainRouteArgs>(
+          orElse: () => MainRouteArgs(userId: pathParams.optInt('userId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MainScreen(),
+        child: MainScreen(
+          key: args.key,
+          userId: args.userId,
+        ),
       );
     },
     ResendCodeRoute.name: (routeData) {
@@ -97,16 +103,40 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [MainScreen]
-class MainRoute extends PageRouteInfo<void> {
-  const MainRoute({List<PageRouteInfo>? children})
-      : super(
+class MainRoute extends PageRouteInfo<MainRouteArgs> {
+  MainRoute({
+    Key? key,
+    int? userId,
+    List<PageRouteInfo>? children,
+  }) : super(
           MainRoute.name,
+          args: MainRouteArgs(
+            key: key,
+            userId: userId,
+          ),
+          rawPathParams: {'userId': userId},
           initialChildren: children,
         );
 
   static const String name = 'MainRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MainRouteArgs> page = PageInfo<MainRouteArgs>(name);
+}
+
+class MainRouteArgs {
+  const MainRouteArgs({
+    this.key,
+    this.userId,
+  });
+
+  final Key? key;
+
+  final int? userId;
+
+  @override
+  String toString() {
+    return 'MainRouteArgs{key: $key, userId: $userId}';
+  }
 }
 
 /// generated route for

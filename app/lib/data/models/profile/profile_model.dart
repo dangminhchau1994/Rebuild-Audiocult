@@ -27,7 +27,12 @@ class ProfileModel extends ProfileEntity {
 
   Map<String, dynamic> toJson() => _$ProfileModelToJson(this);
 
-  ProfileEntity toEntity() => ProfileEntity(data: data);
+  ProfileEntity toEntity() => ProfileEntity(
+        data: data?.toEntity(),
+        status: status,
+        message: message,
+        error: error,
+      );
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)

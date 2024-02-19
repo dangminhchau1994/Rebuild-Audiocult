@@ -1,4 +1,5 @@
 import 'package:app/core/constants/app_constants.dart';
+import 'package:app/core/constants/app_hive_key.dart';
 import 'package:app/core/extension/app_extension.dart';
 import 'package:app/core/router/app_router.dart';
 import 'package:app/core/services/hive_service.dart';
@@ -13,6 +14,7 @@ import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/blocs/login/login_bloc.dart';
 import 'package:app/presentation/blocs/login/login_cubit.dart';
+import 'package:app/presentation/blocs/profile/get_profile_bloc.dart';
 import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
 import 'package:app/presentation/blocs/resend_code/resend_code_bloc.dart';
@@ -29,8 +31,9 @@ import 'package:easy_localization/easy_localization.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
-  await HiveService().init();
   await EasyLocalization.ensureInitialized();
+  await getIt<HiveService>().init();
+  await getIt<HiveService>().openBox(AppHiveKey.hiveProfileBox);
   runApp(
     EasyLocalization(
       supportedLocales: const [
@@ -105,6 +108,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => getIt<LoginCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => getIt<GetProfileBloc>(),
           ),
         ],
         child: MaterialApp.router(
