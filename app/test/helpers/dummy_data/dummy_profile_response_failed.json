@@ -1,0 +1,15 @@
+{
+    "status": "failed",
+    "data": {
+        "user_id": "3778",
+        "title": "Entertainer",
+        "user_name": "dangminhchau",
+        "full_name": "dangminhchau",
+        "gender": null,
+        "user_image": null
+    },
+    "message": "",
+    "error": {
+        "message": "failed"
+    }
+}

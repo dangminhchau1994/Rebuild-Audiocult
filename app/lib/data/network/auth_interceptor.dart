@@ -6,9 +6,9 @@ import 'package:dio/dio.dart';
 class AuthInterceptor extends QueuedInterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (getIt<SharePreferencesUtil>().getString(AppPrefKey.token).isNotEmpty) {
-      options.headers['Authorization'] =
-          'Bearer ${getIt<SharePreferencesUtil>().getString(AppPrefKey.token)}';
+    final token = getIt<SharePreferencesUtil>().getString(AppPrefKey.token);
+    if (token.isNotEmpty) {
+      options.headers['Authorization'] = 'Bearer $token';
     }
     handler.next(options);
   }
