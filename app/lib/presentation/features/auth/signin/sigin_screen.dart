@@ -117,7 +117,7 @@ class SignInScreen extends StatelessWidget {
                     EasyLoading.show();
                   } else if (state is LoginSuccess) {
                     EasyLoading.dismiss();
-                    context.pushRoute(
+                    context.router.replace(
                       MainRoute(
                         userId: int.parse(state.data.userId ?? ''),
                       ),

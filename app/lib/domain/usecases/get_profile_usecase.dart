@@ -1,5 +1,5 @@
 import 'package:app/core/errors/failure.dart';
-import 'package:app/domain/entities/profile_entity.dart';
+import 'package:app/domain/entities/profile/profile_entity.dart';
 import 'package:app/domain/repositories/get_profile_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';

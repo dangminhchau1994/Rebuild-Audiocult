@@ -1,3 +1,5 @@
+import 'package:app/domain/entities/profile/profile_entity.dart';
+import 'package:app/domain/entities/register_entity.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveService {
@@ -7,6 +9,14 @@ class HiveService {
 
   Future<void> openBox(String boxName) async {
     await Hive.openBox(boxName);
+  }
+
+  void registerProfileAdapter() {
+    Hive.registerAdapter(ProfileEntityAdapter());
+  }
+
+  void registerProfileDataAdapter() {
+    Hive.registerAdapter(ProfileDataEntityAdapter());
   }
 
   Future<void> putData(String boxName, String key, dynamic value) async {

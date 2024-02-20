@@ -11,6 +11,7 @@ import 'package:app/domain/repositories/get_places_repository.dart';
 import 'package:app/domain/repositories/get_profile_repository.dart';
 import 'package:app/domain/repositories/get_roles_repository.dart';
 import 'package:app/domain/repositories/login_repository.dart';
+import 'package:app/domain/repositories/logout_repository.dart';
 import 'package:app/domain/repositories/register_repository.dart';
 import 'package:app/domain/repositories/resend_code_repository.dart';
 import 'package:app/domain/repositories/resend_password_repository.dart';
@@ -28,6 +29,7 @@ import 'package:mockito/annotations.dart';
 
 @GenerateMocks(
   [
+    LogoutRepository,
     GetProfileRepository,
     GetRolesRepository,
     LoginRepository,

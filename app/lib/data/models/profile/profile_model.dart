@@ -1,4 +1,4 @@
-import 'package:app/domain/entities/profile_entity.dart';
+import 'package:app/domain/entities/profile/profile_entity.dart';
 import 'package:app/domain/entities/register_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'profile_model.g.dart';

@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:app/core/errors/exception.dart';
 import 'package:app/core/errors/failure.dart';
 import 'package:app/data/models/profile/profile_model.dart';
 import 'package:app/data/repositories/get_profile_repository_impl.dart';
-import 'package:app/domain/entities/profile_entity.dart';
+import 'package:app/domain/entities/profile/profile_entity.dart';
 import 'package:app/domain/entities/register_entity.dart';
 import 'package:app/domain/usecases/get_profile_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -77,7 +76,7 @@ void main() {
       when(mockGetProfileDataSource.getProfile(any))
           .thenThrow(ServerException());
       when(mockHiveService.getData(any, any))
-          .thenAnswer((_) async => tProfileModel);
+          .thenAnswer((_) async => tProfileEntity);
 
       //act
       final result = await getProfileRepositoryImpl.getProfile(tParams);
@@ -93,7 +92,7 @@ void main() {
       when(mockGetProfileDataSource.getProfile(any))
           .thenThrow(ServerException());
       when(mockHiveService.getData(any, any))
-          .thenAnswer((_) async => const ProfileModel(data: null));
+          .thenAnswer((_) async => const ProfileEntity(data: null));
 
       //act
       final result = await getProfileRepositoryImpl.getProfile(tParams);
@@ -108,7 +107,7 @@ void main() {
       when(mockGetProfileDataSource.getProfile(any))
           .thenThrow(const SocketException('No internet'));
       when(mockHiveService.getData(any, any))
-          .thenAnswer((_) async => tProfileModel);
+          .thenAnswer((_) async => tProfileEntity);
 
       //act
       final result = await getProfileRepositoryImpl.getProfile(tParams);
@@ -124,7 +123,7 @@ void main() {
       when(mockGetProfileDataSource.getProfile(any))
           .thenThrow(const SocketException('No internet'));
       when(mockHiveService.getData(any, any))
-          .thenAnswer((_) async => const ProfileModel(data: null));
+          .thenAnswer((_) async => const ProfileEntity(data: null));
 
       //act
       final result = await getProfileRepositoryImpl.getProfile(tParams);

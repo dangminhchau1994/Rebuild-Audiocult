@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:app/data/models/profile/profile_model.dart';
-import 'package:app/domain/entities/profile_entity.dart';
+import 'package:app/domain/entities/profile/profile_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/json_reader.dart';

@@ -1,10 +1,16 @@
 import 'package:app/domain/entities/register_entity.dart';
-import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+part 'profile_entity.g.dart';
 
-class ProfileEntity extends Equatable {
+@HiveType(typeId: 1)
+class ProfileEntity {
+  @HiveField(0)
   final String? message;
+  @HiveField(1)
   final String? status;
+  @HiveField(2)
   final dynamic error;
+  @HiveField(3)
   final ProfileDataEntity? data;
 
   const ProfileEntity({
@@ -13,12 +19,4 @@ class ProfileEntity extends Equatable {
     this.status,
     this.data,
   });
-
-  @override
-  List<Object?> get props => [
-        message,
-        status,
-        error,
-        data,
-      ];
 }

@@ -33,6 +33,8 @@ void main() async {
   configureDependencies();
   await EasyLocalization.ensureInitialized();
   await getIt<HiveService>().init();
+  getIt<HiveService>().registerProfileAdapter();
+  getIt<HiveService>().registerProfileDataAdapter();
   await getIt<HiveService>().openBox(AppHiveKey.hiveProfileBox);
   runApp(
     EasyLocalization(

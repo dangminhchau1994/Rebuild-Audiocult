@@ -1,5 +1,5 @@
 import 'package:app/core/errors/failure.dart';
-import 'package:app/domain/entities/profile_entity.dart';
+import 'package:app/domain/entities/profile/profile_entity.dart';
 import 'package:app/domain/entities/register_entity.dart';
 import 'package:app/domain/usecases/get_profile_usecase.dart';
 import 'package:app/presentation/blocs/profile/get_profile_bloc.dart';

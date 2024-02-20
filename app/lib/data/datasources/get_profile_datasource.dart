@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:app/core/constants/api_endpoints.dart';
 import 'package:app/core/constants/app_constants.dart';
 import 'package:app/core/errors/exception.dart';
@@ -23,16 +25,19 @@ class GetProfileDataSourceImpl implements GetProfileDataSource {
 
   @override
   Future<ProfileModel> getProfile(GetProfileParams params) async {
-    client.options.baseUrl = ApiEndpoints.baseUrl;
-    final response = await client.get(
-      '${ApiEndpoints.register}/${params.userId}',
-      queryParameters: params.toJson(),
-    );
-
-    if (response.data['status'] == AppConstants.successStatus) {
-      return ProfileModel.fromJson(response.data);
-    } else {
-      throw ServerException(message: response.data['error']['message']);
+    try {
+      client.options.baseUrl = ApiEndpoints.baseUrl;
+      final response = await client.get(
+        '${ApiEndpoints.register}/${params.userId}',
+        queryParameters: params.toJson(),
+      );
+      if (response.data['status'] == AppConstants.successStatus) {
+        return ProfileModel.fromJson(response.data);
+      } else {
+        throw ServerException(message: response.data['error']['message']);
+      }
+    } catch (e) {
+      throw const SocketException('No internet');
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/core/mixins/mixin_dialog.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatelessWidget with DialogMixin {
   const MainDrawer({super.key});
 
   @override
@@ -36,7 +37,7 @@ class MainDrawer extends StatelessWidget {
                         children: [
                           Text(
                             state.data.data?.userName ?? '',
-                            style: context.bodySmall.copyWith(
+                            style: context.titleSmall.copyWith(
                               color: ColorName.white,
                             ),
                           ),
@@ -91,14 +92,23 @@ class MainDrawer extends StatelessWidget {
                           ),
                           const Spacer(),
                           SafeArea(
-                            child: ListTile(
-                              leading: SvgPicture.asset(
-                                Assets.icons.iconLogout.path,
-                              ),
-                              title: Text(
-                                LocaleKeys.main_logout.tr(),
-                                style: context.bodySmall.copyWith(
-                                  color: ColorName.white,
+                            child: GestureDetector(
+                              onTap: () {
+                                showAlertDialog(
+                                  context,
+                                  LocaleKeys.main_logout.tr(),
+                                  LocaleKeys.main_logoutContent.tr(),
+                                );
+                              },
+                              child: ListTile(
+                                leading: SvgPicture.asset(
+                                  Assets.icons.iconLogout.path,
+                                ),
+                                title: Text(
+                                  LocaleKeys.main_logout.tr(),
+                                  style: context.bodySmall.copyWith(
+                                    color: ColorName.white,
+                                  ),
                                 ),
                               ),
                             ),

@@ -1,4 +1,4 @@
-import 'package:app/domain/entities/profile_entity.dart';
+import 'package:app/domain/entities/profile/profile_entity.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class GetProfileState extends Equatable {

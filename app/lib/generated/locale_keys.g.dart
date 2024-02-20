@@ -10,6 +10,8 @@ abstract class  LocaleKeys {
   static const pending = 'pending';
   static const submit = 'submit';
   static const save = 'save';
+  static const ok = 'ok';
+  static const cancel = 'cancel';
   static const main_post = 'main.post';
   static const main_home = 'main.home';
   static const main_atlas = 'main.atlas';
@@ -18,6 +20,7 @@ abstract class  LocaleKeys {
   static const main_subscriptions = 'main.subscriptions';
   static const main_settings = 'main.settings';
   static const main_logout = 'main.logout';
+  static const main_logoutContent = 'main.logoutContent';
   static const main = 'main';
   static const auth_register_successfully = 'auth.register_successfully';
   static const auth_not_matching_password = 'auth.not_matching_password';

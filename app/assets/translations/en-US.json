@@ -8,6 +8,8 @@
     "pending": "Pending",
     "submit": "Submit",
     "save": "Save",
+    "ok": "OK",
+    "cancel": "Cancel",
     "main": {
         "post": "Posts",
         "home": "Home",
@@ -16,7 +18,8 @@
         "events": "Events",
         "subscriptions": "Subscriptions",
         "settings": "Settings",
-        "logout": "Log Out"
+        "logout": "Log Out",
+        "logoutContent": "Are you sure you want to sign out?"
     },
     "auth": {
         "register_successfully": "User successfully added.",

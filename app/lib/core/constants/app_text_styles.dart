@@ -19,7 +19,7 @@ class AppTextStyles {
   static TextStyle titleSmall = TextStyle(
     fontSize: 18.sp,
     fontStyle: FontStyle.normal,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
     height: ScreenUtil().scaleHeight,
   );
 
