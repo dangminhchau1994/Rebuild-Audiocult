@@ -1,8 +1,12 @@
 import 'dart:io';
 import 'package:app/core/constants/app_constants.dart';
+import 'package:app/core/constants/app_pref_key.dart';
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/core/router/app_router.dart';
+import 'package:app/core/utils/share_preferences_util.dart';
 import 'package:app/core/utils/validation_util.dart';
 import 'package:app/data/models/select_model.dart';
+import 'package:app/di/inject_container.dart';
 import 'package:app/domain/entities/place_suggestion_entity.dart';
 import 'package:app/domain/usecases/get_place_detail_usecase.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
@@ -25,6 +29,7 @@ import 'package:app/presentation/widgets/ui_checkbox.dart';
 import 'package:app/presentation/widgets/ui_dropdown.dart';
 import 'package:app/presentation/widgets/ui_loading.dart';
 import 'package:app/presentation/widgets/ui_text_field.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -193,8 +198,11 @@ class RegisterScreen extends StatelessWidget {
                       EasyLoading.show();
                     } else if (state is RegisterSuccess) {
                       EasyLoading.dismiss();
-                      context.showSuccess(
-                        LocaleKeys.auth_register_success.tr(),
+                      context.pushRoute(MainRoute(
+                          userId: int.parse(state.data.data?.userId ?? '')));
+                      getIt<SharePreferencesUtil>().saveString(
+                        AppPrefKey.token,
+                        state.data.data?.accessToken ?? '',
                       );
                     } else if (state is RegisterError) {
                       EasyLoading.dismiss();

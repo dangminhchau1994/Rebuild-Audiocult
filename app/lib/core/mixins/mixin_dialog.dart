@@ -1,5 +1,4 @@
 import 'package:app/core/extension/app_extension.dart';
-import 'package:app/core/router/app_router.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
 import 'package:auto_route/auto_route.dart';
@@ -10,8 +9,9 @@ mixin DialogMixin on StatelessWidget {
   Future<void> showAlertDialog(
     BuildContext context,
     String title,
-    String content,
-  ) {
+    String content, {
+    Function()? onConfirm,
+  }) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -49,18 +49,13 @@ mixin DialogMixin on StatelessWidget {
               },
             ),
             TextButton(
+              onPressed: onConfirm,
               child: Text(
                 LocaleKeys.ok.tr(),
                 style: context.bodySmall.copyWith(
                   color: ColorName.white,
                 ),
               ),
-              onPressed: () {
-                context.router.pushAndPopUntil(
-                  const AuthRoute(),
-                  predicate: (predicate) => false,
-                );
-              },
             ),
           ],
         );

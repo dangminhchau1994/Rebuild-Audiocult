@@ -18,9 +18,6 @@ void main() {
     test(
       'should be a subclass of entity',
       () {
-        // Arrange
-
-        // Assert
         expect(tLoginModel, isA<LoginEntity>());
       },
     );

@@ -2,6 +2,7 @@ import 'package:app/core/services/hive_service.dart';
 import 'package:app/data/datasources/create_new_password_datasource.dart';
 import 'package:app/data/datasources/get_profile_datasource.dart';
 import 'package:app/data/datasources/login_data_source.dart';
+import 'package:app/data/datasources/logout_data_source.dart';
 import 'package:app/data/datasources/places_data_source.dart';
 import 'package:app/data/datasources/resend_code_data_source.dart';
 import 'package:app/data/datasources/resend_password_data_source.dart';
@@ -21,6 +22,7 @@ import 'package:app/domain/usecases/get_places_usecase.dart';
 import 'package:app/domain/usecases/get_profile_usecase.dart';
 import 'package:app/domain/usecases/get_roles_usecase.dart';
 import 'package:app/domain/usecases/login_usecase.dart';
+import 'package:app/domain/usecases/logout_usecase.dart';
 import 'package:app/domain/usecases/register_usecase.dart';
 import 'package:app/domain/usecases/resend_code_usecase.dart';
 import 'package:app/domain/usecases/resend_password_usecase.dart';
@@ -46,7 +48,9 @@ import 'package:mockito/annotations.dart';
     GetRolesUseCase,
     GetPlaceDetailUseCase,
     LoginUseCase,
+    LogoutUsecase,
     ResendCodeUseCase,
+    LogoutDataSource,
     ResendPasswordDataSource,
     ResendCodeDataSource,
     CreateNewPasswordDataSource,

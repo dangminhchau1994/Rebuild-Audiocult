@@ -14,6 +14,7 @@ import 'package:app/presentation/blocs/get_roles/get_roles_bloc.dart';
 import 'package:app/presentation/blocs/get_roles/get_roles_event.dart';
 import 'package:app/presentation/blocs/login/login_bloc.dart';
 import 'package:app/presentation/blocs/login/login_cubit.dart';
+import 'package:app/presentation/blocs/logout/logout_bloc.dart';
 import 'package:app/presentation/blocs/profile/get_profile_bloc.dart';
 import 'package:app/presentation/blocs/register/register_bloc.dart';
 import 'package:app/presentation/blocs/register/register_cubit.dart';
@@ -86,6 +87,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => getIt<ResendPasswordBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => getIt<LogoutBloc>(),
           ),
           BlocProvider(
             create: (_) => getIt<ResendCodeBloc>(),
