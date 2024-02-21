@@ -4,34 +4,37 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i25;
-import 'dart:ui' as _i54;
+import 'dart:ui' as _i57;
 
 import 'package:app/core/errors/failure.dart' as _i26;
-import 'package:app/core/services/hive_service.dart' as _i52;
+import 'package:app/core/router/app_router.dart' as _i58;
+import 'package:app/core/services/hive_service.dart' as _i55;
 import 'package:app/data/datasources/create_new_password_datasource.dart'
-    as _i47;
-import 'package:app/data/datasources/get_profile_datasource.dart' as _i48;
-import 'package:app/data/datasources/login_data_source.dart' as _i50;
-import 'package:app/data/datasources/logout_data_source.dart' as _i44;
-import 'package:app/data/datasources/places_data_source.dart' as _i51;
-import 'package:app/data/datasources/resend_code_data_source.dart' as _i46;
-import 'package:app/data/datasources/resend_password_data_source.dart' as _i45;
-import 'package:app/data/datasources/roles_data_source.dart' as _i49;
+    as _i50;
+import 'package:app/data/datasources/get_profile_datasource.dart' as _i51;
+import 'package:app/data/datasources/login_data_source.dart' as _i53;
+import 'package:app/data/datasources/logout_data_source.dart' as _i47;
+import 'package:app/data/datasources/places_data_source.dart' as _i54;
+import 'package:app/data/datasources/resend_code_data_source.dart' as _i49;
+import 'package:app/data/datasources/resend_password_data_source.dart' as _i48;
+import 'package:app/data/datasources/roles_data_source.dart' as _i52;
 import 'package:app/data/models/base/base_model.dart' as _i13;
 import 'package:app/data/models/login/login_model.dart' as _i16;
 import 'package:app/data/models/logout/logout_model.dart' as _i12;
 import 'package:app/data/models/places/places_model.dart' as _i17;
 import 'package:app/data/models/profile/profile_model.dart' as _i14;
 import 'package:app/data/models/roles/roles_model.dart' as _i15;
-import 'package:app/domain/entities/base_entity.dart' as _i37;
+import 'package:app/domain/entities/base_entity.dart' as _i40;
+import 'package:app/domain/entities/feed/feed_entity.dart' as _i38;
 import 'package:app/domain/entities/login_entity.dart' as _i32;
 import 'package:app/domain/entities/logout_entity.dart' as _i27;
 import 'package:app/domain/entities/place_suggestion_entity.dart' as _i34;
 import 'package:app/domain/entities/profile/profile_entity.dart' as _i29;
-import 'package:app/domain/entities/register_entity.dart' as _i40;
+import 'package:app/domain/entities/register_entity.dart' as _i43;
 import 'package:app/domain/entities/roles_entity.dart' as _i31;
 import 'package:app/domain/repositories/create_new_password_repository.dart'
     as _i3;
+import 'package:app/domain/repositories/get_feeds_repository.dart' as _i37;
 import 'package:app/domain/repositories/get_places_repository.dart' as _i6;
 import 'package:app/domain/repositories/get_profile_repository.dart' as _i7;
 import 'package:app/domain/repositories/get_roles_repository.dart' as _i8;
@@ -40,16 +43,17 @@ import 'package:app/domain/repositories/logout_repository.dart' as _i10;
 import 'package:app/domain/repositories/register_repository.dart' as _i4;
 import 'package:app/domain/repositories/resend_code_repository.dart' as _i11;
 import 'package:app/domain/repositories/resend_password_repository.dart' as _i5;
-import 'package:app/domain/usecases/create_new_password_usecase.dart' as _i42;
+import 'package:app/domain/usecases/create_new_password_usecase.dart' as _i45;
+import 'package:app/domain/usecases/get_feeds_usecase.dart' as _i39;
 import 'package:app/domain/usecases/get_place_detail_usecase.dart' as _i36;
 import 'package:app/domain/usecases/get_places_usecase.dart' as _i35;
 import 'package:app/domain/usecases/get_profile_usecase.dart' as _i30;
-import 'package:app/domain/usecases/get_roles_usecase.dart' as _i43;
+import 'package:app/domain/usecases/get_roles_usecase.dart' as _i46;
 import 'package:app/domain/usecases/login_usecase.dart' as _i33;
 import 'package:app/domain/usecases/logout_usecase.dart' as _i28;
-import 'package:app/domain/usecases/register_usecase.dart' as _i41;
-import 'package:app/domain/usecases/resend_code_usecase.dart' as _i39;
-import 'package:app/domain/usecases/resend_password_usecase.dart' as _i38;
+import 'package:app/domain/usecases/register_usecase.dart' as _i44;
+import 'package:app/domain/usecases/resend_code_usecase.dart' as _i42;
+import 'package:app/domain/usecases/resend_password_usecase.dart' as _i41;
 import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:auto_route/src/matcher/route_matcher.dart' as _i22;
 import 'package:auto_route/src/router/controller/navigation_history/navigation_history_base.dart'
@@ -61,7 +65,7 @@ import 'package:dio/dio.dart' as _i24;
 import 'package:flutter/foundation.dart' as _i18;
 import 'package:flutter/material.dart' as _i21;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i53;
+import 'package:mockito/src/dummies.dart' as _i56;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -612,6 +616,35 @@ class MockGetPlacesRepository extends _i1.Mock
       ) as _i25.Future<_i2.Either<_i26.Failure, _i34.PlaceSuggestionEntity>>);
 }
 
+/// A class which mocks [GetFeedsRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetFeedsRepository extends _i1.Mock
+    implements _i37.GetFeedsRepository {
+  MockGetFeedsRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i25.Future<_i2.Either<_i26.Failure, _i38.FeedEntity>> getFeeds(
+          _i39.GetFeedParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getFeeds,
+          [params],
+        ),
+        returnValue:
+            _i25.Future<_i2.Either<_i26.Failure, _i38.FeedEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i38.FeedEntity>(
+          this,
+          Invocation.method(
+            #getFeeds,
+            [params],
+          ),
+        )),
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i38.FeedEntity>>);
+}
+
 /// A class which mocks [ResendPasswordRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -622,23 +655,23 @@ class MockResendPasswordRepository extends _i1.Mock
   }
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>> resendPassword(
-          _i38.ResendPasswordParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>> resendPassword(
+          _i41.ResendPasswordParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendPassword,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i37.BaseEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i40.BaseEntity>(
           this,
           Invocation.method(
             #resendPassword,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>);
 }
 
 /// A class which mocks [ResendCodeRepository].
@@ -651,23 +684,23 @@ class MockResendCodeRepository extends _i1.Mock
   }
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>> resendCode(
-          _i39.ResendCodeParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>> resendCode(
+          _i42.ResendCodeParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendCode,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i37.BaseEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i40.BaseEntity>(
           this,
           Invocation.method(
             #resendCode,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>);
 }
 
 /// A class which mocks [RegisterRepository].
@@ -680,23 +713,23 @@ class MockRegisterRepository extends _i1.Mock
   }
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i40.RegisterEntity>> register(
-          _i41.RegisterParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i43.RegisterEntity>> register(
+          _i44.RegisterParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #register,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i40.RegisterEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i40.RegisterEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i43.RegisterEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i43.RegisterEntity>(
           this,
           Invocation.method(
             #register,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.RegisterEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i43.RegisterEntity>>);
 }
 
 /// A class which mocks [CreateNewPasswordRepository].
@@ -709,30 +742,30 @@ class MockCreateNewPasswordRepository extends _i1.Mock
   }
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>> createNewPassword(
-          _i42.CreateNewPasswordParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>> createNewPassword(
+          _i45.CreateNewPasswordParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #createNewPassword,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i37.BaseEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i40.BaseEntity>(
           this,
           Invocation.method(
             #createNewPassword,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>);
 }
 
 /// A class which mocks [CreateNewPasswordUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCreateNewPasswordUseCase extends _i1.Mock
-    implements _i42.CreateNewPasswordUseCase {
+    implements _i45.CreateNewPasswordUseCase {
   MockCreateNewPasswordUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -747,29 +780,29 @@ class MockCreateNewPasswordUseCase extends _i1.Mock
       ) as _i3.CreateNewPasswordRepository);
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>> createNewPassword(
-          _i42.CreateNewPasswordParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>> createNewPassword(
+          _i45.CreateNewPasswordParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #createNewPassword,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i37.BaseEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i40.BaseEntity>(
           this,
           Invocation.method(
             #createNewPassword,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>);
 }
 
 /// A class which mocks [RegisterUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegisterUseCase extends _i1.Mock implements _i41.RegisterUseCase {
+class MockRegisterUseCase extends _i1.Mock implements _i44.RegisterUseCase {
   MockRegisterUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -784,30 +817,30 @@ class MockRegisterUseCase extends _i1.Mock implements _i41.RegisterUseCase {
       ) as _i4.RegisterRepository);
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i40.RegisterEntity>> execute(
-          _i41.RegisterParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i43.RegisterEntity>> execute(
+          _i44.RegisterParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i40.RegisterEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i40.RegisterEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i43.RegisterEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i43.RegisterEntity>(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.RegisterEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i43.RegisterEntity>>);
 }
 
 /// A class which mocks [ResendPasswordUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResendPasswordUseCase extends _i1.Mock
-    implements _i38.ResendPasswordUseCase {
+    implements _i41.ResendPasswordUseCase {
   MockResendPasswordUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -822,23 +855,23 @@ class MockResendPasswordUseCase extends _i1.Mock
       ) as _i5.ResendPasswordRepository);
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>> resendPassword(
-          _i38.ResendPasswordParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>> resendPassword(
+          _i41.ResendPasswordParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendPassword,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i37.BaseEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i40.BaseEntity>(
           this,
           Invocation.method(
             #resendPassword,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>);
 }
 
 /// A class which mocks [GetPlacesUseCase].
@@ -921,7 +954,7 @@ class MockGetProfileUseCase extends _i1.Mock implements _i30.GetProfileUseCase {
 /// A class which mocks [GetRolesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetRolesUseCase extends _i1.Mock implements _i43.GetRolesUseCase {
+class MockGetRolesUseCase extends _i1.Mock implements _i46.GetRolesUseCase {
   MockGetRolesUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -1070,7 +1103,7 @@ class MockLogoutUsecase extends _i1.Mock implements _i28.LogoutUsecase {
 /// A class which mocks [ResendCodeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResendCodeUseCase extends _i1.Mock implements _i39.ResendCodeUseCase {
+class MockResendCodeUseCase extends _i1.Mock implements _i42.ResendCodeUseCase {
   MockResendCodeUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -1085,29 +1118,29 @@ class MockResendCodeUseCase extends _i1.Mock implements _i39.ResendCodeUseCase {
       ) as _i11.ResendCodeRepository);
 
   @override
-  _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>> resendCode(
-          _i39.ResendCodeParams? params) =>
+  _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>> resendCode(
+          _i42.ResendCodeParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendCode,
           [params],
         ),
         returnValue:
-            _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>.value(
-                _FakeEither_0<_i26.Failure, _i37.BaseEntity>(
+            _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>.value(
+                _FakeEither_0<_i26.Failure, _i40.BaseEntity>(
           this,
           Invocation.method(
             #resendCode,
             [params],
           ),
         )),
-      ) as _i25.Future<_i2.Either<_i26.Failure, _i37.BaseEntity>>);
+      ) as _i25.Future<_i2.Either<_i26.Failure, _i40.BaseEntity>>);
 }
 
 /// A class which mocks [LogoutDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogoutDataSource extends _i1.Mock implements _i44.LogoutDataSource {
+class MockLogoutDataSource extends _i1.Mock implements _i47.LogoutDataSource {
   MockLogoutDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -1133,14 +1166,14 @@ class MockLogoutDataSource extends _i1.Mock implements _i44.LogoutDataSource {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResendPasswordDataSource extends _i1.Mock
-    implements _i45.ResendPasswordDataSource {
+    implements _i48.ResendPasswordDataSource {
   MockResendPasswordDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   _i25.Future<_i13.BaseModel> resendPassword(
-          _i38.ResendPasswordParams? params) =>
+          _i41.ResendPasswordParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendPassword,
@@ -1160,13 +1193,13 @@ class MockResendPasswordDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResendCodeDataSource extends _i1.Mock
-    implements _i46.ResendCodeDataSource {
+    implements _i49.ResendCodeDataSource {
   MockResendCodeDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i25.Future<_i13.BaseModel> resendCode(_i39.ResendCodeParams? params) =>
+  _i25.Future<_i13.BaseModel> resendCode(_i42.ResendCodeParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #resendCode,
@@ -1186,14 +1219,14 @@ class MockResendCodeDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCreateNewPasswordDataSource extends _i1.Mock
-    implements _i47.CreateNewPasswordDataSource {
+    implements _i50.CreateNewPasswordDataSource {
   MockCreateNewPasswordDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   _i25.Future<_i13.BaseModel> createNewPassword(
-          _i42.CreateNewPasswordParams? params) =>
+          _i45.CreateNewPasswordParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #createNewPassword,
@@ -1213,7 +1246,7 @@ class MockCreateNewPasswordDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetProfileDataSource extends _i1.Mock
-    implements _i48.GetProfileDataSource {
+    implements _i51.GetProfileDataSource {
   MockGetProfileDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -1238,7 +1271,7 @@ class MockGetProfileDataSource extends _i1.Mock
 /// A class which mocks [RolesDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRolesDataSource extends _i1.Mock implements _i49.RolesDataSource {
+class MockRolesDataSource extends _i1.Mock implements _i52.RolesDataSource {
   MockRolesDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -1262,7 +1295,7 @@ class MockRolesDataSource extends _i1.Mock implements _i49.RolesDataSource {
 /// A class which mocks [LoginDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginDataSource extends _i1.Mock implements _i50.LoginDataSource {
+class MockLoginDataSource extends _i1.Mock implements _i53.LoginDataSource {
   MockLoginDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -1287,7 +1320,7 @@ class MockLoginDataSource extends _i1.Mock implements _i50.LoginDataSource {
 /// A class which mocks [PlacesDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlacesDataSource extends _i1.Mock implements _i51.PlacesDataSource {
+class MockPlacesDataSource extends _i1.Mock implements _i54.PlacesDataSource {
   MockPlacesDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -1324,7 +1357,7 @@ class MockPlacesDataSource extends _i1.Mock implements _i51.PlacesDataSource {
 /// A class which mocks [HiveService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHiveService extends _i1.Mock implements _i52.HiveService {
+class MockHiveService extends _i1.Mock implements _i55.HiveService {
   MockHiveService() {
     _i1.throwOnMissingStub(this);
   }
@@ -1588,7 +1621,7 @@ class MockStackRouter extends _i1.Mock implements _i19.StackRouter {
   @override
   String get currentPath => (super.noSuchMethod(
         Invocation.getter(#currentPath),
-        returnValue: _i53.dummyValue<String>(
+        returnValue: _i56.dummyValue<String>(
           this,
           Invocation.getter(#currentPath),
         ),
@@ -1597,7 +1630,7 @@ class MockStackRouter extends _i1.Mock implements _i19.StackRouter {
   @override
   String get currentUrl => (super.noSuchMethod(
         Invocation.getter(#currentUrl),
-        returnValue: _i53.dummyValue<String>(
+        returnValue: _i56.dummyValue<String>(
           this,
           Invocation.getter(#currentUrl),
         ),
@@ -2269,7 +2302,7 @@ class MockStackRouter extends _i1.Mock implements _i19.StackRouter {
       )) as List<_i19.PageRouteInfo<dynamic>>?);
 
   @override
-  void addListener(_i54.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i57.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2278,7 +2311,7 @@ class MockStackRouter extends _i1.Mock implements _i19.StackRouter {
       );
 
   @override
-  void removeListener(_i54.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i57.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2294,6 +2327,21 @@ class MockStackRouter extends _i1.Mock implements _i19.StackRouter {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [AppRouter].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAppRouter extends _i1.Mock implements _i58.AppRouter {
+  MockAppRouter() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<_i19.AutoRoute> get routes => (super.noSuchMethod(
+        Invocation.getter(#routes),
+        returnValue: <_i19.AutoRoute>[],
+      ) as List<_i19.AutoRoute>);
 }
 
 /// A class which mocks [Dio].

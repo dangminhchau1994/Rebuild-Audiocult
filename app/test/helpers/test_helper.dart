@@ -1,3 +1,4 @@
+import 'package:app/core/router/app_router.dart';
 import 'package:app/core/services/hive_service.dart';
 import 'package:app/data/datasources/create_new_password_datasource.dart';
 import 'package:app/data/datasources/get_profile_datasource.dart';
@@ -8,6 +9,7 @@ import 'package:app/data/datasources/resend_code_data_source.dart';
 import 'package:app/data/datasources/resend_password_data_source.dart';
 import 'package:app/data/datasources/roles_data_source.dart';
 import 'package:app/domain/repositories/create_new_password_repository.dart';
+import 'package:app/domain/repositories/get_feeds_repository.dart';
 import 'package:app/domain/repositories/get_places_repository.dart';
 import 'package:app/domain/repositories/get_profile_repository.dart';
 import 'package:app/domain/repositories/get_roles_repository.dart';
@@ -37,6 +39,7 @@ import 'package:mockito/annotations.dart';
     GetRolesRepository,
     LoginRepository,
     GetPlacesRepository,
+    GetFeedsRepository,
     ResendPasswordRepository,
     ResendCodeRepository,
     RegisterRepository,
@@ -61,6 +64,7 @@ import 'package:mockito/annotations.dart';
     PlacesDataSource,
     HiveService,
     StackRouter,
+    AppRouter,
   ],
   customMocks: [
     MockSpec<Dio>(as: #MockDioClient),
