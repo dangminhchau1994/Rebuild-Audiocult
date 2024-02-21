@@ -26,6 +26,7 @@ import 'package:app/domain/usecases/logout_usecase.dart';
 import 'package:app/domain/usecases/register_usecase.dart';
 import 'package:app/domain/usecases/resend_code_usecase.dart';
 import 'package:app/domain/usecases/resend_password_usecase.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:mockito/annotations.dart';
 
@@ -59,6 +60,7 @@ import 'package:mockito/annotations.dart';
     LoginDataSource,
     PlacesDataSource,
     HiveService,
+    StackRouter,
   ],
   customMocks: [
     MockSpec<Dio>(as: #MockDioClient),

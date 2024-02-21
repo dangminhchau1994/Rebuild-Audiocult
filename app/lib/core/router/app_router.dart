@@ -1,10 +1,13 @@
 import 'package:app/core/constants/app_route_names.dart';
+import 'package:app/presentation/features/atlas/atlas_screen.dart';
 import 'package:app/presentation/features/auth/auth_screen.dart';
 import 'package:app/presentation/features/auth/resend_password/resend_code_screen.dart';
 import 'package:app/presentation/features/auth/resend_password/resend_new_password_screen.dart';
 import 'package:app/presentation/features/auth/resend_password/resend_password_screen.dart';
+import 'package:app/presentation/features/event/event_screen.dart';
 import 'package:app/presentation/features/home/home_screen.dart';
 import 'package:app/presentation/features/main/main_screen.dart';
+import 'package:app/presentation/features/music/music_screen.dart';
 import 'package:app/presentation/features/splash/splash_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +26,26 @@ class AppRouter extends _$AppRouter {
           path: AppRouteNames.auth,
         ),
         AutoRoute(
-          page: HomeRoute.page,
-          path: AppRouteNames.home,
-        ),
-        AutoRoute(
           page: MainRoute.page,
           path: AppRouteNames.main,
+          children: [
+            AutoRoute(
+              page: HomeRoute.page,
+              path: AppRouteNames.home,
+            ),
+            AutoRoute(
+              page: AtlasRoute.page,
+              path: AppRouteNames.atlas,
+            ),
+            AutoRoute(
+              page: MusicRoute.page,
+              path: AppRouteNames.music,
+            ),
+            AutoRoute(
+              page: EventRoute.page,
+              path: AppRouteNames.event,
+            ),
+          ],
         ),
         AutoRoute(
           page: ResendCodeRoute.page,

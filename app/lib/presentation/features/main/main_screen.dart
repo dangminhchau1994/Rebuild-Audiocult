@@ -1,4 +1,5 @@
 import 'package:app/core/extension/app_extension.dart';
+import 'package:app/core/router/app_router.dart';
 import 'package:app/domain/usecases/get_profile_usecase.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
@@ -32,7 +33,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _pageController = PageController(initialPage: 0);
   final _drawerKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
 
@@ -47,12 +47,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
         );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
   }
 
   final List<Widget> bottomBarPages = [
@@ -99,68 +93,69 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      key: _drawerKey,
-      drawer: Container(
-        color: Colors.transparent,
-        width: context.setWidth(MediaQuery.of(context).size.width / 1.5),
-        child: const MainDrawer(),
-      ),
-      drawerScrimColor: Colors.transparent,
-      appBar: UIAppbar(
-        title: getAppBarTitle(_selectedIndex),
-        leading: GestureDetector(
-          onTap: () {
-            _drawerKey.currentState?.openDrawer();
-          },
-          child: CircleAvatar(
-            backgroundColor: Colors.transparent,
-            child: ClipOval(
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                errorWidget: (context, url, error) => Container(),
-                imageUrl:
-                    'https://i.pinimg.com/236x/92/4d/55/924d5562740bee9f934f91cff5ea6eca.jpg',
+    return AutoTabsRouter.pageView(
+      routes: const [
+        HomeRoute(),
+        AtlasRoute(),
+        MusicRoute(),
+        EventRoute(),
+      ],
+      builder: (context, child, pageController) => Scaffold(
+        resizeToAvoidBottomInset: false,
+        key: _drawerKey,
+        drawer: Container(
+          color: Colors.transparent,
+          width: context.setWidth(MediaQuery.of(context).size.width / 1.5),
+          child: const MainDrawer(),
+        ),
+        drawerScrimColor: Colors.transparent,
+        appBar: UIAppbar(
+          title: getAppBarTitle(_selectedIndex),
+          leading: GestureDetector(
+            onTap: () {
+              _drawerKey.currentState?.openDrawer();
+            },
+            child: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              child: ClipOval(
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) => Container(),
+                  imageUrl:
+                      'https://i.pinimg.com/236x/92/4d/55/924d5562740bee9f934f91cff5ea6eca.jpg',
+                ),
               ),
             ),
           ),
-        ),
-        actions: [
-          Container(
-            padding: const EdgeInsets.all(2),
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            width: ScreenUtil().setWidth(36),
-            height: ScreenUtil().setWidth(36),
-            decoration: const BoxDecoration(
-              color: ColorName.inputFillColor,
-              shape: BoxShape.circle,
+          actions: [
+            Container(
+              padding: const EdgeInsets.all(2),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              width: ScreenUtil().setWidth(36),
+              height: ScreenUtil().setWidth(36),
+              decoration: const BoxDecoration(
+                color: ColorName.inputFillColor,
+                shape: BoxShape.circle,
+              ),
+              child: _buildLeftActionIcon(_selectedIndex),
             ),
-            child: _buildLeftActionIcon(_selectedIndex),
-          ),
-          UIFabMenu(
-            onSearchTap: () {},
-            onNotificationTap: () {},
-            onCartTap: () {},
-          )
-        ],
-      ),
-      body: PageView(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: List.generate(
-          bottomBarPages.length,
-          (index) => bottomBarPages[index],
+            UIFabMenu(
+              onSearchTap: () {},
+              onNotificationTap: () {},
+              onCartTap: () {},
+            )
+          ],
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const UICircularMenu(),
-      bottomNavigationBar: UIBottombar(
-        onTap: (index) {
-          _selectedIndex = index;
-          _pageController.jumpToPage(index);
-          setState(() {});
-        },
+        body: child,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: const UICircularMenu(),
+        bottomNavigationBar: UIBottombar(
+          onTap: (index) {
+            _selectedIndex = index;
+            pageController.jumpToPage(index);
+            setState(() {});
+          },
+        ),
       ),
     );
   }

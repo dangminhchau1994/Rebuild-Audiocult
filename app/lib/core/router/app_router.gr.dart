@@ -15,10 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AtlasRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AtlasScreen(),
+      );
+    },
     AuthRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const AuthScreen(),
+      );
+    },
+    EventRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EventScreen(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -37,6 +49,12 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           userId: args.userId,
         ),
+      );
+    },
+    MusicRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MusicScreen(),
       );
     },
     ResendCodeRoute.name: (routeData) {
@@ -74,6 +92,20 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [AtlasScreen]
+class AtlasRoute extends PageRouteInfo<void> {
+  const AtlasRoute({List<PageRouteInfo>? children})
+      : super(
+          AtlasRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AtlasRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [AuthScreen]
 class AuthRoute extends PageRouteInfo<void> {
   const AuthRoute({List<PageRouteInfo>? children})
@@ -83,6 +115,20 @@ class AuthRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AuthRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EventScreen]
+class EventRoute extends PageRouteInfo<void> {
+  const EventRoute({List<PageRouteInfo>? children})
+      : super(
+          EventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EventRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -137,6 +183,20 @@ class MainRouteArgs {
   String toString() {
     return 'MainRouteArgs{key: $key, userId: $userId}';
   }
+}
+
+/// generated route for
+/// [MusicScreen]
+class MusicRoute extends PageRouteInfo<void> {
+  const MusicRoute({List<PageRouteInfo>? children})
+      : super(
+          MusicRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MusicRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
