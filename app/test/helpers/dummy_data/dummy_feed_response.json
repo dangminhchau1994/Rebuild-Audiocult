@@ -1,0 +1,61 @@
+{
+    "status": "success",
+    "message": "",
+    "error": null,
+    "data": [
+        {
+            "feed_id": "7644",
+            "app_id": "0",
+            "privacy": "0",
+            "privacy_comment": "0",
+            "type_id": "user_status",
+            "user_id": "3778",
+            "parent_user_id": "0",
+            "item_id": "217",
+            "time_stamp": "1687053346",
+            "feed_reference": "0",
+            "parent_feed_id": "0",
+            "parent_module_id": null,
+            "time_update": "1687053346",
+            "content": null,
+            "total_view": "0",
+            "user_name": "dangminhchau",
+            "full_name": "dangminhchau",
+            "gender": "0",
+            "user_image": null,
+            "user_group_id": "15",
+            "language_id": "en",
+            "feed_time_stamp": "1687053346",
+            "can_post_comment": true,
+            "feed_status": "jdndndnd",
+            "feed_title": "",
+            "feed_link": "https://audiocult.net/dangminhchau/?status-id=217",
+            "total_comment": "0",
+            "feed_total_like": "1",
+            "feed_is_liked": true,
+            "feed_icon": "https://audiocult.net/PF.Base/theme/frontend/default/style/default/image/misc/application_add.png",
+            "enable_like": true,
+            "comment_type_id": "user_status",
+            "like_type_id": "user_status",
+            "total_friends_tagged": "0",
+            "can_like": true,
+            "can_comment": true,
+            "can_share": true,
+            "total_action": 3,
+            "status_background": "https://audiocult.net/PF.Site/Apps/p-status-background/assets/images/default-collection/bg08-min.png",
+            "parent_feed": null,
+            "last_icon": {
+                "like_type_id": "12",
+                "image_path": "https://audiocult.net/PF.Base/file/pic/photo/609b364894e98.svg",
+                "count_icon": "1"
+            },
+            "icons": [
+                {
+                    "like_type_id": "12",
+                    "image_path": "https://audiocult.net/PF.Base/file/pic/photo/609b364894e98.svg",
+                    "count_icon": "1"
+                }
+            ]
+        }
+    ]
+}

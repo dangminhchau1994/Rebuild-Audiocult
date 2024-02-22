@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:app/core/constants/app_text_styles.dart';
 import 'package:app/core/constants/app_widget_theme.dart';
+import 'package:app/core/errors/exception.dart';
 import 'package:app/gen/assets.gen.dart';
 import 'package:app/gen/colors.gen.dart';
 import 'package:app/gen/fonts.gen.dart';
 import 'package:app/generated/locale_keys.g.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,6 +44,29 @@ extension TextThemeExtension on BuildContext {
   TextStyle get bodySmall => Theme.of(this).textTheme.bodySmall!;
 
   TextStyle get bodyMedium => AppTextStyles.bodyMedium;
+}
+
+extension DioErrorExtension on DioExceptionType {
+  Exception handleDioError() {
+    switch (this) {
+      case DioExceptionType.connectionTimeout:
+        throw ServerException(message: 'Connection timeout');
+      case DioExceptionType.receiveTimeout:
+        throw ServerException(message: 'Receive timeout');
+      case DioExceptionType.badResponse:
+        throw ServerException(message: 'Response error');
+      case DioExceptionType.sendTimeout:
+        throw ServerException(message: 'Send timeout');
+      case DioExceptionType.cancel:
+        throw ServerException(message: 'Request cancelled');
+      case DioExceptionType.unknown:
+        throw ServerException(message: 'Other error');
+      case DioExceptionType.connectionError:
+        throw const SocketException('No internet connection');
+      case DioExceptionType.badCertificate:
+        throw ServerException(message: 'bad certificate');
+    }
+  }
 }
 
 extension SizePadding on BuildContext {

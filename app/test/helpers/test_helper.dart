@@ -1,6 +1,7 @@
 import 'package:app/core/router/app_router.dart';
 import 'package:app/core/services/hive_service.dart';
 import 'package:app/data/datasources/create_new_password_datasource.dart';
+import 'package:app/data/datasources/get_feeds_datasource.dart';
 import 'package:app/data/datasources/get_profile_datasource.dart';
 import 'package:app/data/datasources/login_data_source.dart';
 import 'package:app/data/datasources/logout_data_source.dart';
@@ -62,6 +63,7 @@ import 'package:mockito/annotations.dart';
     RolesDataSource,
     LoginDataSource,
     PlacesDataSource,
+    GetFeedDataSource,
     HiveService,
     StackRouter,
     AppRouter,

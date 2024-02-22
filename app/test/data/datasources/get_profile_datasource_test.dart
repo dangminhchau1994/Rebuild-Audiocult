@@ -69,7 +69,7 @@ void main() {
       expect(result, tProfileModel);
     });
 
-    test('throw exception when call api failed', () async {
+    test('throw exception when call api failed', () {
       // arrange
       when(mockDioClient.options).thenReturn(
         BaseOptions(baseUrl: ApiEndpoints.baseUrl),
