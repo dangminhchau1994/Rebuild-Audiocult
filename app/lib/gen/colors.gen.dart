@@ -19,6 +19,9 @@ class ColorName {
   /// Color: #00A8A8
   static const Color buttonColor = Color(0xFF00A8A8);
 
+  /// Color: #FF2D55
+  static const Color deepOrange = Color(0xFFFF2D55);
+
   /// Color: #DC2626
   static const Color error = Color(0xFFDC2626);
 
@@ -36,6 +39,9 @@ class ColorName {
 
   /// Color: #E5E7EB
   static const Color mediumTextColor = Color(0xFFE5E7EB);
+
+  /// Color: #F99147
+  static const Color orange = Color(0xFFF99147);
 
   /// Color: #1F2937
   static const Color secondaryButtonColor = Color(0xFF1F2937);

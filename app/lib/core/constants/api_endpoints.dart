@@ -4,6 +4,8 @@ class ApiEndpoints {
 
   static const String getRoles = "user/groups";
 
+  static const String announcement = "announcement";
+
   static const String getFeeds = 'feed';
 
   static const String register = 'user';

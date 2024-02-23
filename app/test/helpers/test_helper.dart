@@ -9,6 +9,7 @@ import 'package:app/data/datasources/places_data_source.dart';
 import 'package:app/data/datasources/resend_code_data_source.dart';
 import 'package:app/data/datasources/resend_password_data_source.dart';
 import 'package:app/data/datasources/roles_data_source.dart';
+import 'package:app/domain/repositories/announcement_respository.dart';
 import 'package:app/domain/repositories/create_new_password_repository.dart';
 import 'package:app/domain/repositories/get_feeds_repository.dart';
 import 'package:app/domain/repositories/get_places_repository.dart';
@@ -20,6 +21,7 @@ import 'package:app/domain/repositories/register_repository.dart';
 import 'package:app/domain/repositories/resend_code_repository.dart';
 import 'package:app/domain/repositories/resend_password_repository.dart';
 import 'package:app/domain/usecases/create_new_password_usecase.dart';
+import 'package:app/domain/usecases/get_feeds_usecase.dart';
 import 'package:app/domain/usecases/get_place_detail_usecase.dart';
 import 'package:app/domain/usecases/get_places_usecase.dart';
 import 'package:app/domain/usecases/get_profile_usecase.dart';
@@ -39,6 +41,7 @@ import 'package:mockito/annotations.dart';
     GetProfileRepository,
     GetRolesRepository,
     LoginRepository,
+    AnnouncementRepository,
     GetPlacesRepository,
     GetFeedsRepository,
     ResendPasswordRepository,
@@ -48,6 +51,7 @@ import 'package:mockito/annotations.dart';
     CreateNewPasswordUseCase,
     RegisterUseCase,
     ResendPasswordUseCase,
+    GetFeedsUseCase,
     GetPlacesUseCase,
     GetProfileUseCase,
     GetRolesUseCase,
